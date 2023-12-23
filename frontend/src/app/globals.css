@@ -38,6 +38,7 @@ body {
 }
 
 .cm-content {
+    padding: 15px;
     word-wrap: break-word;
     white-space: pre-line;
     word-break: normal;

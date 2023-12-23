@@ -19,7 +19,7 @@ const Editor = () => {
     const debouncedDispatch = useCallback(debounce(handleDispatch, 400), []);
 
     return (
-        <div className="h-screen flex bg-red-100  w-1/2">
+        <div className=" flex w-1/2">
             <CodeMirror
                 // value={value}
                 className="cm-outer-container"

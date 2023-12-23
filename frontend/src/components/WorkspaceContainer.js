@@ -4,8 +4,8 @@ import Viewer from "./workspace/viewer/Viewer";
 
 const WorkspaceContainer = () => {
     return (
-        <div className="flex bg-blue-100">
-            <div className="flex w-full h-full">
+        <div className="flex bg-blue-100 max-h-screen justify-center">
+            <div className="flex w-[96%] h-[96%] max-h-screen min-h-screen p-4 gap-3">
                 <Editor />
                 <Viewer />
             </div>
