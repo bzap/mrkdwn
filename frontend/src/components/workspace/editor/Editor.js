@@ -6,21 +6,25 @@ import { useDispatch } from "react-redux";
 import { setMarkdownText } from "@/lib/reducers/markdownSlice";
 import { rIC } from "@/util/RICDispatch";
 import { EditorView } from "@codemirror/view";
+import debounce from "lodash/debounce";
+import { useCallback } from "react";
 
 const Editor = () => {
     const editorRef = useRef();
     const dispatch = useDispatch();
 
-    const onChange = (value) => {
-        rIC(dispatch, setMarkdownText(value));
+    const handleDispatch = (query) => {
+        rIC(dispatch, setMarkdownText(query));
     };
+    const debouncedDispatch = useCallback(debounce(handleDispatch, 400), []);
+
     return (
         <div className="h-screen flex bg-red-100  w-1/2">
             <CodeMirror
                 // value={value}
                 className="cm-outer-container"
                 ref={editorRef}
-                onChange={(value) => onChange(value)}
+                onChange={(value) => debouncedDispatch(value)}
                 extensions={[
                     markdown({ highlightFormatting: true }),
                     EditorView.lineWrapping,
