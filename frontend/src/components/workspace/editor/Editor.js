@@ -29,7 +29,6 @@ const Editor = () => {
                     markdown({ highlightFormatting: true }),
                     EditorView.lineWrapping,
                 ]}
-                //onChange={onChange}
             />
         </div>
     );
