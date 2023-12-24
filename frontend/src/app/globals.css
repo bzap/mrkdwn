@@ -112,12 +112,12 @@ body {
     /* disable browser handling of all panning and zooming gestures on touch devices */
     touch-action: none;
     padding: 2px;
+    margin-top: 4%;
+    margin-bottom: 4%;
     /* background: var(--black-a6); */
     /* transition: background 160ms ease-out; */
 }
-.ScrollAreaScrollbar:hover {
-    /* background: var(--black-a8); */
-}
+
 .ScrollAreaScrollbar[data-orientation="vertical"] {
     width: var(--scrollbar-size);
 }

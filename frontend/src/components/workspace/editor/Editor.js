@@ -33,7 +33,7 @@ const Editor = () => {
                     <CodeMirror
                         // value={value}
                         theme={"light"}
-                        className="cm-outer-container CodeMirror CodeMirror-linenumber  p-5"
+                        className="cm-outer-container CodeMirror CodeMirror-linenumber  p-7"
                         ref={editorRef}
                         onChange={(value) => debouncedDispatch(value)}
                         extensions={[
