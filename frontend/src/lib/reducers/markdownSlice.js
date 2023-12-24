@@ -10,6 +10,7 @@ export const markdownSlice = createSlice({
     reducers: {
         setMarkdownText: (state, action) => {
             state.markdownText = action.payload;
+            console.log("dispatched");
         },
     },
 });

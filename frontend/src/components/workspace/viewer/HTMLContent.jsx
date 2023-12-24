@@ -8,7 +8,7 @@ const HTMLContent = () => {
 
     return (
         <article
-            className={"prose max-w-none"}
+            className={"prose max-w-none relative p-7"}
             dangerouslySetInnerHTML={{
                 __html: marked(markdownText, { sanitize: true }),
             }}
