@@ -10,11 +10,11 @@ import * as Popover from "@radix-ui/react-popover";
 import { MixerHorizontalIcon, Cross2Icon } from "@radix-ui/react-icons";
 import { Icons } from "./Icons";
 
-const Button = ({ Icon, index, text, fitted, handler, editorRef }) => {
+const Button = ({ Icon, index, text, fitted, handler, editorRef, symbol }) => {
     return (
         <button
             type="button"
-            onClick={(e) => handler(e, editorRef)}
+            onClick={(e) => handler(editorRef, symbol)}
             className={`text-black select-none outline-none items-center transition justify-center ${
                 fitted
                     ? "h-[25px] rounded-md border-gray-200 border-[1px] bg-gray-100 rounded-[0.4rem] hover:bg-gray-200 active:bg-gray-300`"
@@ -150,6 +150,7 @@ const ButtonGroup = ({ elements, editorRef }) => {
                         index={index}
                         length={length}
                         handler={element.func}
+                        symbol={element.symbol}
                     />
                 );
             })}
