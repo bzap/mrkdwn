@@ -42,11 +42,6 @@ body {
     position: relative; /* <-- .cm-scroller absolute positioning depends on this*/
 }
 
-.cm-s-duotone-light.CodeMirror {
-    background: #faf8f5;
-    color: #b29762;
-}
-
 .cm-editor.cm-focused {
     outline: none;
 }
@@ -55,32 +50,38 @@ body {
     word-wrap: break-word;
     white-space: pre-line;
     word-break: normal;
+    line-height: 24px;
 }
 
 .cm-scroll {
     overflow: hidden;
 }
 
-/* .cm-gutters {
-    border-right: 1px solid red;
-    background-color: #f7f7f7;
+.cm-gutters {
+    border-right: 10px solid red;
     white-space: nowrap;
-} */
+    line-height: 24px;
+}
 
 .cm-gutter {
-    /* background-color: white;
-    color: grey;
-    border-right: 0px;
-    width: 30px;
-    border: none !important; */
+    color: rgb(190, 190, 190);
+    border: none !important;
+
     -webkit-user-select: none; /* Safari */
     -ms-user-select: none; /* IE 10 and IE 11 */
     user-select: none; /* Standard syntax */
 }
 
+.cm-selectionBackground {
+    color: black;
+    background-color: black;
+    background: black;
+}
 .CodeMirror {
     /* Bootstrap Settings */
     width: 100%;
+    line-height: 30px;
+
     /* padding: 12px 12px; */
     font-size: 15px;
     background-color: white;

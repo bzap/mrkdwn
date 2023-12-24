@@ -6,8 +6,6 @@ const HTMLContent = () => {
         (state) => state.markdownData.markdownText
     );
 
-    console.log(marked(markdownText));
-
     return (
         <article
             className={"prose max-w-none relative p-7"}

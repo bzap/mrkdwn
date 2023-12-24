@@ -10,6 +10,12 @@ import debounce from "lodash/debounce";
 import { useCallback } from "react";
 import * as ScrollArea from "@radix-ui/react-scroll-area";
 import {
+    xcodeLight,
+    xcodeLightInit,
+    xcodeDark,
+    xcodeDarkInit,
+} from "@uiw/codemirror-theme-xcode";
+import {
     duotoneLight,
     duotoneLightInit,
     duotoneDark,
@@ -27,12 +33,19 @@ const Editor = () => {
 
     // bg-[#272c34]
     return (
-        <div className="flex w-1/2 rounded-2xl overflow-hidden border-solid ">
+        <div className="flex w-6/12 rounded-2xl overflow-hidden border-solid ">
             <ScrollArea.Root className="ScrollAreaRoot w-full h-full">
                 <ScrollArea.Viewport className="ScrollAreaViewport ">
                     <CodeMirror
                         // value={value}
-                        theme={"light"}
+                        theme={xcodeLightInit({
+                            settings: {
+                                caret: "#c6c6c6",
+                                fontFamily: "monospace",
+                                gutterBorder: "transparent",
+                                gutterBackground: "#ffff",
+                            },
+                        })}
                         className="cm-outer-container CodeMirror CodeMirror-linenumber  p-7"
                         ref={editorRef}
                         onChange={(value) => debouncedDispatch(value)}

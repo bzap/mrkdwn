@@ -5,7 +5,7 @@ import * as ScrollArea from "@radix-ui/react-scroll-area";
 
 const Viewer = () => {
     return (
-        <div className="flex w-1/2 bg-white rounded-2xl overflow-hidden border-solid">
+        <div className="flex w-6/12 bg-white rounded-2xl overflow-hidden border-solid">
             {/* <div className="hover-scroll w-full h-full overflow-y-scroll p-8">
                 <HTMLContent />
             </div> */}
