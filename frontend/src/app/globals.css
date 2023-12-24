@@ -306,6 +306,7 @@ body {
 .PopoverContent[data-state="open"][data-side="top"] {
     animation-name: slideRightAndFade;
 }
+
 .PopoverContent[data-state="open"][data-side="right"] {
     animation-name: slideRightAndFade;
 }

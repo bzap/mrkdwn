@@ -22,8 +22,7 @@ import {
     duotoneDarkInit,
 } from "@uiw/codemirror-theme-duotone";
 
-const Editor = () => {
-    const editorRef = useRef();
+const Editor = ({ editorRef }) => {
     const dispatch = useDispatch();
 
     const handleDispatch = (query) => {

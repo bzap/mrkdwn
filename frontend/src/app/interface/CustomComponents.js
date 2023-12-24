@@ -10,11 +10,12 @@ import * as Popover from "@radix-ui/react-popover";
 import { MixerHorizontalIcon, Cross2Icon } from "@radix-ui/react-icons";
 import { Icons } from "./Icons";
 
-const Button = ({ Icon, index, text, fitted }) => {
+const Button = ({ Icon, index, text, fitted, handler, editorRef }) => {
     return (
         <button
             type="button"
-            class={`text-black select-none outline-none items-center transition justify-center ${
+            onClick={(e) => handler(e, editorRef)}
+            className={`text-black select-none outline-none items-center transition justify-center ${
                 fitted
                     ? "h-[25px] rounded-md border-gray-200 border-[1px] bg-gray-100 rounded-[0.4rem] hover:bg-gray-200 active:bg-gray-300`"
                     : "h-max  w-full hover:bg-gray-100 active:bg-gray-200"
@@ -40,7 +41,7 @@ const TriggerButton = forwardRef((props, forwardedRef) => {
             {...props}
             ref={forwardedRef}
             type="button"
-            class={`text-black select-none outline-none items-center transition justify-center w-full h-max flex p-3 hover:bg-gray-100 active:bg-gray-200`}
+            className={`text-black select-none outline-none items-center transition justify-center w-full h-max flex p-3 hover:bg-gray-100 active:bg-gray-200`}
         >
             <props.Icon className={"stroke-2"} />
         </button>
@@ -123,27 +124,33 @@ const HorizontalPopover = ({ Icon, description, url }) => {
     );
 };
 
-const ButtonGroup = ({ elements }) => {
+const ButtonGroup = ({ elements, editorRef }) => {
     return (
         <div
             className={`flex mb-4 rounded-xl border-gray-200 border-[1px] flex-col overflow-hidden`}
         >
             {Object.values(elements).map((element, index) => {
-                return element[1] === "dropdown" ? (
-                    <div>
-                        <HorizontalDropdownMenu Icon={element[0]} />
+                console.log(element);
+                return element.type === "dropdown" ? (
+                    <div key={"bg" + index}>
+                        <HorizontalDropdownMenu Icon={element.icon} />
                     </div>
-                ) : element[1] === "popover" ? (
-                    (console.log(element),
-                    (
-                        <HorizontalPopover
-                            Icon={element[0]}
-                            description={element[2]}
-                            url={element[3]}
-                        />
-                    ))
+                ) : element.type === "popover" ? (
+                    <HorizontalPopover
+                        key={"bg" + index}
+                        Icon={element.icon}
+                        description={element.description}
+                        url={element.url}
+                    />
                 ) : (
-                    <Button Icon={element[0]} index={index} length={length} />
+                    <Button
+                        editorRef={editorRef}
+                        key={"bg" + index}
+                        Icon={element.icon}
+                        index={index}
+                        length={length}
+                        handler={element.func}
+                    />
                 );
             })}
         </div>
