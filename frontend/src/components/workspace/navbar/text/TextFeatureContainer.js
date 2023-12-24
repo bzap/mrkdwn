@@ -2,14 +2,26 @@ import { CustomComponents } from "@/app/interface/CustomComponents";
 import { Icons } from "@/app/interface/Icons";
 
 const TextStyleGroup = {
-    bold: [Icons.Bold],
-    italic: [Icons.Italic],
-    underline: [Icons.Underline],
-    strikethrough: [Icons.StrikeThrough],
+    bold: [Icons.BoldIcon],
+    italic: [Icons.ItalicIcon],
+    underline: [Icons.UnderlineIcon],
+    strikethrough: [Icons.StrikeThroughIcon],
 };
 
 const InsertionFeatureGroup = {
-    lists: [Icons.Lists, "dropdown"],
+    lists: [Icons.ListIcon, "dropdown"],
+    links: [
+        Icons.LinkIcon,
+        "popover",
+        "Please enter the URL:",
+        "https://example.com",
+    ],
+    images: [
+        Icons.ImageIcon,
+        "popover",
+        "Please enter the image URL:",
+        "https://example.com",
+    ],
 };
 
 const TextFeatureContainer = () => {
