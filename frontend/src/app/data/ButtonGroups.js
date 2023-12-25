@@ -1,5 +1,8 @@
 import { Icons } from "../interface/Icons";
-import { updateText } from "@/components/workspace/navbar/text/ButtonHandlers";
+import {
+    updateText,
+    createTable,
+} from "@/components/workspace/navbar/text/ButtonHandlers";
 
 export const TextStyleGroup = {
     bold: {
@@ -17,6 +20,21 @@ export const TextStyleGroup = {
         func: updateText,
         symbol: "~~",
     },
+    highlight: {
+        icon: Icons.HighlightIcon,
+        func: updateText,
+        symbol: "==",
+    },
+    quote: {
+        icon: Icons.QuoteIcon,
+        func: updateText,
+        symbol: ">",
+    },
+    code: {
+        icon: Icons.CodeIcon,
+        func: updateText,
+        symbol: "```",
+    },
 };
 
 export const InsertionFeatureGroup = {
@@ -31,7 +49,7 @@ export const InsertionFeatureGroup = {
         func: updateText,
         symbol: "**",
         type: "popover",
-        description: "Please enter the URL:",
+        description: "Enter the URL:",
         placeholder: "https://example.com",
     },
     image: {
@@ -39,18 +57,24 @@ export const InsertionFeatureGroup = {
         func: updateText,
         symbol: "**",
         type: "popover",
-        description: "Please enter the URL:",
+        description: "Enter the image URL:",
         placeholder: "https://example.com",
     },
-    quote: {
-        icon: Icons.QuoteIcon,
-        func: updateText,
-        symbol: ">",
+    table: {
+        icon: Icons.TableIcon,
+        func: createTable,
+        symbol: "table",
+        type: "popover",
+        description: "Enter the number of rows and columns:",
+        placeholder: ["rows", "columns"],
     },
-    code: {
-        icon: Icons.CodeIcon,
+    footnote: {
+        icon: Icons.FootnoteIcon,
         func: updateText,
-        symbol: "```",
+        symbol: "**",
+        type: "popover",
+        description: "Enter the number of rows and columns:",
+        url: "https://example.com",
     },
     divider: {
         icon: Icons.DividerIcon,

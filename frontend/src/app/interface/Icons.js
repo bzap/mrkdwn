@@ -227,6 +227,69 @@ const DividerIcon = () => {
     );
 };
 
+const HighlightIcon = () => {
+    return (
+        <svg
+            width="15"
+            height="15"
+            viewBox="0 0 15 15"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            stroke="black"
+            strokeWidth="0.5"
+        >
+            <path
+                d="M3 9C3 6.5 4.5 4.25 7.5 1.5C10.5 4.25 12 6.5 12 9C12 11.4853 9.98528 13.5 7.5 13.5C5.01472 13.5 3 11.4853 3 9ZM10.9524 8.30307C9.67347 7.82121 8.2879 8.46208 6.98956 9.06259C5.9327 9.55142 4.93365 10.0135 4.09695 9.82153C4.03357 9.55804 4 9.28294 4 9C4 7.11203 5.02686 5.27195 7.5 2.87357C9.66837 4.97639 10.725 6.65004 10.9524 8.30307Z"
+                fill="currentColor"
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+            ></path>
+        </svg>
+    );
+};
+
+const TableIcon = () => {
+    return (
+        <svg
+            width="15"
+            height="13"
+            viewBox="0 0 15 15"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            stroke="black"
+            strokeWidth="0.5"
+        >
+            <path
+                d="M8 2H12.5C12.7761 2 13 2.22386 13 2.5V5H8V2ZM7 5V2H2.5C2.22386 2 2 2.22386 2 2.5V5H7ZM2 6V9H7V6H2ZM8 6H13V9H8V6ZM8 10H13V12.5C13 12.7761 12.7761 13 12.5 13H8V10ZM2 12.5V10H7V13H2.5C2.22386 13 2 12.7761 2 12.5ZM1 2.5C1 1.67157 1.67157 1 2.5 1H12.5C13.3284 1 14 1.67157 14 2.5V12.5C14 13.3284 13.3284 14 12.5 14H2.5C1.67157 14 1 13.3284 1 12.5V2.5Z"
+                fill="currentColor"
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+            ></path>
+        </svg>
+    );
+};
+
+const FootnoteIcon = () => {
+    return (
+        <svg
+            width="15"
+            height="15"
+            viewBox="0 0 15 15"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            stroke="black"
+            strokeWidth="0.5"
+        >
+            <path
+                d="M12.5 2H2.5C2.22386 2 2 2.22386 2 2.5V12.5C2 12.7761 2.22386 13 2.5 13H12.5C12.7761 13 13 12.7761 13 12.5V2.5C13 2.22386 12.7761 2 12.5 2ZM2.5 1C1.67157 1 1 1.67157 1 2.5V12.5C1 13.3284 1.67157 14 2.5 14H12.5C13.3284 14 14 13.3284 14 12.5V2.5C14 1.67157 13.3284 1 12.5 1H2.5Z"
+                fill="currentColor"
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+            ></path>
+        </svg>
+    );
+};
+
 export const Icons = {
     BoldIcon,
     ItalicIcon,
@@ -239,4 +302,7 @@ export const Icons = {
     CodeIcon,
     QuoteIcon,
     DividerIcon,
+    HighlightIcon,
+    TableIcon,
+    FootnoteIcon,
 };

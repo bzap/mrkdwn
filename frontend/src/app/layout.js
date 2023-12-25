@@ -5,7 +5,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
     title: "Mrkdwn",
-    description: "A simpler markdown editor.",
+    description: "A simple, but powerful markdown editor.",
 };
 
 export default function RootLayout({ children }) {
