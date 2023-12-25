@@ -2,6 +2,7 @@ import { Icons } from "../interface/Icons";
 import {
     updateText,
     createTable,
+    insertText,
 } from "@/components/workspace/navbar/text/ButtonHandlers";
 
 export const TextStyleGroup = {
@@ -46,16 +47,16 @@ export const InsertionFeatureGroup = {
     },
     link: {
         icon: Icons.LinkIcon,
-        func: updateText,
-        symbol: "**",
+        func: insertText,
+        symbol: "link",
         type: "popover",
-        description: "Enter the URL:",
+        description: "Enter the link URL:",
         placeholder: "https://example.com",
     },
     image: {
         icon: Icons.ImageIcon,
-        func: updateText,
-        symbol: "**",
+        func: insertText,
+        symbol: "image",
         type: "popover",
         description: "Enter the image URL:",
         placeholder: "https://example.com",

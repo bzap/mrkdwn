@@ -18,19 +18,17 @@ const Button = ({
     handler,
     editorRef,
     symbol,
-    setIsOpen,
-    formID,
     type = "button",
 }) => {
     return (
         <button
-            type={type}
-            form={formID}
+            type={"type"}
             onClick={(e) => handler && handler(editorRef, symbol)}
-            className={`text-black select-none outline-none items-center transition justify-center ${
+            className={`text-black select-none outline-none items-center transition justify-center
+            ${
                 fitted
                     ? "h-[25px] rounded-md border-gray-200 border-[1px] bg-gray-100 rounded-[0.4rem] hover:bg-gray-200 active:bg-gray-300`"
-                    : "h-max  w-full hover:bg-gray-100 active:bg-gray-200"
+                    : "h-max  w-full hover:bg-gray-100 active:bg-gray-300"
             } flex p-3`}
         >
             {Icon && <Icon className={"stroke-2"} />}
@@ -47,13 +45,15 @@ const Button = ({
     );
 };
 
-const TriggerButton = forwardRef((props, forwardedRef) => {
+const TriggerButton = forwardRef((props, forwardedRef, isOpen) => {
     return (
         <button
             {...props}
             ref={forwardedRef}
             type="button"
-            className={`text-black select-none outline-none items-center transition justify-center w-full h-max flex p-3 hover:bg-gray-100 active:bg-gray-200`}
+            className={`${
+                isOpen && "bg-blue-400"
+            } text-black select-none outline-none items-center transition justify-center w-full h-max flex p-3 hover:bg-gray-100 active:bg-gray-200`}
         >
             <props.Icon className={"stroke-2"} />
         </button>
@@ -139,7 +139,6 @@ const HorizontalPopover = ({
                                             placeholder={placeholder[1]}
                                         />
                                         <Button
-                                            formID={"popover-form"}
                                             type={"submit"}
                                             fitted
                                             Icon={Icons.EnterIcon}
@@ -150,18 +149,33 @@ const HorizontalPopover = ({
                                 </fieldset>
                             </form>
                         ) : (
-                            <fieldset className="Fieldset">
-                                <div className={"flex gap-1"}>
-                                    <input
-                                        className="Input transition"
-                                        id="width"
-                                        type="url"
-                                        //   defaultValue={placeholder}
-                                        placeholder={placeholder}
-                                    />
-                                    <Button fitted Icon={Icons.EnterIcon} />
-                                </div>
-                            </fieldset>
+                            <form
+                                id="url-form"
+                                name="url-form"
+                                onSubmit={(e) =>
+                                    handler(editorRef, symbol, setIsOpen, e)
+                                }
+                            >
+                                <fieldset className="Fieldset">
+                                    <div className={"flex min-w-[300px] gap-1"}>
+                                        <input
+                                            className="Input transition"
+                                            id="width"
+                                            name="input-text"
+                                            type="text"
+                                            //   defaultValue={placeholder}
+                                            placeholder={placeholder}
+                                        />
+                                        <Button
+                                            type={"submit"}
+                                            setIsOpen={setIsOpen}
+                                            editorRef={editorRef}
+                                            fitted
+                                            Icon={Icons.EnterIcon}
+                                        />
+                                    </div>
+                                </fieldset>
+                            </form>
                         )}
                     </div>
                     <Popover.Close

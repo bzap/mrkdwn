@@ -382,9 +382,8 @@ body {
     padding: 2px 5px;
     border: 1px solid #e5e7eb;
     font-size: 13px;
-    line-height: 24px;
     color: black;
-    height: 25px;
+    height: 28px;
 }
 .Input:focus {
     border: 1px solid #cbd5e1;
