@@ -6,7 +6,7 @@ import store from "@/lib/store";
 
 export default function Home() {
     return (
-        <main className="bg-blue-100 w-screen h-screen">
+        <main className="bg-stone-100 w-screen h-screen">
             <Provider store={store}>
                 <WorkspaceContainer />
             </Provider>

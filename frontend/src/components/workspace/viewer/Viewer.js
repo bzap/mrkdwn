@@ -1,15 +1,14 @@
 import HTMLContent from "./HTMLContent";
 import "react-perfect-scrollbar/dist/css/styles.css";
-import PerfectScrollbar from "react-perfect-scrollbar";
 import * as ScrollArea from "@radix-ui/react-scroll-area";
 
 const Viewer = () => {
     return (
-        <div className="flex w-6/12 bg-white rounded-2xl overflow-hidden border-solid">
+        <div className="flex w-6/12 bg-white border-stone-200 border-[1px] shadow-sm rounded-2xl max-w-6/12 overflow-hidden border-solid relative">
             {/* <div className="hover-scroll w-full h-full overflow-y-scroll p-8">
                 <HTMLContent />
             </div> */}
-            <ScrollArea.Root className="ScrollAreaRoot w-full h-full">
+            <ScrollArea.Root className="ScrollAreaRoot w-full h-full relative overflow-wrap">
                 <ScrollArea.Viewport className="ScrollAreaViewport">
                     <HTMLContent />
                 </ScrollArea.Viewport>

@@ -29,6 +29,13 @@ body {
         )
         rgb(var(--background-start-rgb));
 }
+pre {
+    white-space: pre-wrap; /* css-3 */
+    white-space: -moz-pre-wrap; /* Mozilla, since 1999 */
+    white-space: -pre-wrap; /* Opera 4-6 */
+    white-space: -o-pre-wrap; /* Opera 7 */
+    word-wrap: break-word; /* Internet Explorer 5.5+ */
+}
 
 .cm-outer-container {
     flex: 1;
@@ -382,6 +389,7 @@ body {
     padding: 2px 5px;
     border: 1px solid #e5e7eb;
     font-size: 13px;
+    line-height: 24px;
     color: black;
     height: 28px;
 }
