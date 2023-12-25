@@ -1,4 +1,3 @@
-import { CursorArrowIcon } from "@radix-ui/react-icons";
 import { EditorSelection } from "@uiw/react-codemirror";
 
 const dispatchState = (viewState, from, to, highlighted, symbol, baseCase) => {
@@ -47,14 +46,19 @@ const dispatchState = (viewState, from, to, highlighted, symbol, baseCase) => {
                     insert: highlighted,
                 },
             });
-            let head = viewState.state.selection.main.head;
-            let line = viewState.state.doc.lineAt(head);
-            let newOffset = viewState.state.doc.line(line.number + 1);
-            viewState.dispatch(
-                viewState.state.changeByRange((range) => ({
-                    range: EditorSelection.range(newOffset.from, newOffset.to),
-                }))
-            );
+            if (baseCase) {
+                let head = viewState.state.selection.main.head;
+                let line = viewState.state.doc.lineAt(head);
+                let newOffset = viewState.state.doc.line(line.number + 1);
+                viewState.dispatch(
+                    viewState.state.changeByRange((range) => ({
+                        range: EditorSelection.range(
+                            newOffset.from,
+                            newOffset.to
+                        ),
+                    }))
+                );
+            }
             break;
         default:
             if (baseCase) {
