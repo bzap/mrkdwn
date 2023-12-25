@@ -10,15 +10,25 @@ import * as Popover from "@radix-ui/react-popover";
 import { MixerHorizontalIcon, Cross2Icon } from "@radix-ui/react-icons";
 import { Icons } from "./Icons";
 
-const Button = ({ Icon, index, text, fitted, handler, editorRef }) => {
+const Button = ({
+    Icon,
+    index,
+    text,
+    fitted,
+    handler,
+    editorRef,
+    symbol,
+    type = "button",
+}) => {
     return (
         <button
-            type="button"
-            onClick={(e) => handler(e, editorRef)}
-            className={`text-black select-none outline-none items-center transition justify-center ${
+            type={"type"}
+            onClick={(e) => handler && handler(editorRef, symbol)}
+            className={`text-black select-none outline-none items-center transition justify-center
+            ${
                 fitted
                     ? "h-[25px] rounded-md border-gray-200 border-[1px] bg-gray-100 rounded-[0.4rem] hover:bg-gray-200 active:bg-gray-300`"
-                    : "h-max  w-full hover:bg-gray-100 active:bg-gray-200"
+                    : "h-max  w-full hover:bg-gray-100 active:bg-gray-300"
             } flex p-3`}
         >
             {Icon && <Icon className={"stroke-2"} />}
@@ -35,13 +45,15 @@ const Button = ({ Icon, index, text, fitted, handler, editorRef }) => {
     );
 };
 
-const TriggerButton = forwardRef((props, forwardedRef) => {
+const TriggerButton = forwardRef((props, forwardedRef, isOpen) => {
     return (
         <button
             {...props}
             ref={forwardedRef}
             type="button"
-            className={`text-black select-none outline-none items-center transition justify-center w-full h-max flex p-3 hover:bg-gray-100 active:bg-gray-200`}
+            className={`${
+                isOpen && "bg-blue-400"
+            } text-black select-none outline-none items-center transition justify-center w-full h-max flex p-3 hover:bg-gray-100 active:bg-gray-200`}
         >
             <props.Icon className={"stroke-2"} />
         </button>
@@ -53,12 +65,7 @@ const HorizontalDropdownMenu = ({ Icon }) => {
         <DropdownMenu.Root>
             <DropdownMenu.Trigger asChild>
                 <TriggerButton Icon={Icon} aria-label="Customise options" />
-
-                {/* <button className="IconButton" aria-label="Customise options">
-                    <HamburgerMenuIcon />
-                </button> */}
             </DropdownMenu.Trigger>
-
             <DropdownMenu.Portal>
                 <DropdownMenu.Content
                     className="DropdownMenuContent"
@@ -66,14 +73,14 @@ const HorizontalDropdownMenu = ({ Icon }) => {
                     side="right"
                 >
                     <DropdownMenu.Item className="DropdownMenuItem transition">
-                        Unordered List <div className="RightSlot">⌘+T</div>
+                        Unordered List <div className="RightSlot">- - -</div>
                     </DropdownMenu.Item>
                     <DropdownMenu.Item className="DropdownMenuItem transition">
-                        Ordered List <div className="RightSlot">⌘+N</div>
+                        Ordered List <div className="RightSlot">1. 2. 3.</div>
                     </DropdownMenu.Item>
                     <DropdownMenu.Item className="DropdownMenuItem transition">
-                        Numbered List
-                        <div className="RightSlot">⇧+⌘+N</div>
+                        Task List
+                        <div className="RightSlot">{"- [ ] - [x]"}</div>
                     </DropdownMenu.Item>
                     <DropdownMenu.Arrow className="DropdownMenuArrow" />
                 </DropdownMenu.Content>
@@ -82,9 +89,17 @@ const HorizontalDropdownMenu = ({ Icon }) => {
     );
 };
 
-const HorizontalPopover = ({ Icon, description, url }) => {
+const HorizontalPopover = ({
+    Icon,
+    description,
+    placeholder,
+    symbol,
+    editorRef,
+    handler,
+}) => {
+    const [isOpen, setIsOpen] = useState(false);
     return (
-        <Popover.Root>
+        <Popover.Root open={isOpen} onOpenChange={setIsOpen}>
             <Popover.Trigger asChild>
                 <TriggerButton Icon={Icon} aria-label="Customise options" />
             </Popover.Trigger>
@@ -95,21 +110,73 @@ const HorizontalPopover = ({ Icon, description, url }) => {
                     className="PopoverContent"
                 >
                     <div className="flex flex-col px-[5px] py-[9px]">
-                        <p className="Text" style={{ marginBottom: 5 }}>
+                        <p className="Text" style={{ marginBottom: 1 }}>
                             {description}
                         </p>
-                        {console.log(url)}
-                        <fieldset className="Fieldset">
-                            <div className={"flex gap-1"}>
-                                <input
-                                    className="Input transition"
-                                    id="width"
-                                    //   defaultValue={url}
-                                    placeholder={url}
-                                />
-                                <Button fitted Icon={Icons.EnterIcon} />
-                            </div>
-                        </fieldset>
+                        {console.log(symbol === "table")}
+                        {symbol === "table" ? (
+                            <form
+                                id="popover-form"
+                                name="popover-form"
+                                onSubmit={(e) =>
+                                    handler(editorRef, symbol, setIsOpen, e)
+                                }
+                            >
+                                <fieldset className="Fieldset">
+                                    <div className={"flex gap-1"}>
+                                        <input
+                                            className="Input max-w-[100px] transition"
+                                            id="row-num"
+                                            name="row-num"
+                                            type="text"
+                                            placeholder={placeholder[0]}
+                                        />
+                                        <input
+                                            className="Input max-w-[100px] transition"
+                                            id="col-num"
+                                            name="col-num"
+                                            type="text"
+                                            placeholder={placeholder[1]}
+                                        />
+                                        <Button
+                                            type={"submit"}
+                                            fitted
+                                            Icon={Icons.EnterIcon}
+                                            setIsOpen={setIsOpen}
+                                            editorRef={editorRef}
+                                        />
+                                    </div>
+                                </fieldset>
+                            </form>
+                        ) : (
+                            <form
+                                id="url-form"
+                                name="url-form"
+                                onSubmit={(e) =>
+                                    handler(editorRef, symbol, setIsOpen, e)
+                                }
+                            >
+                                <fieldset className="Fieldset">
+                                    <div className={"flex min-w-[300px] gap-1"}>
+                                        <input
+                                            className="Input transition"
+                                            id="width"
+                                            name="input-text"
+                                            type="text"
+                                            //   defaultValue={placeholder}
+                                            placeholder={placeholder}
+                                        />
+                                        <Button
+                                            type={"submit"}
+                                            setIsOpen={setIsOpen}
+                                            editorRef={editorRef}
+                                            fitted
+                                            Icon={Icons.EnterIcon}
+                                        />
+                                    </div>
+                                </fieldset>
+                            </form>
+                        )}
                     </div>
                     <Popover.Close
                         className="PopoverClose transition"
@@ -130,7 +197,6 @@ const ButtonGroup = ({ elements, editorRef }) => {
             className={`flex mb-4 rounded-xl border-gray-200 border-[1px] flex-col overflow-hidden`}
         >
             {Object.values(elements).map((element, index) => {
-                console.log(element);
                 return element.type === "dropdown" ? (
                     <div key={"bg" + index}>
                         <HorizontalDropdownMenu Icon={element.icon} />
@@ -140,7 +206,10 @@ const ButtonGroup = ({ elements, editorRef }) => {
                         key={"bg" + index}
                         Icon={element.icon}
                         description={element.description}
-                        url={element.url}
+                        symbol={element.symbol}
+                        placeholder={element.placeholder}
+                        handler={element.func}
+                        editorRef={editorRef}
                     />
                 ) : (
                     <Button
@@ -150,6 +219,7 @@ const ButtonGroup = ({ elements, editorRef }) => {
                         index={index}
                         length={length}
                         handler={element.func}
+                        symbol={element.symbol}
                     />
                 );
             })}
