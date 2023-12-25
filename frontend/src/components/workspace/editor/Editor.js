@@ -32,7 +32,7 @@ const Editor = ({ editorRef }) => {
 
     // bg-[#272c34]
     return (
-        <div className="flex w-6/12 rounded-2xl overflow-hidden border-solid ">
+        <div className="flex w-6/12 border-stone-200 border-[1px] shadow-sm rounded-2xl overflow-hidden border-solid ">
             <ScrollArea.Root className="ScrollAreaRoot w-full h-full">
                 <ScrollArea.Viewport className="ScrollAreaViewport ">
                     <CodeMirror
