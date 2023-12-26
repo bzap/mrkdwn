@@ -10,8 +10,6 @@ const HTMLContent = () => {
         .use(require("markdown-it-task-lists"))
         .use(require("markdown-it-mark"));
 
-    console.log(md.render(markdownText));
-
     return (
         // <div className="prose max-w-none">
         //     After publishing, StackEdit keeps your file linked to that
@@ -20,7 +18,7 @@ const HTMLContent = () => {
         //     click on the **Publish now** button in the navigation bar.
         // </div>
         <article
-            className={"prose max-w-none p-7"}
+            className={"prose max-w-none py-6 px-7"}
             dangerouslySetInnerHTML={{
                 __html: md.render(markdownText),
             }}

@@ -61,10 +61,6 @@ tr {
     word-wrap: break-word; /* Internet Explorer 5.5+ */
 }
 
-.cm-outer-container {
-    flex: 1;
-}
-
 .cm-editor {
     flex: 1;
     height: 100%;
@@ -103,19 +99,6 @@ tr {
     color: black;
     background-color: black;
     background: black;
-}
-.CodeMirror {
-    /* Bootstrap Settings */
-    width: 100%;
-    line-height: 30px;
-
-    /* padding: 12px 12px; */
-    font-size: 15px;
-    background-color: white;
-    /* background-color: #272c34; */
-    position: relative;
-    overflow: hidden;
-    border: none;
 }
 
 .ScrollAreaRoot {
