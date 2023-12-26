@@ -1,21 +1,24 @@
-import { tags as t } from "@lezer/highlight";
-import { createTheme, CreateThemeOptions } from "@uiw/codemirror-themes";
+/**
+ * This theme is a modified version of: https://github.com/uiwjs/react-codemirror/blob/master/themes/xcode/src/index.ts
+ */
 
-export const defaultSettingsXcodeLight = {
+import { tags as t } from "@lezer/highlight";
+import { createTheme } from "@uiw/codemirror-themes";
+
+export const defaultSettings = {
     background: "#fff",
     foreground: "black",
     selection: "#e5e5e5",
     selectionMatch: "#e5e5e5",
     gutterForeground: "#AFAFAF",
-    //lineHighlight: "#d5e6ff69",
 };
 
-export function xcodeLightInit2(options) {
+export function xcodeGrayscaleInit(options) {
     const { theme = "light", settings = {}, styles = [] } = options || {};
     return createTheme({
         theme: theme,
         settings: {
-            ...defaultSettingsXcodeLight,
+            ...defaultSettings,
             ...settings,
         },
         styles: [
@@ -33,4 +36,4 @@ export function xcodeLightInit2(options) {
     });
 }
 
-export const xcodeLight2 = xcodeLightInit2();
+export const xcodeGrayscale = xcodeGrayscaleInit();
