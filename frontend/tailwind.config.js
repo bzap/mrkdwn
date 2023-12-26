@@ -6,26 +6,22 @@ module.exports = {
         "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
     ],
     theme: {
-        // extend: {
-        //     backgroundImage: {
-        //         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        //         "gradient-conic":
-        //             "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
-        //     },
-        // },
-        // typography: {
-        //     DEFAULT: {
-        //         css: {
-        //             color: "#333",
-        //             code: {
-        //                 background: "#e5e7eb",
-        //                 "&:hover": {
-        //                     color: "#2c5282",
-        //                 },
-        //             },
-        //         },
-        //     },
-        // },
+        extend: {
+            backgroundImage: {
+                "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
+                "gradient-conic":
+                    "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+            },
+            typography: {
+                DEFAULT: {
+                    css: {
+                        p: {
+                            "word-break": "break-all",
+                        },
+                    },
+                },
+            },
+        },
     },
     plugins: [require("@tailwindcss/typography")],
 };

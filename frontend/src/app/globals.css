@@ -35,6 +35,30 @@ pre {
     white-space: -pre-wrap; /* Opera 4-6 */
     white-space: -o-pre-wrap; /* Opera 7 */
     word-wrap: break-word; /* Internet Explorer 5.5+ */
+    overflow: hidden;
+}
+p {
+    white-space: pre-wrap; /* css-3 */
+    white-space: -moz-pre-wrap; /* Mozilla, since 1999 */
+    white-space: -pre-wrap; /* Opera 4-6 */
+    white-space: -o-pre-wrap; /* Opera 7 */
+    word-wrap: break-word; /* Internet Explorer 5.5+ */
+    overflow: hidden;
+}
+td {
+    white-space: pre-wrap; /* css-3 */
+    white-space: -moz-pre-wrap; /* Mozilla, since 1999 */
+    white-space: -pre-wrap; /* Opera 4-6 */
+    white-space: -o-pre-wrap; /* Opera 7 */
+    word-wrap: break-word; /* Internet Explorer 5.5+ */
+}
+
+tr {
+    white-space: pre-wrap; /* css-3 */
+    white-space: -moz-pre-wrap; /* Mozilla, since 1999 */
+    white-space: -pre-wrap; /* Opera 4-6 */
+    white-space: -o-pre-wrap; /* Opera 7 */
+    word-wrap: break-word; /* Internet Explorer 5.5+ */
 }
 
 .cm-outer-container {
@@ -57,7 +81,7 @@ pre {
     word-wrap: break-word;
     white-space: pre-line;
     word-break: normal;
-    line-height: 24px;
+    line-height: 26px;
 }
 
 .cm-scroll {
@@ -65,15 +89,11 @@ pre {
 }
 
 .cm-gutters {
-    border-right: 10px solid red;
     white-space: nowrap;
-    line-height: 24px;
+    line-height: 26px;
 }
 
 .cm-gutter {
-    color: rgb(190, 190, 190);
-    border: none !important;
-
     -webkit-user-select: none; /* Safari */
     -ms-user-select: none; /* IE 10 and IE 11 */
     user-select: none; /* Standard syntax */
@@ -183,8 +203,8 @@ pre {
     background-color: white;
     border-radius: 0.75rem;
     padding: 0.6rem;
-    box-shadow: 0px 10px 38px -10px rgba(22, 23, 24, 0.35),
-        0px 10px 20px -15px rgba(22, 23, 24, 0.2);
+    border-width: 1px;
+    border-color: #e5e7eb;
     animation-duration: 400ms;
     animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
     will-change: transform, opacity;
@@ -210,11 +230,14 @@ pre {
 .DropdownMenuCheckboxItem,
 .DropdownMenuRadioItem,
 .DropdownMenuSubTrigger {
+    cursor: pointer;
     font-size: 13px;
     line-height: 26px;
     color: black;
     border-radius: 0.4rem;
     display: flex;
+    border-width: 1px;
+    border-color: white;
     font-weight: 500;
     align-items: center;
     height: 26px;
@@ -231,14 +254,16 @@ pre {
 .DropdownMenuCheckboxItem[data-disabled],
 .DropdownMenuRadioItem[data-disabled],
 .DropdownMenuSubTrigger[data-disabled] {
-    color: gray;
+    color: #d6d3d1;
     pointer-events: none;
 }
 .DropdownMenuItem[data-highlighted],
 .DropdownMenuCheckboxItem[data-highlighted],
 .DropdownMenuRadioItem[data-highlighted],
 .DropdownMenuSubTrigger[data-highlighted] {
-    background-color: #f3f4f6;
+    background-color: #f5f5f4;
+    border-width: 1px;
+    border-color: #e5e7eb;
     color: black;
 }
 
@@ -290,7 +315,7 @@ pre {
 .RightSlot {
     margin-left: auto;
     padding-left: 20px;
-    color: #9ca3af;
+    color: #a8a29e;
 }
 [data-highlighted] > .RightSlot {
     color: black;
@@ -304,8 +329,8 @@ pre {
     background-color: white;
     border-radius: 0.75rem;
     padding: 0.6rem;
-    box-shadow: 0px 10px 38px -10px rgba(22, 23, 24, 0.35),
-        0px 10px 20px -15px rgba(22, 23, 24, 0.2);
+    border-width: 1px;
+    border-color: #e5e7eb;
     animation-duration: 400ms;
     animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
     will-change: transform, opacity;
@@ -387,14 +412,14 @@ pre {
     flex: 1;
     border-radius: 0.4rem;
     padding: 2px 5px;
-    border: 1px solid #e5e7eb;
+    border: 1px solid #e7e5e4;
     font-size: 13px;
     line-height: 24px;
     color: black;
     height: 28px;
 }
 .Input:focus {
-    border: 1px solid #cbd5e1;
+    border: 1px solid #d6d3d1;
     outline: none;
 }
 
