@@ -19,7 +19,7 @@ const HTMLContent = () => {
         //     have modified your file and you want to update your publication,
         //     click on the **Publish now** button in the navigation bar.
         // </div>
-        <div
+        <article
             className={"prose max-w-none p-7"}
             dangerouslySetInnerHTML={{
                 __html: md.render(markdownText),

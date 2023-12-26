@@ -35,6 +35,7 @@ pre {
     white-space: -pre-wrap; /* Opera 4-6 */
     white-space: -o-pre-wrap; /* Opera 7 */
     word-wrap: break-word; /* Internet Explorer 5.5+ */
+    overflow: hidden;
 }
 p {
     white-space: pre-wrap; /* css-3 */
@@ -42,6 +43,7 @@ p {
     white-space: -pre-wrap; /* Opera 4-6 */
     white-space: -o-pre-wrap; /* Opera 7 */
     word-wrap: break-word; /* Internet Explorer 5.5+ */
+    overflow: hidden;
 }
 td {
     white-space: pre-wrap; /* css-3 */
