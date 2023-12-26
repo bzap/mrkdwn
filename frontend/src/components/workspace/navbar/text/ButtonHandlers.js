@@ -39,13 +39,6 @@ const dispatchState = (viewState, from, to, highlighted, symbol, baseCase) => {
             );
             break;
         case "```":
-            viewState.dispatch({
-                changes: {
-                    from: from,
-                    to: to,
-                    insert: highlighted,
-                },
-            });
             if (baseCase) {
                 let head = viewState.state.selection.main.head;
                 let line = viewState.state.doc.lineAt(head);
@@ -60,26 +53,49 @@ const dispatchState = (viewState, from, to, highlighted, symbol, baseCase) => {
                 );
             }
             break;
+        case "- [ ] ":
+        case "1. ":
+        case "- ":
+            if (baseCase) {
+                const offset = symbol.length;
+                viewState.dispatch(
+                    viewState.state.changeByRange((range) => ({
+                        changes: {
+                            from: from,
+                            to: to,
+                            insert: highlighted,
+                        },
+                        range: EditorSelection.range(
+                            range.from + offset,
+                            range.to + offset + 4
+                        ),
+                    }))
+                );
+            } else {
+                viewState.dispatch({
+                    changes: {
+                        from: from,
+                        to: to,
+                        insert: highlighted,
+                    },
+                });
+            }
+            break;
         default:
             if (baseCase) {
                 const offset = symbol.length;
                 viewState.dispatch(
-                    viewState.state.changeByRange(
-                        (range) => (
-                            console.log(range),
-                            {
-                                changes: {
-                                    from: from,
-                                    to: to,
-                                    insert: highlighted,
-                                },
-                                range: EditorSelection.range(
-                                    range.from + offset,
-                                    range.to + offset + 4
-                                ),
-                            }
-                        )
-                    )
+                    viewState.state.changeByRange((range) => ({
+                        changes: {
+                            from: from,
+                            to: to,
+                            insert: highlighted,
+                        },
+                        range: EditorSelection.range(
+                            range.from + offset,
+                            range.to + offset + 4
+                        ),
+                    }))
                 );
             } else {
                 viewState.dispatch({
@@ -92,8 +108,74 @@ const dispatchState = (viewState, from, to, highlighted, symbol, baseCase) => {
             }
             break;
     }
+    setTimeout(() => {
+        viewState.focus();
+    }, 10);
+};
 
-    viewState.focus();
+export const insertList = (ref, symbol) => {
+    // console.log(symbol);
+    // console.log(symbol);
+    if (ref.current) {
+        let viewState = ref.current?.view;
+        let from = viewState.state.selection.ranges[0].from;
+        let to = viewState.state.selection.ranges[0].to;
+        let highlighted;
+        let slice = viewState.state.sliceDoc(from, to).trim();
+        console.log(symbol);
+        switch (symbol) {
+            case "1. ":
+                if (slice === "") {
+                    highlighted = `1. text\n2. `;
+                    dispatchState(
+                        viewState,
+                        from,
+                        to,
+                        highlighted,
+                        symbol,
+                        true
+                    );
+                } else {
+                    highlighted = `1. ${slice}`;
+                    dispatchState(viewState, from, to, highlighted, symbol);
+                }
+                break;
+            case "- ":
+                if (slice === "") {
+                    highlighted = `- text\n-  `;
+                    dispatchState(
+                        viewState,
+                        from,
+                        to,
+                        highlighted,
+                        symbol,
+                        true
+                    );
+                } else {
+                    highlighted = `- ${slice}`;
+                    dispatchState(viewState, from, to, highlighted, symbol);
+                }
+                break;
+            case "- [ ] ":
+                if (slice === "") {
+                    highlighted = `- [ ] text\n- [ ] `;
+                    dispatchState(
+                        viewState,
+                        from,
+                        to,
+                        highlighted,
+                        symbol,
+                        true
+                    );
+                } else {
+                    highlighted = `- [ ] ${slice}`;
+                    dispatchState(viewState, from, to, highlighted, symbol);
+                }
+                break;
+            default:
+                break;
+        }
+    }
 };
 
 export const insertText = (ref, symbol, setIsOpen, e) => {

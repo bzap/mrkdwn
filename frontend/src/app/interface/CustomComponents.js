@@ -60,7 +60,12 @@ const TriggerButton = forwardRef((props, forwardedRef, isOpen) => {
     );
 });
 
-const HorizontalDropdownMenu = ({ Icon }) => {
+const HorizontalDropdownMenu = ({ Icon, handler, editorRef }) => {
+    const onSelect = (e) => {
+        //console.log(e.target.getAttribute("value"));
+        handler(editorRef, e.target.getAttribute("value"));
+        // use the handler here
+    };
     return (
         <DropdownMenu.Root>
             <DropdownMenu.Trigger asChild>
@@ -72,13 +77,25 @@ const HorizontalDropdownMenu = ({ Icon }) => {
                     sideOffset={25}
                     side="right"
                 >
-                    <DropdownMenu.Item className="DropdownMenuItem transition">
+                    <DropdownMenu.Item
+                        onSelect={onSelect}
+                        className="DropdownMenuItem transition"
+                        value={"- "}
+                    >
                         Unordered List <div className="RightSlot">- - -</div>
                     </DropdownMenu.Item>
-                    <DropdownMenu.Item className="DropdownMenuItem transition">
+                    <DropdownMenu.Item
+                        onSelect={onSelect}
+                        value={"1. "}
+                        className="DropdownMenuItem transition"
+                    >
                         Ordered List <div className="RightSlot">1. 2. 3.</div>
                     </DropdownMenu.Item>
-                    <DropdownMenu.Item className="DropdownMenuItem transition">
+                    <DropdownMenu.Item
+                        onSelect={onSelect}
+                        value={"- [ ] "}
+                        className="DropdownMenuItem transition"
+                    >
                         Task List
                         <div className="RightSlot">{"- [ ] - [x]"}</div>
                     </DropdownMenu.Item>
@@ -199,7 +216,11 @@ const ButtonGroup = ({ elements, editorRef }) => {
             {Object.values(elements).map((element, index) => {
                 return element.type === "dropdown" ? (
                     <div key={"bg" + index}>
-                        <HorizontalDropdownMenu Icon={element.icon} />
+                        <HorizontalDropdownMenu
+                            handler={element.func}
+                            editorRef={editorRef}
+                            Icon={element.icon}
+                        />
                     </div>
                 ) : element.type === "popover" ? (
                     <HorizontalPopover

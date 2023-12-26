@@ -3,6 +3,7 @@ import {
     updateText,
     createTable,
     insertText,
+    insertList,
 } from "@/components/workspace/navbar/text/ButtonHandlers";
 
 export const TextStyleGroup = {
@@ -41,8 +42,7 @@ export const TextStyleGroup = {
 export const InsertionFeatureGroup = {
     list: {
         icon: Icons.ListIcon,
-        func: updateText,
-        symbol: "_",
+        func: insertList,
         type: "dropdown",
     },
     link: {
