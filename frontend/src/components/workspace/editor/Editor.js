@@ -21,6 +21,9 @@ import {
     duotoneDark,
     duotoneDarkInit,
 } from "@uiw/codemirror-theme-duotone";
+import { EditorThemeExtension } from "../../../app/interface/EditThemeCss";
+import { xcodeLight2 } from "@/app/interface/CustomSyntaxTheme";
+import { noctisLilac } from "@uiw/codemirror-theme-noctis-lilac";
 
 const Editor = ({ editorRef }) => {
     const dispatch = useDispatch();
@@ -32,25 +35,19 @@ const Editor = ({ editorRef }) => {
 
     // bg-[#272c34]
     return (
-        <div className="flex w-6/12 border-stone-200 border-[1px] shadow-sm rounded-2xl overflow-hidden border-solid ">
+        <div className="flex w-6/12 border-stone-200 border-[1px] rounded-2xl overflow-hidden border-solid ">
             <ScrollArea.Root className="ScrollAreaRoot w-full h-full">
-                <ScrollArea.Viewport className="ScrollAreaViewport ">
+                <ScrollArea.Viewport className="ScrollAreaViewport">
                     <CodeMirror
                         // value={value}
-                        theme={xcodeLightInit({
-                            settings: {
-                                caret: "#c6c6c6",
-                                fontFamily: "monospace",
-                                gutterBorder: "transparent",
-                                gutterBackground: "#ffff",
-                            },
-                        })}
+                        theme={xcodeLight2}
                         className="cm-outer-container CodeMirror CodeMirror-linenumber  p-7"
                         ref={editorRef}
                         onChange={(value) => debouncedDispatch(value)}
                         extensions={[
                             markdown({ highlightFormatting: true }),
                             EditorView.lineWrapping,
+                            EditorThemeExtension,
                         ]}
                     />
                 </ScrollArea.Viewport>

@@ -17,6 +17,7 @@
     "@radix-ui/react-scroll-area": "^1.0.5",
     "@reduxjs/toolkit": "^2.0.1",
     "@uiw/codemirror-theme-duotone": "^4.21.21",
+    "@uiw/codemirror-theme-noctis-lilac": "^4.21.21",
     "@uiw/codemirror-theme-nord": "^4.21.21",
     "@uiw/codemirror-theme-xcode": "^4.21.21",
     "@uiw/react-codemirror": "^4.21.21",

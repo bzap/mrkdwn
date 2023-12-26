@@ -27,8 +27,8 @@ const Button = ({
             className={`text-black select-none outline-none items-center transition justify-center
             ${
                 fitted
-                    ? "h-[25px] rounded-md border-gray-200 border-[1px] bg-gray-100 rounded-[0.4rem] hover:bg-gray-200 active:bg-gray-300`"
-                    : "h-max  w-full hover:bg-gray-100 active:bg-gray-300"
+                    ? "h-[25px] rounded-md border-stone-200 border-[1px] bg-stone-100 rounded-[0.4rem] hover:bg-stone-200 active:bg-stone-300`"
+                    : "h-max  w-full hover:bg-stone-100 active:bg-stone-300"
             } flex p-3`}
         >
             {Icon && <Icon className={"stroke-2"} />}
@@ -53,7 +53,7 @@ const TriggerButton = forwardRef((props, forwardedRef, isOpen) => {
             type="button"
             className={`${
                 isOpen && "bg-blue-400"
-            } text-black select-none outline-none items-center transition justify-center w-full h-max flex p-3 hover:bg-gray-100 active:bg-gray-200`}
+            } text-black select-none outline-none items-center transition justify-center w-full h-max flex p-3 hover:bg-stone-100 active:bg-stone-200`}
         >
             <props.Icon className={"stroke-2"} />
         </button>
@@ -68,7 +68,7 @@ const HorizontalDropdownMenu = ({ Icon }) => {
             </DropdownMenu.Trigger>
             <DropdownMenu.Portal>
                 <DropdownMenu.Content
-                    className="DropdownMenuContent"
+                    className="DropdownMenuContent shadow-lg"
                     sideOffset={25}
                     side="right"
                 >
@@ -107,7 +107,7 @@ const HorizontalPopover = ({
                 <Popover.Content
                     side="right"
                     sideOffset={25}
-                    className="PopoverContent"
+                    className="PopoverContent shadow-lg"
                 >
                     <div className="flex flex-col px-[5px] py-[9px]">
                         <p className="Text" style={{ marginBottom: 1 }}>
@@ -194,7 +194,7 @@ const HorizontalPopover = ({
 const ButtonGroup = ({ elements, editorRef }) => {
     return (
         <div
-            className={`flex mb-4 rounded-xl border-gray-200 border-[1px] flex-col overflow-hidden`}
+            className={`flex mb-4 rounded-xl border-stone-200 border-[1px] flex-col overflow-hidden`}
         >
             {Object.values(elements).map((element, index) => {
                 return element.type === "dropdown" ? (
