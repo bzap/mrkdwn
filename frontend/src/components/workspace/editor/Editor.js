@@ -31,7 +31,7 @@ const Editor = ({ editorRef }) => {
             <ScrollArea.Root className="ScrollAreaRoot w-full h-full flex py-1">
                 <ScrollArea.Viewport
                     id="scroll-viewport"
-                    className="ScrollAreaViewport h-full flex"
+                    className="ScrollAreaViewport h-full flex pb-2"
                 >
                     <CodeMirror
                         // value={value}

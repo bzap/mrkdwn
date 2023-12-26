@@ -10,7 +10,7 @@ const Viewer = () => {
                 <HTMLContent />
             </div> */}
             <ScrollArea.Root className="ScrollAreaRoot w-full h-full relative overflow-wrap py-1">
-                <ScrollArea.Viewport className="ScrollAreaViewport">
+                <ScrollArea.Viewport className="ScrollAreaViewport pb-2">
                     <HTMLContent />
                 </ScrollArea.Viewport>
                 <ScrollArea.Scrollbar

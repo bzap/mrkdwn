@@ -21,13 +21,20 @@ const StatPanel = () => {
             <div>
                 {`
             Characters: ${
-                markdownText ? markdownText.match(/(\w+)/g).length : 0
+                markdownText ? markdownText.replace(/\s/g, "").length : 0
             }             `}
             </div>
 
             <div>
                 {`
-            Lines: ${markdownText ? markdownText.match(/(\w+)/g).length : 0} 
+            Lines: ${markdownText ? markdownText.match(/$/gm).length : 0} 
+            `}
+            </div>
+            <div>
+                {`
+            File size: ${
+                markdownText ? markdownText.match(/(\w+)/g).length : 0
+            } 
             `}
             </div>
         </div>
