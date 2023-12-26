@@ -11,8 +11,7 @@ import { useCallback } from "react";
 import * as ScrollArea from "@radix-ui/react-scroll-area";
 import { EditorViewTheme } from "../../../app/interface/EditorViewTheme";
 import { xcodeGrayscale } from "@/app/interface/CustomSyntaxTheme";
-import { useState } from "react";
-import { statPanel, wordCounter } from "./BottomPanel";
+import { UpdateStateListener } from "./UpdateStateListener";
 
 const Editor = ({ editorRef }) => {
     const dispatch = useDispatch();
@@ -28,8 +27,8 @@ const Editor = ({ editorRef }) => {
             "min-width: 100%; display: table; height: 100%";
     }, []);
     return (
-        <div className="flex w-6/12 border-stone-200 border-[1px] rounded-2xl overflow-hidden border-solid mb-3">
-            <ScrollArea.Root className="ScrollAreaRoot w-full h-full flex">
+        <div className="flex w-6/12 border-stone-200 border-[1px] rounded-2xl overflow-hidden border-solid">
+            <ScrollArea.Root className="ScrollAreaRoot w-full h-full flex py-1">
                 <ScrollArea.Viewport
                     id="scroll-viewport"
                     className="ScrollAreaViewport h-full flex"
@@ -37,7 +36,7 @@ const Editor = ({ editorRef }) => {
                     <CodeMirror
                         // value={value}
                         theme={xcodeGrayscale}
-                        className="p-7 h-full h-auto min-h-full overflow-hidden"
+                        className="py-6 px-7 h-full h-auto min-h-full overflow-hidden"
                         id="cm-container"
                         ref={editorRef}
                         onChange={(value) => debouncedDispatch(value)}
@@ -45,7 +44,7 @@ const Editor = ({ editorRef }) => {
                             markdown({ highlightFormatting: true }),
                             EditorView.lineWrapping,
                             EditorViewTheme,
-                            statPanel(editorRef),
+                            UpdateStateListener,
                         ]}
                     />
                 </ScrollArea.Viewport>
