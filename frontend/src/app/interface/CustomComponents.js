@@ -236,7 +236,6 @@ const ButtonGroup = ({ elements, editorRef }) => {
                         key={"bg" + index}
                         Icon={element.icon}
                         index={index}
-                        length={length}
                         handler={element.func}
                         symbol={element.symbol}
                     />
