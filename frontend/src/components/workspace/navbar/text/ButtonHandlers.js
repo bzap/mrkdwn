@@ -1,5 +1,6 @@
 import { EditorSelection } from "@uiw/react-codemirror";
 import { cursorDocEnd, insertNewlineAndIndent } from "@codemirror/commands";
+//
 
 const dispatchState = (viewState, from, to, highlighted, symbol, baseCase) => {
     switch (symbol) {
