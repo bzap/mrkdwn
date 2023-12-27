@@ -1,4 +1,5 @@
 import { EditorSelection } from "@uiw/react-codemirror";
+import { cursorDocEnd, insertNewlineAndIndent } from "@codemirror/commands";
 
 const dispatchState = (viewState, from, to, highlighted, symbol, baseCase) => {
     switch (symbol) {
@@ -39,10 +40,18 @@ const dispatchState = (viewState, from, to, highlighted, symbol, baseCase) => {
             );
             break;
         case "```":
+            viewState.dispatch({
+                changes: {
+                    from: from,
+                    to: to,
+                    insert: highlighted,
+                },
+            });
             if (baseCase) {
                 let head = viewState.state.selection.main.head;
                 let line = viewState.state.doc.lineAt(head);
                 let newOffset = viewState.state.doc.line(line.number + 1);
+                console.log(newOffset);
                 viewState.dispatch(
                     viewState.state.changeByRange((range) => ({
                         range: EditorSelection.range(
@@ -81,6 +90,39 @@ const dispatchState = (viewState, from, to, highlighted, symbol, baseCase) => {
                 });
             }
             break;
+        case "footnote":
+            viewState.dispatch({
+                changes: {
+                    from: from,
+                    to: to,
+                    insert: highlighted,
+                },
+            });
+            setTimeout(() => {
+                cursorDocEnd(viewState);
+                insertNewlineAndIndent(viewState);
+            }, 10);
+            setTimeout(() => {
+                insertNewlineAndIndent(viewState);
+            }, 10);
+            setTimeout(() => {
+                let head = viewState.state.selection.main.head;
+                let line = viewState.state.doc.lineAt(head);
+                viewState.dispatch(
+                    viewState.state.changeByRange((range) => ({
+                        changes: {
+                            from: line.from,
+                            to: line.to,
+                            insert: `${highlighted}: text`,
+                        },
+                        range: EditorSelection.range(
+                            line.from + highlighted.length + 2,
+                            line.to + highlighted.length + 6
+                        ),
+                    }))
+                );
+            }, 10);
+            break;
         default:
             if (baseCase) {
                 const offset = symbol.length;
@@ -114,19 +156,16 @@ const dispatchState = (viewState, from, to, highlighted, symbol, baseCase) => {
 };
 
 export const insertList = (ref, symbol) => {
-    // console.log(symbol);
-    // console.log(symbol);
     if (ref.current) {
         let viewState = ref.current?.view;
         let from = viewState.state.selection.ranges[0].from;
         let to = viewState.state.selection.ranges[0].to;
         let highlighted;
         let slice = viewState.state.sliceDoc(from, to).trim();
-        console.log(symbol);
         switch (symbol) {
             case "1. ":
                 if (slice === "") {
-                    highlighted = `1. text\n2. `;
+                    highlighted = `1. Text\n2. `;
                     dispatchState(
                         viewState,
                         from,
@@ -142,7 +181,7 @@ export const insertList = (ref, symbol) => {
                 break;
             case "- ":
                 if (slice === "") {
-                    highlighted = `- text\n-  `;
+                    highlighted = `- Text\n-  `;
                     dispatchState(
                         viewState,
                         from,
@@ -158,7 +197,7 @@ export const insertList = (ref, symbol) => {
                 break;
             case "- [ ] ":
                 if (slice === "") {
-                    highlighted = `- [ ] text\n- [ ] `;
+                    highlighted = `- [ ] Text\n- [ ] `;
                     dispatchState(
                         viewState,
                         from,
@@ -183,10 +222,10 @@ export const insertText = (ref, symbol, setIsOpen, e) => {
     setIsOpen(false);
     if (ref.current) {
         const data = new FormData(e.target);
-        let url;
+        let input;
         for (const [key, value] of data) {
             if (key === "input-text") {
-                url = value;
+                input = value;
             }
         }
         let viewState = ref.current?.view;
@@ -195,13 +234,16 @@ export const insertText = (ref, symbol, setIsOpen, e) => {
         let highlighted;
         switch (symbol) {
             case "image":
-                highlighted = `![Image description](${url})`;
+                highlighted = `![Image description](${input})`;
                 dispatchState(viewState, from, to, highlighted, symbol);
                 break;
             case "link":
-                highlighted = `[Link description](${url})`;
+                highlighted = `[Link description](${input})`;
                 dispatchState(viewState, from, to, highlighted, symbol);
                 break;
+            case "footnote":
+                highlighted = `[^${input}]`;
+                dispatchState(viewState, from, to, highlighted, symbol);
             default:
                 break;
         }
@@ -270,7 +312,7 @@ export const updateText = (ref, symbol) => {
             case "~~":
             case "==":
                 if (slice === "") {
-                    highlighted = `${symbol}text${symbol}`;
+                    highlighted = `${symbol}Text${symbol}`;
                     dispatchState(
                         viewState,
                         from,
@@ -279,16 +321,15 @@ export const updateText = (ref, symbol) => {
                         symbol,
                         true
                     );
-                    break;
                 } else {
                     highlighted = `${symbol}${slice}${symbol}`;
                     dispatchState(viewState, from, to, highlighted, symbol);
-                    break;
                 }
+                break;
             case ">":
                 let splitQuote;
                 if (slice === "") {
-                    highlighted = `${symbol}text`;
+                    highlighted = `${symbol}Text`;
                     dispatchState(
                         viewState,
                         from,
@@ -297,7 +338,6 @@ export const updateText = (ref, symbol) => {
                         symbol,
                         true
                     );
-                    break;
                 } else {
                     splitQuote = slice
                         .split("\n")
@@ -307,8 +347,8 @@ export const updateText = (ref, symbol) => {
                         .join("\n");
                     highlighted = splitQuote;
                     dispatchState(viewState, from, to, highlighted, symbol);
-                    break;
                 }
+                break;
             case "---":
                 if (slice === "") {
                     highlighted = `${symbol}`;
@@ -320,15 +360,14 @@ export const updateText = (ref, symbol) => {
                         symbol,
                         true
                     );
-                    break;
                 } else {
                     highlighted = `${symbol}${slice}`;
                     dispatchState(viewState, from, to, highlighted, symbol);
-                    break;
                 }
+                break;
             case "```":
                 if (slice === "") {
-                    highlighted = `${symbol}\ntext\n${symbol}`;
+                    highlighted = `${symbol}\nText\n${symbol}`;
                     dispatchState(
                         viewState,
                         from,
@@ -337,12 +376,10 @@ export const updateText = (ref, symbol) => {
                         symbol,
                         true
                     );
-                    break;
                 } else {
                     highlighted = `${symbol}\n${slice}\n${symbol}`;
-                    dispatchState(viewState, from, to, highlighted, symbol);
-                    break;
                 }
+                break;
             default:
                 break;
         }

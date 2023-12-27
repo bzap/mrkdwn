@@ -131,14 +131,14 @@ const HorizontalPopover = ({
                             {description}
                         </p>
                         {console.log(symbol === "table")}
-                        {symbol === "table" ? (
-                            <form
-                                id="popover-form"
-                                name="popover-form"
-                                onSubmit={(e) =>
-                                    handler(editorRef, symbol, setIsOpen, e)
-                                }
-                            >
+                        <form
+                            id="popover-form"
+                            name="popover-form"
+                            onSubmit={(e) =>
+                                handler(editorRef, symbol, setIsOpen, e)
+                            }
+                        >
+                            {symbol === "table" ? (
                                 <fieldset className="Fieldset">
                                     <div className={"flex gap-1"}>
                                         <input
@@ -164,17 +164,15 @@ const HorizontalPopover = ({
                                         />
                                     </div>
                                 </fieldset>
-                            </form>
-                        ) : (
-                            <form
-                                id="url-form"
-                                name="url-form"
-                                onSubmit={(e) =>
-                                    handler(editorRef, symbol, setIsOpen, e)
-                                }
-                            >
+                            ) : (
                                 <fieldset className="Fieldset">
-                                    <div className={"flex min-w-[300px] gap-1"}>
+                                    <div
+                                        className={`flex ${
+                                            symbol === "footnote"
+                                                ? "min-w-[100px]"
+                                                : "min-w-[300px]"
+                                        } gap-1`}
+                                    >
                                         <input
                                             className="Input transition"
                                             id="width"
@@ -192,8 +190,8 @@ const HorizontalPopover = ({
                                         />
                                     </div>
                                 </fieldset>
-                            </form>
-                        )}
+                            )}
+                        </form>
                     </div>
                     <Popover.Close
                         className="PopoverClose transition"

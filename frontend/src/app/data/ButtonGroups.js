@@ -71,11 +71,11 @@ export const InsertionFeatureGroup = {
     },
     footnote: {
         icon: Icons.FootnoteIcon,
-        func: updateText,
-        symbol: "**",
+        func: insertText,
+        symbol: "footnote",
         type: "popover",
-        description: "Enter the number of rows and columns:",
-        url: "https://example.com",
+        description: "Enter the footnote subscript:",
+        placeholder: "subscript",
     },
     divider: {
         icon: Icons.DividerIcon,
