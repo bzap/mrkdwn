@@ -1,5 +1,4 @@
 import HTMLContent from "./HTMLContent";
-import "react-perfect-scrollbar/dist/css/styles.css";
 import * as ScrollArea from "@radix-ui/react-scroll-area";
 import StatPanel from "./StatPanel";
 

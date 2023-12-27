@@ -1,5 +1,3 @@
-import { edit } from "ace-builds";
-import { useEffect } from "react";
 import { useSelector } from "react-redux";
 
 const HTMLContent = ({ editorRef }) => {
