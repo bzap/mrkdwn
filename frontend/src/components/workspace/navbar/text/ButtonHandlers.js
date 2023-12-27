@@ -350,20 +350,8 @@ export const updateText = (ref, symbol) => {
                 }
                 break;
             case "---":
-                if (slice === "") {
-                    highlighted = `${symbol}`;
-                    dispatchState(
-                        viewState,
-                        from,
-                        to,
-                        highlighted,
-                        symbol,
-                        true
-                    );
-                } else {
-                    highlighted = `${symbol}${slice}`;
-                    dispatchState(viewState, from, to, highlighted, symbol);
-                }
+                highlighted = `${symbol}${slice}`;
+                dispatchState(viewState, from, to, highlighted, symbol);
                 break;
             case "```":
                 if (slice === "") {
