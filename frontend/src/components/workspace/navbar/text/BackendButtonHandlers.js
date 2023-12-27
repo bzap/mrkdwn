@@ -1,5 +1,3 @@
-import { useSelector } from "react-redux";
-
 export const downloadFile = async (ref, symbol, data) => {
     await fetch(`/api/writeFile`, {
         method: "POST",
@@ -15,6 +13,12 @@ export const downloadFile = async (ref, symbol, data) => {
                 downloadLink.setAttribute("target", "_blank");
                 downloadLink.click();
                 URL.revokeObjectURL(href);
+            })
+            .then(() => {
+                fetch(`/api/deleteFile`, {
+                    method: "POST",
+                    //     body: JSON.stringify(data),
+                });
             });
     });
 };
