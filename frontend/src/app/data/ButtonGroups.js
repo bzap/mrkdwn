@@ -1,3 +1,7 @@
+import {
+    downloadFile,
+    uploadFile,
+} from "@/components/workspace/navbar/text/BackendButtonHandlers";
 import { Icons } from "../interface/Icons";
 import {
     updateText,
@@ -19,12 +23,12 @@ export const FileOperationGroup = {
     },
     upload: {
         icon: Icons.UploadIcon,
-        func: updateText,
+        func: uploadFile,
         symbol: "**",
     },
     download: {
         icon: Icons.DownloadIcon,
-        func: updateText,
+        func: downloadFile,
         symbol: "_",
     },
 };
