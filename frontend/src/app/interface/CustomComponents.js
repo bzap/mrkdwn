@@ -60,7 +60,12 @@ const TriggerButton = forwardRef((props, forwardedRef, isOpen) => {
     );
 });
 
-const HorizontalDropdownMenu = ({ Icon }) => {
+const HorizontalDropdownMenu = ({ Icon, handler, editorRef }) => {
+    const onSelect = (e) => {
+        //console.log(e.target.getAttribute("value"));
+        handler(editorRef, e.target.getAttribute("value"));
+        // use the handler here
+    };
     return (
         <DropdownMenu.Root>
             <DropdownMenu.Trigger asChild>
@@ -72,13 +77,25 @@ const HorizontalDropdownMenu = ({ Icon }) => {
                     sideOffset={25}
                     side="right"
                 >
-                    <DropdownMenu.Item className="DropdownMenuItem transition">
+                    <DropdownMenu.Item
+                        onSelect={onSelect}
+                        className="DropdownMenuItem transition"
+                        value={"- "}
+                    >
                         Unordered List <div className="RightSlot">- - -</div>
                     </DropdownMenu.Item>
-                    <DropdownMenu.Item className="DropdownMenuItem transition">
+                    <DropdownMenu.Item
+                        onSelect={onSelect}
+                        value={"1. "}
+                        className="DropdownMenuItem transition"
+                    >
                         Ordered List <div className="RightSlot">1. 2. 3.</div>
                     </DropdownMenu.Item>
-                    <DropdownMenu.Item className="DropdownMenuItem transition">
+                    <DropdownMenu.Item
+                        onSelect={onSelect}
+                        value={"- [ ] "}
+                        className="DropdownMenuItem transition"
+                    >
                         Task List
                         <div className="RightSlot">{"- [ ] - [x]"}</div>
                     </DropdownMenu.Item>
@@ -114,14 +131,14 @@ const HorizontalPopover = ({
                             {description}
                         </p>
                         {console.log(symbol === "table")}
-                        {symbol === "table" ? (
-                            <form
-                                id="popover-form"
-                                name="popover-form"
-                                onSubmit={(e) =>
-                                    handler(editorRef, symbol, setIsOpen, e)
-                                }
-                            >
+                        <form
+                            id="popover-form"
+                            name="popover-form"
+                            onSubmit={(e) =>
+                                handler(editorRef, symbol, setIsOpen, e)
+                            }
+                        >
+                            {symbol === "table" ? (
                                 <fieldset className="Fieldset">
                                     <div className={"flex gap-1"}>
                                         <input
@@ -147,17 +164,15 @@ const HorizontalPopover = ({
                                         />
                                     </div>
                                 </fieldset>
-                            </form>
-                        ) : (
-                            <form
-                                id="url-form"
-                                name="url-form"
-                                onSubmit={(e) =>
-                                    handler(editorRef, symbol, setIsOpen, e)
-                                }
-                            >
+                            ) : (
                                 <fieldset className="Fieldset">
-                                    <div className={"flex min-w-[300px] gap-1"}>
+                                    <div
+                                        className={`flex ${
+                                            symbol === "footnote"
+                                                ? "min-w-[100px]"
+                                                : "min-w-[300px]"
+                                        } gap-1`}
+                                    >
                                         <input
                                             className="Input transition"
                                             id="width"
@@ -175,8 +190,8 @@ const HorizontalPopover = ({
                                         />
                                     </div>
                                 </fieldset>
-                            </form>
-                        )}
+                            )}
+                        </form>
                     </div>
                     <Popover.Close
                         className="PopoverClose transition"
@@ -199,7 +214,11 @@ const ButtonGroup = ({ elements, editorRef }) => {
             {Object.values(elements).map((element, index) => {
                 return element.type === "dropdown" ? (
                     <div key={"bg" + index}>
-                        <HorizontalDropdownMenu Icon={element.icon} />
+                        <HorizontalDropdownMenu
+                            handler={element.func}
+                            editorRef={editorRef}
+                            Icon={element.icon}
+                        />
                     </div>
                 ) : element.type === "popover" ? (
                     <HorizontalPopover
@@ -217,7 +236,6 @@ const ButtonGroup = ({ elements, editorRef }) => {
                         key={"bg" + index}
                         Icon={element.icon}
                         index={index}
-                        length={length}
                         handler={element.func}
                         symbol={element.symbol}
                     />

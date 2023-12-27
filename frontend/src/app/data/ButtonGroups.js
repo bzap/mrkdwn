@@ -3,6 +3,7 @@ import {
     updateText,
     createTable,
     insertText,
+    insertList,
 } from "@/components/workspace/navbar/text/ButtonHandlers";
 
 export const TextStyleGroup = {
@@ -41,8 +42,7 @@ export const TextStyleGroup = {
 export const InsertionFeatureGroup = {
     list: {
         icon: Icons.ListIcon,
-        func: updateText,
-        symbol: "_",
+        func: insertList,
         type: "dropdown",
     },
     link: {
@@ -71,11 +71,11 @@ export const InsertionFeatureGroup = {
     },
     footnote: {
         icon: Icons.FootnoteIcon,
-        func: updateText,
-        symbol: "**",
+        func: insertText,
+        symbol: "footnote",
         type: "popover",
-        description: "Enter the number of rows and columns:",
-        url: "https://example.com",
+        description: "Enter the footnote subscript:",
+        placeholder: "subscript",
     },
     divider: {
         icon: Icons.DividerIcon,

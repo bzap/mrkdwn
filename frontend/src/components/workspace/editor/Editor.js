@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux";
 import { setMarkdownText } from "@/lib/reducers/markdownSlice";
 import { rIC } from "@/util/RICDispatch";
 import { EditorView } from "@codemirror/view";
-import debounce from "lodash/debounce";
+import debounce from "lodash.debounce";
 import { useCallback } from "react";
 import * as ScrollArea from "@radix-ui/react-scroll-area";
 import { EditorViewTheme } from "../../../app/interface/EditorViewTheme";

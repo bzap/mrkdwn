@@ -1,3 +1,4 @@
+import { markdown } from "@codemirror/lang-markdown";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 
@@ -6,7 +7,9 @@ const StatPanel = () => {
         (state) => state.markdownData.markdownText
     );
 
-    // make this fade in when there's no content?
+    let words = markdownText.match(/(\w+)/g);
+    let characters = markdownText.replace(/\s/g, "");
+    let lines = markdownText.match(/$/gm);
 
     return (
         <div
@@ -14,27 +17,23 @@ const StatPanel = () => {
         >
             <div>
                 {`
-            Words: ${markdownText ? markdownText.match(/(\w+)/g).length : 0} 
+            Words: ${words ? words.length : 0} 
             `}
             </div>
 
             <div>
                 {`
-            Characters: ${
-                markdownText ? markdownText.replace(/\s/g, "").length : 0
-            }             `}
+            Characters: ${characters ? characters.length : 0}`}
             </div>
 
             <div>
                 {`
-            Lines: ${markdownText ? markdownText.match(/$/gm).length : 0} 
+            Lines: ${lines ? lines.length : 0} 
             `}
             </div>
             <div>
                 {`
-            File size: ${
-                markdownText ? markdownText.match(/(\w+)/g).length : 0
-            } 
+            File size: ${words ? words.length : 0} 
             `}
             </div>
         </div>

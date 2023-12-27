@@ -13,7 +13,7 @@ const WorkspaceContainer = () => {
             </div>
             <div className="flex w-full max-w-[96%] h-[96%] max-h-screen relative min-h-screen p-4 gap-3">
                 <Editor editorRef={editorRef} />
-                <Viewer />
+                <Viewer editorRef={editorRef} />
             </div>
         </div>
     );
