@@ -26,10 +26,13 @@ export const FileOperationGroup = {
         func: uploadFile,
         symbol: "**",
     },
-    download: {
+    image: {
         icon: Icons.DownloadIcon,
         func: downloadFile,
-        symbol: "_",
+        symbol: "download",
+        type: "popover",
+        description: "Enter the name of the file:",
+        placeholder: "README.md",
     },
 };
 

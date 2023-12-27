@@ -24,7 +24,7 @@ const Button = ({
     return (
         <button
             type={"type"}
-            onClick={(e) => handler && handler(editorRef, symbol, data)}
+            onClick={(e) => handler && handler(editorRef, symbol, data, e)}
             className={`text-black select-none outline-none items-center transition justify-center
             ${
                 fitted
@@ -112,6 +112,7 @@ const HorizontalPopover = ({
     description,
     placeholder,
     symbol,
+    data,
     editorRef,
     handler,
 }) => {
@@ -131,12 +132,11 @@ const HorizontalPopover = ({
                         <p className="Text" style={{ marginBottom: 1 }}>
                             {description}
                         </p>
-                        {console.log(symbol === "table")}
                         <form
                             id="popover-form"
                             name="popover-form"
                             onSubmit={(e) =>
-                                handler(editorRef, symbol, setIsOpen, e)
+                                handler(editorRef, symbol, setIsOpen, e, data)
                             }
                         >
                             {symbol === "table" ? (
@@ -169,7 +169,8 @@ const HorizontalPopover = ({
                                 <fieldset className="Fieldset">
                                     <div
                                         className={`flex ${
-                                            symbol === "footnote"
+                                            symbol === "footnote" ||
+                                            symbol === "download"
                                                 ? "min-w-[100px]"
                                                 : "min-w-[300px]"
                                         } gap-1`}
@@ -228,6 +229,7 @@ const ButtonGroup = ({ elements, editorRef, data }) => {
                         description={element.description}
                         symbol={element.symbol}
                         placeholder={element.placeholder}
+                        data={data ? data : ""}
                         handler={element.func}
                         editorRef={editorRef}
                     />
@@ -237,7 +239,7 @@ const ButtonGroup = ({ elements, editorRef, data }) => {
                         key={"bg" + index}
                         Icon={element.icon}
                         index={index}
-                        data={data && data}
+                        data={data ? data : ""}
                         handler={element.func}
                         symbol={element.symbol}
                     />
