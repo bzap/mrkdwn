@@ -6,6 +6,29 @@ import {
     insertList,
 } from "@/components/workspace/navbar/text/ButtonHandlers";
 
+export const FileOperationGroup = {
+    newFile: {
+        icon: Icons.NewDocumentIcon,
+        func: updateText,
+        symbol: "**",
+    },
+    save: {
+        icon: Icons.SaveIcon,
+        func: updateText,
+        symbol: "**",
+    },
+    upload: {
+        icon: Icons.UploadIcon,
+        func: updateText,
+        symbol: "**",
+    },
+    download: {
+        icon: Icons.DownloadIcon,
+        func: updateText,
+        symbol: "_",
+    },
+};
+
 export const TextStyleGroup = {
     bold: {
         icon: Icons.BoldIcon,
@@ -81,5 +104,18 @@ export const InsertionFeatureGroup = {
         icon: Icons.DividerIcon,
         func: updateText,
         symbol: "---",
+    },
+};
+
+export const CustomizationGroup = {
+    theme: {
+        icon: Icons.DarkModeIcon,
+        func: updateText,
+        symbol: "**",
+    },
+    settings: {
+        icon: Icons.SettingsIcon,
+        func: updateText,
+        symbol: "**",
     },
 };

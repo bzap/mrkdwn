@@ -209,7 +209,7 @@ const HorizontalPopover = ({
 const ButtonGroup = ({ elements, editorRef }) => {
     return (
         <div
-            className={`flex mb-4 rounded-xl border-stone-200 border-[1px] flex-col overflow-hidden`}
+            className={`flex mb-2.5 rounded-xl border-stone-200 border-[1px] flex-col overflow-hidden`}
         >
             {Object.values(elements).map((element, index) => {
                 return element.type === "dropdown" ? (
