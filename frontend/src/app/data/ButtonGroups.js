@@ -1,3 +1,7 @@
+import {
+    downloadFile,
+    uploadFile,
+} from "@/components/workspace/navbar/text/BackendButtonHandlers";
 import { Icons } from "../interface/Icons";
 import {
     updateText,
@@ -5,6 +9,32 @@ import {
     insertText,
     insertList,
 } from "@/components/workspace/navbar/text/ButtonHandlers";
+
+export const FileOperationGroup = {
+    newFile: {
+        icon: Icons.NewDocumentIcon,
+        func: updateText,
+        symbol: "**",
+    },
+    save: {
+        icon: Icons.SaveIcon,
+        func: updateText,
+        symbol: "**",
+    },
+    upload: {
+        icon: Icons.UploadIcon,
+        func: uploadFile,
+        symbol: "**",
+    },
+    image: {
+        icon: Icons.DownloadIcon,
+        func: downloadFile,
+        symbol: "download",
+        type: "popover",
+        description: "Enter the name of the file:",
+        placeholder: "README.md",
+    },
+};
 
 export const TextStyleGroup = {
     bold: {
@@ -81,5 +111,18 @@ export const InsertionFeatureGroup = {
         icon: Icons.DividerIcon,
         func: updateText,
         symbol: "---",
+    },
+};
+
+export const CustomizationGroup = {
+    theme: {
+        icon: Icons.DarkModeIcon,
+        func: updateText,
+        symbol: "**",
+    },
+    settings: {
+        icon: Icons.SettingsIcon,
+        func: updateText,
+        symbol: "**",
     },
 };

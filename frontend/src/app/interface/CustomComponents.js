@@ -17,13 +17,14 @@ const Button = ({
     fitted,
     handler,
     editorRef,
+    data,
     symbol,
     type = "button",
 }) => {
     return (
         <button
             type={"type"}
-            onClick={(e) => handler && handler(editorRef, symbol)}
+            onClick={(e) => handler && handler(editorRef, symbol, data, e)}
             className={`text-black select-none outline-none items-center transition justify-center
             ${
                 fitted
@@ -111,6 +112,7 @@ const HorizontalPopover = ({
     description,
     placeholder,
     symbol,
+    data,
     editorRef,
     handler,
 }) => {
@@ -130,12 +132,11 @@ const HorizontalPopover = ({
                         <p className="Text" style={{ marginBottom: 1 }}>
                             {description}
                         </p>
-                        {console.log(symbol === "table")}
                         <form
                             id="popover-form"
                             name="popover-form"
                             onSubmit={(e) =>
-                                handler(editorRef, symbol, setIsOpen, e)
+                                handler(editorRef, symbol, setIsOpen, e, data)
                             }
                         >
                             {symbol === "table" ? (
@@ -168,7 +169,8 @@ const HorizontalPopover = ({
                                 <fieldset className="Fieldset">
                                     <div
                                         className={`flex ${
-                                            symbol === "footnote"
+                                            symbol === "footnote" ||
+                                            symbol === "download"
                                                 ? "min-w-[100px]"
                                                 : "min-w-[300px]"
                                         } gap-1`}
@@ -206,10 +208,10 @@ const HorizontalPopover = ({
     );
 };
 
-const ButtonGroup = ({ elements, editorRef }) => {
+const ButtonGroup = ({ elements, editorRef, data }) => {
     return (
         <div
-            className={`flex mb-4 rounded-xl border-stone-200 border-[1px] flex-col overflow-hidden`}
+            className={`flex mb-2.5 rounded-xl border-stone-200 border-[1px] flex-col overflow-hidden`}
         >
             {Object.values(elements).map((element, index) => {
                 return element.type === "dropdown" ? (
@@ -227,6 +229,7 @@ const ButtonGroup = ({ elements, editorRef }) => {
                         description={element.description}
                         symbol={element.symbol}
                         placeholder={element.placeholder}
+                        data={data ? data : ""}
                         handler={element.func}
                         editorRef={editorRef}
                     />
@@ -236,6 +239,7 @@ const ButtonGroup = ({ elements, editorRef }) => {
                         key={"bg" + index}
                         Icon={element.icon}
                         index={index}
+                        data={data ? data : ""}
                         handler={element.func}
                         symbol={element.symbol}
                     />
