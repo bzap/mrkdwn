@@ -23,8 +23,13 @@ const Button = ({
 }) => {
     return (
         <button
+<<<<<<< Updated upstream
             type={"type"}
             onClick={(e) => handler && handler(editorRef, symbol, data, e)}
+=======
+            type={type}
+            onClick={(e) => handler && handler(editorRef, symbol)}
+>>>>>>> Stashed changes
             className={`text-black select-none outline-none items-center transition justify-center
             ${
                 fitted

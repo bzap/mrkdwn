@@ -53,7 +53,7 @@ const dispatchState = (viewState, from, to, highlighted, symbol, baseCase) => {
                 let newOffset = viewState.state.doc.line(line.number + 1);
                 console.log(newOffset);
                 viewState.dispatch(
-                    viewState.state.changeByRange((range) => ({
+                    viewState.state.changeByRange(() => ({
                         range: EditorSelection.range(
                             newOffset.from,
                             newOffset.to
