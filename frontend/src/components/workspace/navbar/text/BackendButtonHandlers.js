@@ -1,18 +1,13 @@
 export const downloadFile = async (ref, symbol, setIsOpen, e, markdownData) => {
     e.preventDefault();
+
     const data = new FormData(e.target);
-    console.log(e.target.value);
     let input;
     for (const [key, value] of data) {
         if (key === "input-text") {
             input = value;
         }
     }
-
-    // let body = {
-    //     fileName: input,
-    //     markdownData: markdownData,
-    // };
 
     await fetch(`/api/writeFile`, {
         method: "POST",
@@ -39,6 +34,7 @@ export const downloadFile = async (ref, symbol, setIsOpen, e, markdownData) => {
                         fileName: input,
                     }),
                 });
+                setIsOpen(false);
             });
     });
 };
