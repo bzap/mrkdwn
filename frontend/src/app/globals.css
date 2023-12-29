@@ -414,6 +414,40 @@ tr {
     font-weight: 500;
 }
 
+/* reset */
+
+.SwitchRoot {
+    width: 20px;
+    height: 12px;
+    background-color: #e5e5e5;
+    border-radius: 9999px;
+    outline: none;
+    position: relative;
+    border-width: 1px;
+    border-color: #d6d3d1;
+}
+
+.SwitchRoot[data-state="checked"] {
+    background-color: black;
+    border-width: 1px;
+    border-color: black;
+}
+
+.SwitchThumb {
+    display: block;
+    width: 8px;
+    height: 8px;
+    outline: none;
+    background-color: white;
+    border-radius: 9999px;
+    transition: transform 100ms;
+    transform: translateX(1px);
+    will-change: transform;
+}
+.SwitchThumb[data-state="checked"] {
+    transform: translateX(9px);
+}
+
 @keyframes slideRightAndFade {
     from {
         opacity: 0;

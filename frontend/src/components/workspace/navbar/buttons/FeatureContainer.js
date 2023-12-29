@@ -1,8 +1,8 @@
 import { CustomComponents } from "@/app/interface/CustomComponents";
-import { InsertionFeatureGroup } from "@/app/data/ButtonGroups";
-import { TextStyleGroup } from "@/app/data/ButtonGroups";
-import { FileOperationGroup } from "@/app/data/ButtonGroups";
-import { CustomizationGroup } from "@/app/data/ButtonGroups";
+import { InsertionFeatureGroup } from "@/components/workspace/navbar/buttons/ButtonGroups";
+import { TextStyleGroup } from "@/components/workspace/navbar/buttons/ButtonGroups";
+import { FileOperationGroup } from "@/components/workspace/navbar/buttons/ButtonGroups";
+import { CustomizationGroup } from "@/components/workspace/navbar/buttons/ButtonGroups";
 import { useSelector } from "react-redux";
 
 const TextFeatureContainer = ({ editorRef }) => {

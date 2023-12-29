@@ -56,23 +56,7 @@ export const uploadFile = () => {
 };
 
 export const newFile = (ref, symbol, markdownData, e, dispatch) => {
-    dispatch(setMarkdownText(""));
     let viewState = ref.current?.view;
-    // const themeConfig = new Compartment();
-    // viewState.setState(
-    //     EditorState.create({
-    //         doc: "",
-    //         extensions: [
-    //             markdown({ highlightFormatting: true }),
-    //             EditorView.lineWrapping,
-    //             EditorViewTheme,
-    //             //   EditorViewTheme,
-    //             UpdateStateListener,
-    //             lineNumbers(),
-    //             themeConfig.of([xcodeGrayscale]),
-    //         ],
-    //     })
-    // );
     viewState.dispatch({
         changes: {
             from: 0,

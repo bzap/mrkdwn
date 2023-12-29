@@ -7,10 +7,6 @@ import { useSelector } from "react-redux";
 
 const WorkspaceContainer = () => {
     const editorRef = useRef();
-
-    const markdownText = useSelector((state) => state.markdownText);
-    console.log(markdownText);
-
     return (
         <div className="flex max-h-screen max-w-screen justify-center">
             <div className="flex w-[4%] h-[96%] max-h-screen min-w-24 min-h-screen p-4">

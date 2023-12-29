@@ -12,7 +12,7 @@ import * as ScrollArea from "@radix-ui/react-scroll-area";
 import { EditorViewTheme } from "../../../app/interface/EditorViewTheme";
 import { xcodeGrayscale } from "@/app/interface/CustomSyntaxTheme";
 import { UpdateStateListener } from "./UpdateStateListener";
-import { defaultIntro } from "@/app/data/DefaultIntro";
+import { defaultIntro } from "@/components/workspace/editor/DefaultIntro";
 
 const Editor = ({ editorRef }) => {
     const dispatch = useDispatch();
@@ -42,6 +42,10 @@ const Editor = ({ editorRef }) => {
             return markdownText;
         }
     };
+
+    useEffect(() => {
+        console.log(markdownText);
+    }, [markdownText]);
 
     return (
         <div className="flex w-6/12 border-stone-200 border-[1px] rounded-2xl overflow-hidden border-solid">

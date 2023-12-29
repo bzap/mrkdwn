@@ -3,25 +3,20 @@ import {
     uploadFile,
     saveFile,
     newFile,
-} from "@/components/workspace/navbar/text/BackendButtonHandlers";
-import { Icons } from "../interface/Icons";
+} from "@/components/workspace/navbar/buttons/BackendButtonHandlers";
+import { Icons } from "../../../../app/interface/Icons";
 import {
     updateText,
     createTable,
     insertText,
     insertList,
-} from "@/components/workspace/navbar/text/ButtonHandlers";
+} from "@/components/workspace/navbar/buttons/ButtonHandlers";
 
 export const FileOperationGroup = {
     newFile: {
         icon: Icons.NewDocumentIcon,
         func: newFile,
         symbol: "new",
-    },
-    save: {
-        icon: Icons.SaveIcon,
-        func: saveFile,
-        symbol: "save",
     },
     upload: {
         icon: Icons.UploadIcon,
@@ -117,6 +112,12 @@ export const InsertionFeatureGroup = {
 };
 
 export const CustomizationGroup = {
+    save: {
+        icon: Icons.SaveIcon,
+        func: saveFile,
+        symbol: "save",
+        type: "switch",
+    },
     theme: {
         icon: Icons.DarkModeIcon,
         func: updateText,

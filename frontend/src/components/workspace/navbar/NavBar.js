@@ -1,5 +1,5 @@
 import Logo from "./Logo";
-import TextFeatureContainer from "./text/TextFeatureContainer";
+import TextFeatureContainer from "./buttons/FeatureContainer";
 
 const NavBar = ({ editorRef }) => {
     return (

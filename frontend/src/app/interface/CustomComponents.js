@@ -10,6 +10,7 @@ import * as Popover from "@radix-ui/react-popover";
 import { MixerHorizontalIcon, Cross2Icon } from "@radix-ui/react-icons";
 import { Icons } from "./Icons";
 import { useDispatch } from "react-redux";
+import * as Switch from "@radix-ui/react-switch";
 
 const Button = ({
     Icon,
@@ -108,6 +109,23 @@ const HorizontalDropdownMenu = ({ Icon, handler, editorRef }) => {
                 </DropdownMenu.Content>
             </DropdownMenu.Portal>
         </DropdownMenu.Root>
+    );
+};
+
+const VerticalSwitch = ({}) => {
+    return (
+        <div className={`flex justify-center h-[25px] mt-4`}>
+            <form>
+                <div style={{ display: "flex", alignItems: "center" }}>
+                    <Switch.Root
+                        className="SwitchRoot transition"
+                        id="airplane-mode"
+                    >
+                        <Switch.Thumb className="SwitchThumb" />
+                    </Switch.Root>
+                </div>
+            </form>
+        </div>
     );
 };
 
@@ -226,6 +244,8 @@ const ButtonGroup = ({ elements, editorRef, data }) => {
                             Icon={element.icon}
                         />
                     </div>
+                ) : element.type === "switch" ? (
+                    <VerticalSwitch />
                 ) : element.type === "popover" ? (
                     <HorizontalPopover
                         key={"bg" + index}
