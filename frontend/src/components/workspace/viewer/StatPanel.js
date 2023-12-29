@@ -29,11 +29,11 @@ const StatPanel = () => {
             Lines: ${lines ? lines.length : 0} 
             `}
             </div>
-            <div>
+            {/* <div>
                 {`
             File size: ${words ? words.length : 0} 
             `}
-            </div>
+            </div> */}
         </div>
     );
 };

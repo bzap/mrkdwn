@@ -9,8 +9,9 @@ import {
 import * as Popover from "@radix-ui/react-popover";
 import { MixerHorizontalIcon, Cross2Icon } from "@radix-ui/react-icons";
 import { Icons } from "./Icons";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import * as Switch from "@radix-ui/react-switch";
+import { setSaveState } from "@/lib/reducers/markdownSlice";
 
 const Button = ({
     Icon,
@@ -112,20 +113,38 @@ const HorizontalDropdownMenu = ({ Icon, handler, editorRef }) => {
     );
 };
 
-const VerticalSwitch = ({}) => {
+const VerticalSwitch = ({ header, icon, dispatcher }) => {
+    const dispatch = useDispatch();
+    const state = useSelector((state) => state[header]);
+
+    // const data =
+
+    const handleToggle = (val) => {
+        dispatch(dispatcher(!state));
+    };
+
     return (
-        <div className={`flex justify-center h-[25px] mt-4`}>
-            <form>
-                <div style={{ display: "flex", alignItems: "center" }}>
-                    <Switch.Root
-                        className="SwitchRoot transition"
-                        id="airplane-mode"
+        <label
+            htmlFor={"switch-toggle" + header}
+            className={`flex justify-center py-2.5 w-full transition cursor-pointer hover:bg-stone-100 active:bg-stone-200 h-full`}
+        >
+            <div className="flex flex-col text-[10px] font-bold">
+                <form>
+                    <div
+                        className="flex-col my-1"
+                        style={{ display: "flex", alignItems: "center" }}
                     >
-                        <Switch.Thumb className="SwitchThumb" />
-                    </Switch.Root>
-                </div>
-            </form>
-        </div>
+                        <div className="mb-1">{icon && icon()}</div>
+
+                        <Switch.Root
+                            onCheckedChange={(value) => handleToggle(value)}
+                            className="SwitchRoot transition "
+                            id={"switch-toggle" + header}
+                        ></Switch.Root>
+                    </div>
+                </form>
+            </div>
+        </label>
     );
 };
 
@@ -245,7 +264,11 @@ const ButtonGroup = ({ elements, editorRef, data }) => {
                         />
                     </div>
                 ) : element.type === "switch" ? (
-                    <VerticalSwitch />
+                    <VerticalSwitch
+                        icon={element.icon}
+                        header={element.symbol}
+                        dispatcher={element.dispatcher}
+                    />
                 ) : element.type === "popover" ? (
                     <HorizontalPopover
                         key={"bg" + index}

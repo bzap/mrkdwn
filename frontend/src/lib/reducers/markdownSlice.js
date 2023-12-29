@@ -17,11 +17,11 @@ export const markdownSlice = createSlice({
         },
 
         setSaveState: (state, action) => {
-            // state.markdownText = !action.payload;
-            console.log(action.payload);
+            state.saveState = action.payload;
+            console.log(action.payload, "dispatched");
         },
         setDarkMode: (state, action) => {
-            state.markdownText = !action.payload;
+            state.darkMode = !action.payload;
         },
         setInitState: (state, action) => {
             state.initState = action.payload;

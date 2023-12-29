@@ -417,10 +417,11 @@ tr {
 /* reset */
 
 .SwitchRoot {
-    width: 20px;
-    height: 12px;
+    width: 14px;
+    height: 5px;
+    align-items: center;
     background-color: #e5e5e5;
-    border-radius: 9999px;
+    border-radius: 24px;
     outline: none;
     position: relative;
     border-width: 1px;
@@ -431,12 +432,13 @@ tr {
     background-color: black;
     border-width: 1px;
     border-color: black;
+    border-radius: 24px;
 }
 
-.SwitchThumb {
+/* .SwitchThumb {
     display: block;
     width: 8px;
-    height: 8px;
+    height: 3px;
     outline: none;
     background-color: white;
     border-radius: 9999px;
@@ -446,7 +448,7 @@ tr {
 }
 .SwitchThumb[data-state="checked"] {
     transform: translateX(9px);
-}
+} */
 
 @keyframes slideRightAndFade {
     from {
