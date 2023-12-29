@@ -4,6 +4,7 @@ const initialState = {
     markdownText: "",
     saveState: false,
     darkMode: false,
+    initState: true,
 };
 
 export const markdownSlice = createSlice({
@@ -22,9 +23,12 @@ export const markdownSlice = createSlice({
         setDarkMode: (state, action) => {
             state.markdownText = !action.payload;
         },
+        setInitState: (state, action) => {
+            state.initState = action.payload;
+        },
     },
 });
 
-export const { setMarkdownText, setSaveState, setDarkMode } =
+export const { setMarkdownText, setSaveState, setDarkMode, setInitState } =
     markdownSlice.actions;
 export default markdownSlice.reducer;
