@@ -3,9 +3,7 @@ import { useEffect } from "react";
 import { useSelector } from "react-redux";
 
 const StatPanel = () => {
-    const markdownText = useSelector(
-        (state) => state.markdownData.markdownText
-    );
+    const markdownText = useSelector((state) => state.markdownText);
 
     let words = markdownText.match(/(\w+)/g);
     let characters = markdownText.replace(/\s/g, "");

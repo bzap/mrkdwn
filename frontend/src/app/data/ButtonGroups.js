@@ -1,6 +1,8 @@
 import {
     downloadFile,
     uploadFile,
+    saveFile,
+    newFile,
 } from "@/components/workspace/navbar/text/BackendButtonHandlers";
 import { Icons } from "../interface/Icons";
 import {
@@ -13,13 +15,13 @@ import {
 export const FileOperationGroup = {
     newFile: {
         icon: Icons.NewDocumentIcon,
-        func: updateText,
-        symbol: "**",
+        func: newFile,
+        symbol: "new",
     },
     save: {
         icon: Icons.SaveIcon,
-        func: updateText,
-        symbol: "**",
+        func: saveFile,
+        symbol: "save",
     },
     upload: {
         icon: Icons.UploadIcon,

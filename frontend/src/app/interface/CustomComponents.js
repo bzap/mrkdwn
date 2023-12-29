@@ -9,6 +9,7 @@ import {
 import * as Popover from "@radix-ui/react-popover";
 import { MixerHorizontalIcon, Cross2Icon } from "@radix-ui/react-icons";
 import { Icons } from "./Icons";
+import { useDispatch } from "react-redux";
 
 const Button = ({
     Icon,
@@ -21,10 +22,13 @@ const Button = ({
     symbol,
     type = "button",
 }) => {
+    const dispatch = useDispatch();
     return (
         <button
             type={"type"}
-            onClick={(e) => handler && handler(editorRef, symbol, data, e)}
+            onClick={(e) =>
+                handler && handler(editorRef, symbol, data, e, dispatch)
+            }
             className={`text-black select-none outline-none items-center transition justify-center
             ${
                 fitted

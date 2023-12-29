@@ -1,9 +1,7 @@
 import { useSelector } from "react-redux";
 
 const HTMLContent = ({ editorRef }) => {
-    const markdownText = useSelector(
-        (state) => state.markdownData.markdownText
-    );
+    const markdownText = useSelector((state) => state.markdownText);
 
     var md = require("markdown-it")()
         .use(require("markdown-it-footnote"))
