@@ -28,7 +28,7 @@ export const downloadFile = async (ref, symbol, setIsOpen, e, markdownData) => {
             .then((res) => res.blob())
             .then((res) => {
                 const downloadLink = document.createElement("a");
-                downloadLink.setAttribute("download", `/tmp/${input}.md`);
+                downloadLink.setAttribute("download", `${input}.md`);
                 const href = URL.createObjectURL(res);
                 downloadLink.href = href;
                 downloadLink.setAttribute("target", "_blank");
