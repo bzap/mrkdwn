@@ -48,7 +48,6 @@ const Editor = ({ editorRef }) => {
                     className="ScrollAreaViewport h-full flex pb-2"
                 >
                     <CodeMirror
-                        // value={value}
                         value={markdownText}
                         theme={xcodeGrayscale}
                         className="py-6 px-7 h-full h-auto min-h-full overflow-hidden"

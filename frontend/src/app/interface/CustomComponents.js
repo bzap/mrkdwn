@@ -24,6 +24,7 @@ const Button = ({
     symbol,
     type = "button",
 }) => {
+    // console.log(icon);
     const dispatch = useDispatch();
     return (
         <button
@@ -59,21 +60,19 @@ const TriggerButton = forwardRef((props, forwardedRef) => {
             ref={forwardedRef}
             className={`text-black select-none outline-none items-center transition justify-center w-full h-max flex p-3 hover:bg-stone-100 active:bg-stone-200`}
         >
-            {/* {icon()} */}
+            {props.icon && props.icon.icon()}
         </button>
     );
 });
 
 const HorizontalDropdownMenu = ({ icon, handler, editorRef }) => {
     const onSelect = (e) => {
-        //console.log(e.target.getAttribute("value"));
         handler(editorRef, e.target.getAttribute("value"));
-        // use the handler here
     };
     return (
         <DropdownMenu.Root>
             <DropdownMenu.Trigger asChild>
-                <TriggerButton icon={icon} />
+                <TriggerButton icon={{ icon }} />
             </DropdownMenu.Trigger>
             <DropdownMenu.Portal>
                 <DropdownMenu.Content
@@ -166,10 +165,11 @@ const HorizontalPopover = ({
     handler,
 }) => {
     const [isOpen, setIsOpen] = useState(false);
+    //  console.log(icon);
     return (
         <Popover.Root open={isOpen} onOpenChange={setIsOpen}>
             <Popover.Trigger asChild>
-                <TriggerButton icon={icon} aria-label="Customise options" />
+                <TriggerButton icon={{ icon }} />
             </Popover.Trigger>
             <Popover.Portal>
                 <Popover.Content
@@ -208,7 +208,7 @@ const HorizontalPopover = ({
                                         <Button
                                             type={"submit"}
                                             fitted
-                                            icon={Icons.EnterIcon}
+                                            //    icon={Icons.EnterIcon}
                                             setIsOpen={setIsOpen}
                                             editorRef={editorRef}
                                         />
@@ -237,7 +237,7 @@ const HorizontalPopover = ({
                                             setIsOpen={setIsOpen}
                                             editorRef={editorRef}
                                             fitted
-                                            icon={Icons.EnterIcon}
+                                            //    icon={Icons.EnterIcon}
                                         />
                                     </div>
                                 </fieldset>
