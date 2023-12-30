@@ -1,25 +1,23 @@
 import {
     downloadFile,
     uploadFile,
-} from "@/components/workspace/navbar/text/BackendButtonHandlers";
-import { Icons } from "../interface/Icons";
+    saveFile,
+    newFile,
+} from "@/components/workspace/navbar/buttons/BackendButtonHandlers";
+import { Icons } from "../../../../app/interface/Icons";
 import {
     updateText,
     createTable,
     insertText,
     insertList,
-} from "@/components/workspace/navbar/text/ButtonHandlers";
+} from "@/components/workspace/navbar/buttons/ButtonHandlers";
+import { setDarkMode, setSaveState } from "@/lib/reducers/markdownSlice";
 
 export const FileOperationGroup = {
     newFile: {
         icon: Icons.NewDocumentIcon,
-        func: updateText,
-        symbol: "**",
-    },
-    save: {
-        icon: Icons.SaveIcon,
-        func: updateText,
-        symbol: "**",
+        func: newFile,
+        symbol: "new",
     },
     upload: {
         icon: Icons.UploadIcon,
@@ -115,10 +113,19 @@ export const InsertionFeatureGroup = {
 };
 
 export const CustomizationGroup = {
+    save: {
+        icon: Icons.SaveIcon,
+        func: saveFile,
+        symbol: "saveState",
+        type: "switch",
+        dispatcher: setSaveState,
+    },
     theme: {
         icon: Icons.DarkModeIcon,
-        func: updateText,
-        symbol: "**",
+        func: saveFile,
+        symbol: "darkMode",
+        type: "switch",
+        dispatcher: setDarkMode,
     },
     settings: {
         icon: Icons.SettingsIcon,

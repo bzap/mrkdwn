@@ -2,7 +2,8 @@
 import Editor from "./workspace/editor/Editor";
 import NavBar from "./workspace/navbar/NavBar";
 import Viewer from "./workspace/viewer/Viewer";
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
+import { useSelector } from "react-redux";
 
 const WorkspaceContainer = () => {
     const editorRef = useRef();

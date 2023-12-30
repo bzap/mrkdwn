@@ -1,3 +1,11 @@
+import { setMarkdownText } from "@/lib/reducers/markdownSlice";
+// import { EditorState, EditorView, lineNumbers } from "@uiw/react-codemirror";
+// import { EditorViewTheme } from "@/app/interface/EditorViewTheme";
+// import { UpdateStateListener } from "../../editor/UpdateStateListener";
+// import { markdown } from "@codemirror/lang-markdown";
+// import { Compartment } from "@uiw/react-codemirror";
+// import { xcodeGrayscale } from "@/app/interface/CustomSyntaxTheme";
+
 export const downloadFile = async (ref, symbol, setIsOpen, e, markdownData) => {
     e.preventDefault();
 
@@ -41,4 +49,25 @@ export const downloadFile = async (ref, symbol, setIsOpen, e, markdownData) => {
 
 export const uploadFile = () => {
     console.log("haha");
+};
+
+export const newFile = (ref, symbol, markdownData, e, dispatch) => {
+    let viewState = ref.current?.view;
+    viewState.dispatch({
+        changes: {
+            from: 0,
+            to: viewState.state.doc.length,
+            insert: "this should be the default content? or not ",
+        },
+    });
+};
+
+export const saveFile = (ref, symbol, markdownData, e, dispatch) => {
+    // dipsatch the data to redux here
+    // and set the state while ur at too
+    let dispatchData = {
+        markdownData: markdownData,
+    };
+
+    console.log(markdownData);
 };

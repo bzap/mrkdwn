@@ -1,5 +1,5 @@
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
-import { useState, forwardRef } from "react";
+import { useState, forwardRef, useEffect } from "react";
 import {
     HamburgerMenuIcon,
     DotFilledIcon,
@@ -9,9 +9,12 @@ import {
 import * as Popover from "@radix-ui/react-popover";
 import { MixerHorizontalIcon, Cross2Icon } from "@radix-ui/react-icons";
 import { Icons } from "./Icons";
+import { useDispatch, useSelector } from "react-redux";
+import * as Switch from "@radix-ui/react-switch";
+import { setSaveState } from "@/lib/reducers/markdownSlice";
 
 const Button = ({
-    Icon,
+    icon,
     index,
     text,
     fitted,
@@ -21,10 +24,14 @@ const Button = ({
     symbol,
     type = "button",
 }) => {
+    // console.log(icon);
+    const dispatch = useDispatch();
     return (
         <button
             type={"type"}
-            onClick={(e) => handler && handler(editorRef, symbol, data, e)}
+            onClick={(e) =>
+                handler && handler(editorRef, symbol, data, e, dispatch)
+            }
             className={`text-black select-none outline-none items-center transition justify-center
             ${
                 fitted
@@ -32,7 +39,7 @@ const Button = ({
                     : "h-max  w-full hover:bg-stone-100 active:bg-stone-300"
             } flex p-3`}
         >
-            {Icon && <Icon className={"stroke-2"} />}
+            {icon && icon()}
             {text && (
                 <p
                     className={
@@ -46,31 +53,26 @@ const Button = ({
     );
 };
 
-const TriggerButton = forwardRef((props, forwardedRef, isOpen) => {
+const TriggerButton = forwardRef((props, forwardedRef) => {
     return (
         <button
             {...props}
             ref={forwardedRef}
-            type="button"
-            className={`${
-                isOpen && "bg-blue-400"
-            } text-black select-none outline-none items-center transition justify-center w-full h-max flex p-3 hover:bg-stone-100 active:bg-stone-200`}
+            className={`text-black select-none outline-none items-center transition justify-center w-full h-max flex p-3 hover:bg-stone-100 active:bg-stone-200`}
         >
-            <props.Icon className={"stroke-2"} />
+            {props.icon && props.icon.icon()}
         </button>
     );
 });
 
-const HorizontalDropdownMenu = ({ Icon, handler, editorRef }) => {
+const HorizontalDropdownMenu = ({ icon, handler, editorRef }) => {
     const onSelect = (e) => {
-        //console.log(e.target.getAttribute("value"));
         handler(editorRef, e.target.getAttribute("value"));
-        // use the handler here
     };
     return (
         <DropdownMenu.Root>
             <DropdownMenu.Trigger asChild>
-                <TriggerButton Icon={Icon} aria-label="Customise options" />
+                <TriggerButton icon={{ icon }} />
             </DropdownMenu.Trigger>
             <DropdownMenu.Portal>
                 <DropdownMenu.Content
@@ -107,8 +109,54 @@ const HorizontalDropdownMenu = ({ Icon, handler, editorRef }) => {
     );
 };
 
+const VerticalSwitch = ({ header, icon, dispatcher }) => {
+    const dispatch = useDispatch();
+    const state = useSelector((state) => state[header]);
+
+    //  console.log(state, "toggle state <===");
+
+    const handleToggle = (value) => {
+        // console.log("in hjandle toggle?");
+        if (value !== state) {
+            // console.log("disaptched in handle");
+            dispatch(dispatcher());
+        }
+
+        //  console.log(val, state);
+    };
+
+    // useEffect(() => {
+    //     console.log(state);
+    // }, [state]);
+
+    return (
+        <label
+            htmlFor={"switch-toggle" + header}
+            className={`flex justify-center py-2.5 w-full transition cursor-pointer hover:bg-stone-100 active:bg-stone-200 h-full`}
+        >
+            <div className="flex flex-col text-[10px] font-bold">
+                <form>
+                    <div
+                        className="flex-col my-1"
+                        style={{ display: "flex", alignItems: "center" }}
+                    >
+                        <div className="mb-1">{icon && icon()}</div>
+
+                        <Switch.Root
+                            defaultChecked={state}
+                            onCheckedChange={handleToggle}
+                            className="SwitchRoot transition "
+                            id={"switch-toggle" + header}
+                        ></Switch.Root>
+                    </div>
+                </form>
+            </div>
+        </label>
+    );
+};
+
 const HorizontalPopover = ({
-    Icon,
+    icon,
     description,
     placeholder,
     symbol,
@@ -117,10 +165,11 @@ const HorizontalPopover = ({
     handler,
 }) => {
     const [isOpen, setIsOpen] = useState(false);
+    //  console.log(icon);
     return (
         <Popover.Root open={isOpen} onOpenChange={setIsOpen}>
             <Popover.Trigger asChild>
-                <TriggerButton Icon={Icon} aria-label="Customise options" />
+                <TriggerButton icon={{ icon }} />
             </Popover.Trigger>
             <Popover.Portal>
                 <Popover.Content
@@ -159,7 +208,7 @@ const HorizontalPopover = ({
                                         <Button
                                             type={"submit"}
                                             fitted
-                                            Icon={Icons.EnterIcon}
+                                            //    icon={Icons.EnterIcon}
                                             setIsOpen={setIsOpen}
                                             editorRef={editorRef}
                                         />
@@ -188,7 +237,7 @@ const HorizontalPopover = ({
                                             setIsOpen={setIsOpen}
                                             editorRef={editorRef}
                                             fitted
-                                            Icon={Icons.EnterIcon}
+                                            //    icon={Icons.EnterIcon}
                                         />
                                     </div>
                                 </fieldset>
@@ -215,17 +264,24 @@ const ButtonGroup = ({ elements, editorRef, data }) => {
         >
             {Object.values(elements).map((element, index) => {
                 return element.type === "dropdown" ? (
-                    <div key={"bg" + index}>
+                    <div key={"bgd" + index}>
                         <HorizontalDropdownMenu
                             handler={element.func}
                             editorRef={editorRef}
-                            Icon={element.icon}
+                            icon={element.icon}
                         />
                     </div>
+                ) : element.type === "switch" ? (
+                    <VerticalSwitch
+                        key={"bgs" + index}
+                        icon={element.icon}
+                        header={element.symbol}
+                        dispatcher={element.dispatcher}
+                    />
                 ) : element.type === "popover" ? (
                     <HorizontalPopover
-                        key={"bg" + index}
-                        Icon={element.icon}
+                        key={"bgh" + index}
+                        icon={element.icon}
                         description={element.description}
                         symbol={element.symbol}
                         placeholder={element.placeholder}
@@ -236,8 +292,8 @@ const ButtonGroup = ({ elements, editorRef, data }) => {
                 ) : (
                     <Button
                         editorRef={editorRef}
-                        key={"bg" + index}
-                        Icon={element.icon}
+                        key={"bgb" + index}
+                        icon={element.icon}
                         index={index}
                         data={data ? data : ""}
                         handler={element.func}
