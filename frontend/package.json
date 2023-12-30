@@ -20,6 +20,7 @@
         "@reduxjs/toolkit": "^2.0.1",
         "@uiw/codemirror-theme-xcode": "^4.21.21",
         "@uiw/react-codemirror": "^4.21.21",
+        "localforage": "^1.10.0",
         "lodash.debounce": "^4.0.8",
         "markdown-it": "^14.0.0",
         "markdown-it-footnote": "^4.0.0",
