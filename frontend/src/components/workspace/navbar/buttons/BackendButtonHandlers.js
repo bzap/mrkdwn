@@ -1,4 +1,4 @@
-import { setMarkdownText } from "@/lib/reducers/markdownSlice";
+import { setIsFetching, setMarkdownText } from "@/lib/reducers/markdownSlice";
 // import { EditorState, EditorView, lineNumbers } from "@uiw/react-codemirror";
 // import { EditorViewTheme } from "@/app/interface/EditorViewTheme";
 // import { UpdateStateListener } from "../../editor/UpdateStateListener";
@@ -6,9 +6,16 @@ import { setMarkdownText } from "@/lib/reducers/markdownSlice";
 // import { Compartment } from "@uiw/react-codemirror";
 // import { xcodeGrayscale } from "@/app/interface/CustomSyntaxTheme";
 
-export const downloadFile = async (ref, symbol, setIsOpen, e, markdownData) => {
+export const downloadFile = async (
+    ref,
+    symbol,
+    setIsOpen,
+    e,
+    markdownData,
+    dispatch,
+    setIsFetched
+) => {
     e.preventDefault();
-
     const data = new FormData(e.target);
     let input;
     for (const [key, value] of data) {
@@ -17,34 +24,39 @@ export const downloadFile = async (ref, symbol, setIsOpen, e, markdownData) => {
         }
     }
 
-    await fetch(`/api/writeFile`, {
-        method: "POST",
-        body: JSON.stringify({
-            fileName: input,
-            markdownData: markdownData,
-        }),
-    }).then(() => {
-        fetch(`/api/downloadFile?fileName=${input}`)
-            .then((res) => res.blob())
-            .then((res) => {
-                const downloadLink = document.createElement("a");
-                downloadLink.setAttribute("download", `${input}.md`);
-                const href = URL.createObjectURL(res);
-                downloadLink.href = href;
-                downloadLink.setAttribute("target", "_blank");
-                downloadLink.click();
-                URL.revokeObjectURL(href);
-            })
-            .then(() => {
-                fetch(`/api/deleteFile`, {
-                    method: "POST",
-                    body: JSON.stringify({
-                        fileName: input,
-                    }),
+    dispatch(setIsFetching(true));
+    console.log(setIsFetching);
+    setTimeout(() => {
+        fetch(`/api/writeFile`, {
+            method: "POST",
+            body: JSON.stringify({
+                fileName: input,
+                markdownData: markdownData,
+            }),
+        }).then(() => {
+            fetch(`/api/downloadFile?fileName=${input}`)
+                .then((res) => res.blob())
+                .then((res) => {
+                    const downloadLink = document.createElement("a");
+                    downloadLink.setAttribute("download", `${input}.md`);
+                    const href = URL.createObjectURL(res);
+                    downloadLink.href = href;
+                    downloadLink.setAttribute("target", "_blank");
+                    downloadLink.click();
+                    URL.revokeObjectURL(href);
+                })
+                .then(() => {
+                    fetch(`/api/deleteFile`, {
+                        method: "POST",
+                        body: JSON.stringify({
+                            fileName: input,
+                        }),
+                    });
+                    setIsOpen(false);
+                    dispatch(setIsFetching(false));
                 });
-                setIsOpen(false);
-            });
-    });
+        });
+    }, 1000);
 };
 
 export const uploadFile = () => {

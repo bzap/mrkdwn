@@ -5,6 +5,7 @@ const initialState = {
     saveState: false,
     darkMode: false,
     initState: true,
+    isFetching: false,
 };
 
 export const markdownSlice = createSlice({
@@ -26,9 +27,17 @@ export const markdownSlice = createSlice({
         setInitState: (state, action) => {
             state.initState = action.payload;
         },
+        setIsFetching: (state, action) => {
+            state.isFetching = action.payload;
+        },
     },
 });
 
-export const { setMarkdownText, setSaveState, setDarkMode, setInitState } =
-    markdownSlice.actions;
+export const {
+    setMarkdownText,
+    setSaveState,
+    setDarkMode,
+    setInitState,
+    setIsFetching,
+} = markdownSlice.actions;
 export default markdownSlice.reducer;

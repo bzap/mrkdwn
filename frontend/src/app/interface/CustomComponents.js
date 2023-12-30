@@ -11,7 +11,7 @@ import { MixerHorizontalIcon, Cross2Icon } from "@radix-ui/react-icons";
 import { Icons } from "./Icons";
 import { useDispatch, useSelector } from "react-redux";
 import * as Switch from "@radix-ui/react-switch";
-import { setSaveState } from "@/lib/reducers/markdownSlice";
+import { setIsFetching, setSaveState } from "@/lib/reducers/markdownSlice";
 
 const Button = ({
     icon,
@@ -26,6 +26,11 @@ const Button = ({
 }) => {
     // console.log(icon);
     const dispatch = useDispatch();
+    const isFetching = useSelector((state) => state.isFetching);
+
+    useEffect(() => {
+        console.log(isFetching);
+    });
     return (
         <button
             type={"type"}
@@ -39,7 +44,12 @@ const Button = ({
                     : "h-max  w-full hover:bg-stone-100 active:bg-stone-300"
             } flex p-3`}
         >
-            {icon && icon()}
+            <div className={`${isFetching && "animate-spin"} `}>
+                {isFetching && type === "submit"
+                    ? Icons.Spinner()
+                    : icon && icon()}
+            </div>
+
             {text && (
                 <p
                     className={
@@ -165,6 +175,7 @@ const HorizontalPopover = ({
     handler,
 }) => {
     const [isOpen, setIsOpen] = useState(false);
+    const dispatch = useDispatch();
     //  console.log(icon);
     return (
         <Popover.Root open={isOpen} onOpenChange={setIsOpen}>
@@ -185,7 +196,15 @@ const HorizontalPopover = ({
                             id="popover-form"
                             name="popover-form"
                             onSubmit={(e) =>
-                                handler(editorRef, symbol, setIsOpen, e, data)
+                                handler(
+                                    editorRef,
+                                    symbol,
+                                    setIsOpen,
+                                    e,
+                                    data,
+                                    dispatch,
+                                    setIsFetching
+                                )
                             }
                         >
                             {symbol === "table" ? (
