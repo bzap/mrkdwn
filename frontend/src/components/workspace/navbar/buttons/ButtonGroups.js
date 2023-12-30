@@ -22,13 +22,17 @@ export const FileOperationGroup = {
     upload: {
         icon: Icons.UploadIcon,
         func: uploadFile,
-        symbol: "**",
+        symbol: "upload",
+        type: "popover",
+        description: "Select an existing markdown file:",
+        placeholder: "https://example.com",
     },
     image: {
         icon: Icons.DownloadIcon,
         func: downloadFile,
         symbol: "download",
         type: "popover",
+        fetcher: true,
         description: "Enter the name of the file:",
         placeholder: "README.md",
     },

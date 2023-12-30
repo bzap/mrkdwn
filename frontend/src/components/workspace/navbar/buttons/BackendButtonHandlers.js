@@ -12,8 +12,7 @@ export const downloadFile = async (
     setIsOpen,
     e,
     markdownData,
-    dispatch,
-    setIsFetched
+    dispatch
 ) => {
     e.preventDefault();
     const data = new FormData(e.target);
@@ -59,8 +58,44 @@ export const downloadFile = async (
     }, 1000);
 };
 
-export const uploadFile = () => {
-    console.log("haha");
+export const uploadFile = async (
+    ref,
+    symbol,
+    setIsOpen,
+    e,
+    markdownData,
+    dispatch
+) => {
+    e.preventDefault();
+    dispatch(setIsFetching(true));
+    const data = new FormData(e.target);
+    let input;
+    for (const [key, value] of data) {
+        if (key === "input-text") {
+            input = value;
+        }
+    }
+    const reader = new FileReader();
+    let viewState = ref.current?.view;
+    reader.readAsText(input);
+    reader.onload = () => {
+        setTimeout(() => {
+            viewState.dispatch({
+                changes: {
+                    from: 0,
+                    to: viewState.state.doc.length,
+                    insert: reader.result,
+                },
+            });
+        }, 100);
+
+        setIsOpen(false);
+        dispatch(setIsFetching(false));
+    };
+
+    reader.onerror = () => {
+        console.log(reader.error);
+    };
 };
 
 export const newFile = (ref, symbol, markdownData, e, dispatch) => {

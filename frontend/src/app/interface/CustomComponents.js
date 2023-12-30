@@ -22,6 +22,7 @@ const Button = ({
     editorRef,
     data,
     symbol,
+    fetcher,
     type = "button",
 }) => {
     // console.log(icon);
@@ -29,7 +30,7 @@ const Button = ({
     const isFetching = useSelector((state) => state.isFetching);
 
     useEffect(() => {
-        console.log(isFetching);
+        console.log(fetcher, isFetching);
     });
     return (
         <button
@@ -40,14 +41,12 @@ const Button = ({
             className={`text-black select-none outline-none items-center transition justify-center
             ${
                 fitted
-                    ? "h-[25px] rounded-md border-stone-200 border-[1px] bg-stone-100 rounded-[0.4rem] hover:bg-stone-200 active:bg-stone-300`"
-                    : "h-max  w-full hover:bg-stone-100 active:bg-stone-300"
+                    ? "h-[28px] rounded-md border-stone-200 border-[1px] bg-stone-100 rounded-[0.4rem] hover:bg-stone-200 active:bg-stone-300`"
+                    : "h-max w-full hover:bg-stone-100 active:bg-stone-300"
             } flex p-3`}
         >
-            <div className={`${isFetching && "animate-spin"} `}>
-                {isFetching && type === "submit"
-                    ? Icons.Spinner()
-                    : icon && icon()}
+            <div className={`${isFetching && fetcher && "animate-spin"} `}>
+                {isFetching && fetcher ? Icons.Spinner() : icon && icon()}
             </div>
 
             {text && (
@@ -172,11 +171,11 @@ const HorizontalPopover = ({
     symbol,
     data,
     editorRef,
+    fetcher,
     handler,
 }) => {
     const [isOpen, setIsOpen] = useState(false);
     const dispatch = useDispatch();
-    //  console.log(icon);
     return (
         <Popover.Root open={isOpen} onOpenChange={setIsOpen}>
             <Popover.Trigger asChild>
@@ -233,6 +232,35 @@ const HorizontalPopover = ({
                                         />
                                     </div>
                                 </fieldset>
+                            ) : symbol === "upload" ? (
+                                <fieldset className="Fieldset">
+                                    <div
+                                        className={`flex ${
+                                            symbol === "footnote" ||
+                                            symbol === "download"
+                                                ? "min-w-[100px]"
+                                                : "min-w-[300px]"
+                                        } gap-1`}
+                                    >
+                                        <input
+                                            type="file"
+                                            id="width"
+                                            placeholder={placeholder}
+                                            name="input-text"
+                                            className=" flex text-[13px] items-center justify-center text-gray-400 border-[1px] active:bg-stone-100 file:transition rounded-[0.4rem] hover:bg-stone-50 transition
+                                                        file:mr-5 file:py-1 file:px-2 file:outline-none  file:text-xs file:h-[28px] file:border-[0px] file:rounded-none file:border-stone-100 file:text-stone-600
+                                                        h-[28px] file:bg-stone-100 file:rounded-[0.4rem] file:hover:bg-stone-200 file:active:bg-stone-300 file:font-medium"
+                                        />
+                                        <Button
+                                            type={"submit"}
+                                            setIsOpen={setIsOpen}
+                                            editorRef={editorRef}
+                                            fitted
+                                            fetcher={fetcher}
+                                            icon={Icons.EnterIcon}
+                                        />
+                                    </div>
+                                </fieldset>
                             ) : (
                                 <fieldset className="Fieldset">
                                     <div
@@ -256,6 +284,7 @@ const HorizontalPopover = ({
                                             setIsOpen={setIsOpen}
                                             editorRef={editorRef}
                                             fitted
+                                            fetcher={fetcher}
                                             icon={Icons.EnterIcon}
                                         />
                                     </div>
@@ -306,6 +335,7 @@ const ButtonGroup = ({ elements, editorRef, data }) => {
                         placeholder={element.placeholder}
                         data={data ? data : ""}
                         handler={element.func}
+                        fetcher={element.fetcher}
                         editorRef={editorRef}
                     />
                 ) : (
