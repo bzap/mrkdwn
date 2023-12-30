@@ -17,16 +17,14 @@ export const downloadFile = async (ref, symbol, setIsOpen, e, markdownData) => {
         }
     }
 
-    await fetch(`https://mrkdwn-one.vercel.app/api/writeFile`, {
+    await fetch(`/api/writeFile`, {
         method: "POST",
         body: JSON.stringify({
             fileName: input,
             markdownData: markdownData,
         }),
     }).then(() => {
-        fetch(
-            `https://mrkdwn-one.vercel.app/api/downloadFile?fileName=${input}`
-        )
+        fetch(`/api/downloadFile?fileName=${input}`)
             .then((res) => res.blob())
             .then((res) => {
                 const downloadLink = document.createElement("a");
@@ -38,7 +36,7 @@ export const downloadFile = async (ref, symbol, setIsOpen, e, markdownData) => {
                 URL.revokeObjectURL(href);
             })
             .then(() => {
-                fetch(`https://mrkdwn-one.vercel.app/api/deleteFile`, {
+                fetch(`/api/deleteFile`, {
                     method: "POST",
                     body: JSON.stringify({
                         fileName: input,

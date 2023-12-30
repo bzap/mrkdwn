@@ -5,7 +5,7 @@ export async function POST(req, request) {
     console.log(body);
     // file name goes here eventually
     fs.writeFile(
-        `./public/${body.fileName}.md`,
+        `/public/${body.fileName}.md`,
         body.markdownData,
         function (err) {
             if (err) throw err;
