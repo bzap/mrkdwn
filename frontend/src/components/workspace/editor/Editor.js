@@ -13,6 +13,7 @@ import { EditorViewTheme } from "../../../app/interface/EditorViewTheme";
 import { xcodeGrayscale } from "@/app/interface/CustomSyntaxTheme";
 import { UpdateStateListener } from "./UpdateStateListener";
 import { defaultIntro } from "@/components/workspace/editor/DefaultIntro";
+import { Marko_One } from "next/font/google";
 
 const Editor = ({ editorRef }) => {
     const dispatch = useDispatch();
@@ -23,29 +24,21 @@ const Editor = ({ editorRef }) => {
 
     const markdownText = useSelector((state) => state.markdownText);
     const initState = useSelector((state) => state.initState);
+    const saveState = useSelector((state) => state.saveState);
+
     useEffect(() => {
-        // Done because the wrapper div between Scroll Area and CodeMirror is inaccessible to be styled
-        // won't otherwise take the full height of the parent
         let cmContainer = document.getElementById("cm-container");
         cmContainer.parentElement.style =
             "min-width: 100%; display: table; height: 100%";
-    }, []);
 
-    const init = () => {
-        if (initState) {
+        if (initState || !saveState) {
             dispatch(setMarkdownText(defaultIntro));
             dispatch(setInitState(false));
-            return defaultIntro;
         } else {
             dispatch(setMarkdownText(markdownText));
             dispatch(setInitState(false));
-            return markdownText;
         }
-    };
-
-    useEffect(() => {
-        console.log(markdownText);
-    }, [markdownText]);
+    }, []);
 
     return (
         <div className="flex w-6/12 border-stone-200 border-[1px] rounded-2xl overflow-hidden border-solid">
@@ -56,7 +49,7 @@ const Editor = ({ editorRef }) => {
                 >
                     <CodeMirror
                         // value={value}
-                        value={init()} // markdownText.length and not save flag or whatever ? markdownText : defaultIntro
+                        value={markdownText}
                         theme={xcodeGrayscale}
                         className="py-6 px-7 h-full h-auto min-h-full overflow-hidden"
                         id="cm-container"

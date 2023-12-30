@@ -11,7 +11,7 @@ import {
     insertText,
     insertList,
 } from "@/components/workspace/navbar/buttons/ButtonHandlers";
-import { setDarkMode } from "@/lib/reducers/markdownSlice";
+import { setDarkMode, setSaveState } from "@/lib/reducers/markdownSlice";
 
 export const FileOperationGroup = {
     newFile: {
@@ -118,7 +118,7 @@ export const CustomizationGroup = {
         func: saveFile,
         symbol: "saveState",
         type: "switch",
-        dispatcher: setDarkMode,
+        dispatcher: setSaveState,
     },
     theme: {
         icon: Icons.DarkModeIcon,

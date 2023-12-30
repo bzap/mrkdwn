@@ -1,5 +1,5 @@
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
-import { useState, forwardRef } from "react";
+import { useState, forwardRef, useEffect } from "react";
 import {
     HamburgerMenuIcon,
     DotFilledIcon,
@@ -14,7 +14,7 @@ import * as Switch from "@radix-ui/react-switch";
 import { setSaveState } from "@/lib/reducers/markdownSlice";
 
 const Button = ({
-    Icon,
+    icon,
     index,
     text,
     fitted,
@@ -38,7 +38,7 @@ const Button = ({
                     : "h-max  w-full hover:bg-stone-100 active:bg-stone-300"
             } flex p-3`}
         >
-            {Icon && <Icon className={"stroke-2"} />}
+            {icon && icon()}
             {text && (
                 <p
                     className={
@@ -52,22 +52,19 @@ const Button = ({
     );
 };
 
-const TriggerButton = forwardRef((props, forwardedRef, isOpen) => {
+const TriggerButton = forwardRef((props, forwardedRef) => {
     return (
         <button
             {...props}
             ref={forwardedRef}
-            type="button"
-            className={`${
-                isOpen && "bg-blue-400"
-            } text-black select-none outline-none items-center transition justify-center w-full h-max flex p-3 hover:bg-stone-100 active:bg-stone-200`}
+            className={`text-black select-none outline-none items-center transition justify-center w-full h-max flex p-3 hover:bg-stone-100 active:bg-stone-200`}
         >
-            <props.Icon className={"stroke-2"} />
+            {/* {icon()} */}
         </button>
     );
 });
 
-const HorizontalDropdownMenu = ({ Icon, handler, editorRef }) => {
+const HorizontalDropdownMenu = ({ icon, handler, editorRef }) => {
     const onSelect = (e) => {
         //console.log(e.target.getAttribute("value"));
         handler(editorRef, e.target.getAttribute("value"));
@@ -76,7 +73,7 @@ const HorizontalDropdownMenu = ({ Icon, handler, editorRef }) => {
     return (
         <DropdownMenu.Root>
             <DropdownMenu.Trigger asChild>
-                <TriggerButton Icon={Icon} aria-label="Customise options" />
+                <TriggerButton icon={icon} />
             </DropdownMenu.Trigger>
             <DropdownMenu.Portal>
                 <DropdownMenu.Content
@@ -117,11 +114,21 @@ const VerticalSwitch = ({ header, icon, dispatcher }) => {
     const dispatch = useDispatch();
     const state = useSelector((state) => state[header]);
 
-    // const data =
+    //  console.log(state, "toggle state <===");
 
-    const handleToggle = (val) => {
-        dispatch(dispatcher(!state));
+    const handleToggle = (value) => {
+        // console.log("in hjandle toggle?");
+        if (value !== state) {
+            // console.log("disaptched in handle");
+            dispatch(dispatcher());
+        }
+
+        //  console.log(val, state);
     };
+
+    // useEffect(() => {
+    //     console.log(state);
+    // }, [state]);
 
     return (
         <label
@@ -137,7 +144,8 @@ const VerticalSwitch = ({ header, icon, dispatcher }) => {
                         <div className="mb-1">{icon && icon()}</div>
 
                         <Switch.Root
-                            onCheckedChange={(value) => handleToggle(value)}
+                            defaultChecked={state}
+                            onCheckedChange={handleToggle}
                             className="SwitchRoot transition "
                             id={"switch-toggle" + header}
                         ></Switch.Root>
@@ -149,7 +157,7 @@ const VerticalSwitch = ({ header, icon, dispatcher }) => {
 };
 
 const HorizontalPopover = ({
-    Icon,
+    icon,
     description,
     placeholder,
     symbol,
@@ -161,7 +169,7 @@ const HorizontalPopover = ({
     return (
         <Popover.Root open={isOpen} onOpenChange={setIsOpen}>
             <Popover.Trigger asChild>
-                <TriggerButton Icon={Icon} aria-label="Customise options" />
+                <TriggerButton icon={icon} aria-label="Customise options" />
             </Popover.Trigger>
             <Popover.Portal>
                 <Popover.Content
@@ -200,7 +208,7 @@ const HorizontalPopover = ({
                                         <Button
                                             type={"submit"}
                                             fitted
-                                            Icon={Icons.EnterIcon}
+                                            icon={Icons.EnterIcon}
                                             setIsOpen={setIsOpen}
                                             editorRef={editorRef}
                                         />
@@ -229,7 +237,7 @@ const HorizontalPopover = ({
                                             setIsOpen={setIsOpen}
                                             editorRef={editorRef}
                                             fitted
-                                            Icon={Icons.EnterIcon}
+                                            icon={Icons.EnterIcon}
                                         />
                                     </div>
                                 </fieldset>
@@ -256,23 +264,24 @@ const ButtonGroup = ({ elements, editorRef, data }) => {
         >
             {Object.values(elements).map((element, index) => {
                 return element.type === "dropdown" ? (
-                    <div key={"bg" + index}>
+                    <div key={"bgd" + index}>
                         <HorizontalDropdownMenu
                             handler={element.func}
                             editorRef={editorRef}
-                            Icon={element.icon}
+                            icon={element.icon}
                         />
                     </div>
                 ) : element.type === "switch" ? (
                     <VerticalSwitch
+                        key={"bgs" + index}
                         icon={element.icon}
                         header={element.symbol}
                         dispatcher={element.dispatcher}
                     />
                 ) : element.type === "popover" ? (
                     <HorizontalPopover
-                        key={"bg" + index}
-                        Icon={element.icon}
+                        key={"bgh" + index}
+                        icon={element.icon}
                         description={element.description}
                         symbol={element.symbol}
                         placeholder={element.placeholder}
@@ -283,8 +292,8 @@ const ButtonGroup = ({ elements, editorRef, data }) => {
                 ) : (
                     <Button
                         editorRef={editorRef}
-                        key={"bg" + index}
-                        Icon={element.icon}
+                        key={"bgb" + index}
+                        icon={element.icon}
                         index={index}
                         data={data ? data : ""}
                         handler={element.func}
