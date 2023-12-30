@@ -208,7 +208,7 @@ const HorizontalPopover = ({
                                         <Button
                                             type={"submit"}
                                             fitted
-                                            //    icon={Icons.EnterIcon}
+                                            icon={Icons.EnterIcon}
                                             setIsOpen={setIsOpen}
                                             editorRef={editorRef}
                                         />
@@ -237,7 +237,7 @@ const HorizontalPopover = ({
                                             setIsOpen={setIsOpen}
                                             editorRef={editorRef}
                                             fitted
-                                            //    icon={Icons.EnterIcon}
+                                            icon={Icons.EnterIcon}
                                         />
                                     </div>
                                 </fieldset>
