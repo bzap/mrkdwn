@@ -1,20 +1,19 @@
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import { useState, forwardRef, useEffect } from "react";
-import {
-    HamburgerMenuIcon,
-    DotFilledIcon,
-    CheckIcon,
-    ChevronRightIcon,
-} from "@radix-ui/react-icons";
 import * as Popover from "@radix-ui/react-popover";
 import { MixerHorizontalIcon, Cross2Icon } from "@radix-ui/react-icons";
-import { Icons } from "./Icons";
 import { useDispatch, useSelector } from "react-redux";
 import * as Switch from "@radix-ui/react-switch";
 import { setIsFetching, setSaveState } from "@/lib/reducers/markdownSlice";
-import * as AlertDialog from "@radix-ui/react-alert-dialog";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faRightToBracket } from "@fortawesome/free-solid-svg-icons";
+// import {
+//     faHighlighter,
+//     faTableCellsLarge,
+// } from "@fortawesome/free-solid-svg-icons";
 
 const Button = ({
+    props,
     icon,
     index,
     text,
@@ -28,7 +27,6 @@ const Button = ({
 }) => {
     const dispatch = useDispatch();
     const isFetching = useSelector((state) => state.isFetching);
-
     const onClick = (e) => {
         if (type !== "submit") {
             if (symbol === "new" && data.length > 0) {
@@ -52,11 +50,11 @@ const Button = ({
             ${
                 fitted
                     ? "h-[28px] rounded-md border-stone-200 border-[1px] bg-stone-100 rounded-[0.4rem] hover:bg-stone-200 active:bg-stone-300`"
-                    : "h-max w-full hover:bg-stone-100 active:bg-stone-300"
+                    : "h-[45px] w-full hover:bg-stone-100 active:bg-stone-300"
             } flex p-3`}
         >
             <div className={`${isFetching && fetcher && "animate-spin"} `}>
-                {isFetching && fetcher ? Icons.Spinner() : icon && icon()}
+                <FontAwesomeIcon icon={icon} size="xs" />
             </div>
 
             {text && (
@@ -77,9 +75,9 @@ const TriggerButton = forwardRef((props, forwardedRef) => {
         <button
             {...props}
             ref={forwardedRef}
-            className={`text-black select-none outline-none items-center transition justify-center w-full h-max flex p-3 hover:bg-stone-100 active:bg-stone-200`}
+            className={`text-black select-none outline-none items-center transition justify-center w-full h-[45px] flex p-3 hover:bg-stone-100 active:bg-stone-200`}
         >
-            {props.icon && props.icon.icon()}
+            <FontAwesomeIcon icon={props.icon} size="xs" />
         </button>
     );
 });
@@ -91,7 +89,7 @@ const HorizontalDropdownMenu = ({ icon, handler, editorRef }) => {
     return (
         <DropdownMenu.Root>
             <DropdownMenu.Trigger asChild>
-                <TriggerButton icon={{ icon }} />
+                <TriggerButton icon={icon} />
             </DropdownMenu.Trigger>
             <DropdownMenu.Portal>
                 <DropdownMenu.Content
@@ -151,15 +149,14 @@ const VerticalSwitch = ({ header, icon, dispatcher }) => {
     return (
         <label
             htmlFor={"switch-toggle" + header}
-            className={`flex justify-center py-2.5 w-full transition cursor-pointer hover:bg-stone-100 active:bg-stone-200 h-full`}
+            className={`flex justify-center w-full transition cursor-pointer hover:bg-stone-100 active:bg-stone-200 h-[45px]`}
         >
-            <div className="flex flex-col text-[10px] font-bold">
+            <div className="flex flex-col font-bold w-full  items-center flex justify-center">
                 <form>
-                    <div
-                        className="flex-col my-1"
-                        style={{ display: "flex", alignItems: "center" }}
-                    >
-                        <div className="mb-1">{icon && icon()}</div>
+                    <div className="flex-col  w-full h-full items-center justify-center flex">
+                        <div>
+                            <FontAwesomeIcon icon={icon} size="xs" />
+                        </div>
 
                         <Switch.Root
                             defaultChecked={state}
@@ -220,7 +217,7 @@ const HorizontalPopover = ({
     return (
         <Popover.Root open={isOpen} onOpenChange={setIsOpen}>
             <Popover.Trigger asChild>
-                <TriggerButton icon={{ icon }} />
+                <TriggerButton icon={icon} />
             </Popover.Trigger>
             <Popover.Portal>
                 <Popover.Content
@@ -259,7 +256,7 @@ const HorizontalPopover = ({
                                         <Button
                                             type={"submit"}
                                             fitted
-                                            icon={Icons.EnterIcon}
+                                            icon={faRightToBracket}
                                             setIsOpen={setIsOpen}
                                             editorRef={editorRef}
                                         />
@@ -284,7 +281,7 @@ const HorizontalPopover = ({
                                             editorRef={editorRef}
                                             fitted
                                             fetcher={fetcher}
-                                            icon={Icons.EnterIcon}
+                                            icon={faRightToBracket}
                                         />
                                     </div>
                                 </fieldset>
@@ -306,7 +303,7 @@ const HorizontalPopover = ({
                                             editorRef={editorRef}
                                             fitted
                                             fetcher={fetcher}
-                                            icon={Icons.EnterIcon}
+                                            icon={faRightToBracket}
                                         />
                                     </div>
                                 </fieldset>

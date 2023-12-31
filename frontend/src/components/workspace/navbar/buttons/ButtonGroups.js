@@ -4,7 +4,6 @@ import {
     saveFile,
     newFile,
 } from "@/components/workspace/navbar/buttons/BackendButtonHandlers";
-import { Icons } from "../../../../app/interface/Icons";
 import {
     updateText,
     createTable,
@@ -12,60 +11,80 @@ import {
     insertList,
 } from "@/components/workspace/navbar/buttons/ButtonHandlers";
 import { setDarkMode, setSaveState } from "@/lib/reducers/markdownSlice";
+import {
+    faArrowUp,
+    faArrowDown,
+    faPlus,
+    faBold,
+    faItalic,
+    faStrikethrough,
+    faHighlighter,
+    faQuoteRight,
+    faCode,
+    faListUl,
+    faLink,
+    faImage,
+    faTableCellsLarge,
+    faSuperscript,
+    faMinus,
+    faFloppyDisk,
+    faMoon,
+    faInfo,
+} from "@fortawesome/free-solid-svg-icons";
 
 export const FileOperationGroup = {
     newFile: {
-        icon: Icons.NewDocumentIcon,
+        icon: faPlus,
         func: newFile,
         symbol: "new",
     },
     upload: {
-        icon: Icons.UploadIcon,
+        icon: faArrowUp,
         func: uploadFile,
         symbol: "upload",
         type: "popover",
         description: "Select an existing markdown file:",
         placeholder: "https://example.com",
     },
-    image: {
-        icon: Icons.DownloadIcon,
+    download: {
+        icon: faArrowDown,
         func: downloadFile,
         symbol: "download",
         type: "popover",
         fetcher: true,
         description: "Enter the name of the file:",
-        placeholder: "README.md",
+        placeholder: "README",
     },
 };
 
 export const TextStyleGroup = {
     bold: {
-        icon: Icons.BoldIcon,
+        icon: faBold,
         func: updateText,
         symbol: "**",
     },
     italic: {
-        icon: Icons.ItalicIcon,
+        icon: faItalic,
         func: updateText,
         symbol: "_",
     },
     strikeThrough: {
-        icon: Icons.StrikeThroughIcon,
+        icon: faStrikethrough,
         func: updateText,
         symbol: "~~",
     },
     highlight: {
-        icon: Icons.HighlightIcon,
+        icon: faHighlighter,
         func: updateText,
         symbol: "==",
     },
     quote: {
-        icon: Icons.QuoteIcon,
+        icon: faQuoteRight,
         func: updateText,
         symbol: ">",
     },
     code: {
-        icon: Icons.CodeIcon,
+        icon: faCode,
         func: updateText,
         symbol: "```",
     },
@@ -73,12 +92,12 @@ export const TextStyleGroup = {
 
 export const InsertionFeatureGroup = {
     list: {
-        icon: Icons.ListIcon,
+        icon: faListUl,
         func: insertList,
         type: "dropdown",
     },
     link: {
-        icon: Icons.LinkIcon,
+        icon: faLink,
         func: insertText,
         symbol: "link",
         type: "popover",
@@ -86,7 +105,7 @@ export const InsertionFeatureGroup = {
         placeholder: "https://example.com",
     },
     image: {
-        icon: Icons.ImageIcon,
+        icon: faImage,
         func: insertText,
         symbol: "image",
         type: "popover",
@@ -94,7 +113,7 @@ export const InsertionFeatureGroup = {
         placeholder: "https://example.com",
     },
     table: {
-        icon: Icons.TableIcon,
+        icon: faTableCellsLarge,
         func: createTable,
         symbol: "table",
         type: "popover",
@@ -102,7 +121,7 @@ export const InsertionFeatureGroup = {
         placeholder: ["rows", "columns"],
     },
     footnote: {
-        icon: Icons.FootnoteIcon,
+        icon: faSuperscript,
         func: insertText,
         symbol: "footnote",
         type: "popover",
@@ -110,7 +129,7 @@ export const InsertionFeatureGroup = {
         placeholder: "subscript",
     },
     divider: {
-        icon: Icons.DividerIcon,
+        icon: faMinus,
         func: updateText,
         symbol: "---",
     },
@@ -118,21 +137,21 @@ export const InsertionFeatureGroup = {
 
 export const CustomizationGroup = {
     save: {
-        icon: Icons.SaveIcon,
+        icon: faFloppyDisk,
         func: saveFile,
         symbol: "saveState",
         type: "switch",
         dispatcher: setSaveState,
     },
     theme: {
-        icon: Icons.DarkModeIcon,
+        icon: faMoon,
         func: saveFile,
         symbol: "darkMode",
         type: "switch",
         dispatcher: setDarkMode,
     },
     settings: {
-        icon: Icons.SettingsIcon,
+        icon: faInfo,
         func: updateText,
         symbol: "**",
     },
