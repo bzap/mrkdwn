@@ -218,7 +218,6 @@ export const insertList = (ref, symbol) => {
 };
 
 export const insertText = (ref, symbol, setIsOpen, e) => {
-    e.preventDefault();
     setIsOpen(false);
     if (ref.current) {
         const data = new FormData(e.target);
@@ -251,7 +250,6 @@ export const insertText = (ref, symbol, setIsOpen, e) => {
 };
 
 export const createTable = (ref, symbol, setIsOpen, e) => {
-    e.preventDefault();
     setIsOpen(false);
     if (ref.current) {
         const data = new FormData(e.target);

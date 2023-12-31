@@ -12,6 +12,7 @@ import { Icons } from "./Icons";
 import { useDispatch, useSelector } from "react-redux";
 import * as Switch from "@radix-ui/react-switch";
 import { setIsFetching, setSaveState } from "@/lib/reducers/markdownSlice";
+import * as AlertDialog from "@radix-ui/react-alert-dialog";
 
 const Button = ({
     icon,
@@ -25,19 +26,28 @@ const Button = ({
     fetcher,
     type = "button",
 }) => {
-    // console.log(icon);
     const dispatch = useDispatch();
     const isFetching = useSelector((state) => state.isFetching);
 
-    useEffect(() => {
-        console.log(fetcher, isFetching);
-    });
+    const onClick = (e) => {
+        if (type !== "submit") {
+            if (symbol === "new" && data.length > 0) {
+                if (
+                    confirm(
+                        "The content in the editor will be lost. Do you wish to proceed?"
+                    )
+                ) {
+                    handler(editorRef, symbol, data, e, dispatch);
+                }
+            } else {
+                handler(editorRef, symbol, data, e, dispatch);
+            }
+        }
+    };
     return (
         <button
             type={"type"}
-            onClick={(e) =>
-                handler && handler(editorRef, symbol, data, e, dispatch)
-            }
+            onClick={onClick}
             className={`text-black select-none outline-none items-center transition justify-center
             ${
                 fitted
@@ -176,6 +186,37 @@ const HorizontalPopover = ({
 }) => {
     const [isOpen, setIsOpen] = useState(false);
     const dispatch = useDispatch();
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        if (symbol === "upload" && data.length > 0) {
+            if (
+                confirm(
+                    "The content in the editor will be lost. Do you wish to proceed?"
+                )
+            ) {
+                handler(
+                    editorRef,
+                    symbol,
+                    setIsOpen,
+                    e,
+                    data,
+                    dispatch,
+                    setIsFetching
+                );
+            }
+        } else {
+            handler(
+                editorRef,
+                symbol,
+                setIsOpen,
+                e,
+                data,
+                dispatch,
+                setIsFetching
+            );
+        }
+    };
     return (
         <Popover.Root open={isOpen} onOpenChange={setIsOpen}>
             <Popover.Trigger asChild>
@@ -194,17 +235,7 @@ const HorizontalPopover = ({
                         <form
                             id="popover-form"
                             name="popover-form"
-                            onSubmit={(e) =>
-                                handler(
-                                    editorRef,
-                                    symbol,
-                                    setIsOpen,
-                                    e,
-                                    data,
-                                    dispatch,
-                                    setIsFetching
-                                )
-                            }
+                            onSubmit={handleSubmit}
                         >
                             {symbol === "table" ? (
                                 <fieldset className="Fieldset">
@@ -213,14 +244,14 @@ const HorizontalPopover = ({
                                             className="Input max-w-[100px] transition hover:border-stone-300"
                                             id="row-num"
                                             name="row-num"
-                                            autocomplete="off"
+                                            autoComplete="off"
                                             type="text"
                                             placeholder={placeholder[0]}
                                         />
                                         <input
                                             className="Input max-w-[100px] transition hover:border-stone-300"
                                             id="col-num"
-                                            autocomplete="off"
+                                            autoComplete="off"
                                             name="col-num"
                                             type="text"
                                             placeholder={placeholder[1]}
@@ -240,12 +271,12 @@ const HorizontalPopover = ({
                                         <input
                                             type="file"
                                             id="width"
-                                            autocomplete="off"
+                                            autoComplete="off"
                                             placeholder={placeholder}
                                             name="input-text"
                                             className=" flex text-[13px] cursor-pointer items-center justify-center text-gray-400 border-[1px] active:bg-stone-100 file:transition rounded-[0.4rem] hover:bg-stone-50 transition
                                                         file:mr-2.5 file:py-1 file:px-2.5 file:outline-none  file:text-xs file:h-[28px] file:border-[0px] file:rounded-none file:border-stone-100 file:text-stone-600
-                                                        h-[28px] file:bg-stone-100 file:rounded-[0.4rem] file:hover:bg-stone-200 file:active:bg-stone-300 file:font-medium"
+                                                        h-[28px] file:bg-stone-100 file:rounded-[0.4rem] file:hover:bg-stone-200 file:active:bg-stone-300 file:font-medium file:active:border-stone-400"
                                         />
                                         <Button
                                             type={"submit"}
@@ -261,7 +292,7 @@ const HorizontalPopover = ({
                                 <fieldset className="Fieldset">
                                     <div className={`flex min-w-[300px] gap-1`}>
                                         <input
-                                            autocomplete="off"
+                                            autoComplete="off"
                                             className="Input transition hover:border-stone-300"
                                             id="width"
                                             name="input-text"

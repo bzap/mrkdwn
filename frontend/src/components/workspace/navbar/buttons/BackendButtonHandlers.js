@@ -14,7 +14,6 @@ export const downloadFile = async (
     markdownData,
     dispatch
 ) => {
-    e.preventDefault();
     const data = new FormData(e.target);
     let input;
     for (const [key, value] of data) {
@@ -66,7 +65,6 @@ export const uploadFile = async (
     markdownData,
     dispatch
 ) => {
-    e.preventDefault();
     dispatch(setIsFetching(true));
     const data = new FormData(e.target);
     let input;
