@@ -37,14 +37,7 @@ pre {
     word-wrap: break-word; /* Internet Explorer 5.5+ */
     overflow: hidden;
 }
-p {
-    white-space: pre-wrap; /* css-3 */
-    white-space: -moz-pre-wrap; /* Mozilla, since 1999 */
-    white-space: -pre-wrap; /* Opera 4-6 */
-    white-space: -o-pre-wrap; /* Opera 7 */
-    word-wrap: break-word; /* Internet Explorer 5.5+ */
-    overflow: hidden;
-}
+
 td {
     white-space: pre-wrap; /* css-3 */
     white-space: -moz-pre-wrap; /* Mozilla, since 1999 */
@@ -350,10 +343,10 @@ tr {
     right: 5px;
 }
 .PopoverClose:hover {
-    background-color: #f3f4f6;
+    background-color: #fafaf9;
 }
 .PopoverClose:focus {
-    background-color: #d1d5db;
+    background-color: #e7e5e4;
 }
 
 .IconButton {
@@ -531,6 +524,12 @@ tr {
 }
 .Button.mauve:focus {
     box-shadow: 0 0 0 2px var(--mauve-7);
+}
+
+.table-wrapper {
+    display: flex;
+    width: 100%;
+    overflow-x: auto;
 }
 
 @keyframes overlayShow {

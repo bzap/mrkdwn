@@ -15,14 +15,21 @@ module.exports = {
             typography: {
                 DEFAULT: {
                     css: {
+                        // maxWidth: "1-",
                         color: "black",
                         p: {
-                            "word-break": "break-all",
+                            "word-break": "break-words",
+                        },
+                        a: {
+                            color: "#6366f1",
+                        },
+                        "a:hover": {
+                            color: "#818cf8",
                         },
                         code: {
                             color: "black",
-                            padding: "10px",
-                            "border-radius": "12px",
+                            padding: "6px",
+                            "border-radius": "5px",
                             "background-color": "#f5f5f4",
                             "font-weight": "normal",
                         },
@@ -47,6 +54,11 @@ module.exports = {
                         "blockquote p:first-of-type::after": {
                             content: "none",
                         },
+                        // table: {
+                        //     display: "block",
+                        //     width: "100%",
+                        //     color: "#78716c",
+                        // },
                     },
                 },
             },

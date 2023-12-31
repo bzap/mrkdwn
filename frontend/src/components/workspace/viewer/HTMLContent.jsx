@@ -8,14 +8,26 @@ const HTMLContent = ({ editorRef }) => {
         .use(require("markdown-it-task-lists"))
         .use(require("markdown-it-mark"));
 
+    md.renderer.rules.table_open = function (tokens, idx, options, env, self) {
+        return (
+            `<div class='table-wrapper'>` +
+            self.renderToken(tokens, idx, options)
+        );
+    };
+    md.renderer.rules.table_close = function (tokens, idx, options, env, self) {
+        return self.renderToken(tokens, idx, options) + `</div>`;
+    };
+
     console.log(md.render(markdownText));
     return (
-        <article
-            className={"prose max-w-none py-6 px-7"}
-            dangerouslySetInnerHTML={{
-                __html: md.render(markdownText),
-            }}
-        />
+        <div className="w-1 min-w-full h-auto ">
+            <article
+                className={"prose py-6 px-7 max-w-none break-words"}
+                dangerouslySetInnerHTML={{
+                    __html: md.render(markdownText),
+                }}
+            />
+        </div>
     );
 };
 

@@ -33,8 +33,9 @@ import {
     faQuestion,
     faMoon,
     faInfo,
-    faArrowDownUpLock,
+    faArrowsDownToLine,
     faDownLeftAndUpRightToCenter,
+    faArrowsUpDown,
 } from "@fortawesome/free-solid-svg-icons";
 
 export const FileOperationGroup = {
@@ -149,7 +150,7 @@ export const CustomizationGroup = {
         dispatcher: setSaveState,
     },
     scroll: {
-        icon: faArrowDownUpLock,
+        icon: faArrowsDownToLine,
         func: saveFile,
         symbol: "saveState",
         type: "switch",
