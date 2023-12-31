@@ -6,19 +6,19 @@ import { CustomizationGroup } from "@/components/workspace/navbar/buttons/Button
 import { InfoGroup } from "@/components/workspace/navbar/buttons/ButtonGroups";
 import { useSelector } from "react-redux";
 
-const TextFeatureContainer = ({ editorRef }) => {
+const FeatureContainer = ({ editorRef }) => {
     const markdownText = useSelector((state) => state.markdownText);
 
     return (
-        <div className="flex-col flex mt-8 justify-between w-full px-2.5 h-full">
-            <div>
+        <div className="flex-col flex md:mt-4 lg:mt-8 md:justify-end lg:justify-between w-full md:pb-4 lg:pb-0 md:px-5 lg:px-2.5 lg:h-full">
+            <div className="md:w-fit lg:w-full">
                 <CustomComponents.ButtonGroup
                     elements={FileOperationGroup}
                     editorRef={editorRef}
                     data={markdownText}
                 />
             </div>
-            <div>
+            <div className="md:w-fit lg:w-full">
                 <CustomComponents.ButtonGroup
                     elements={TextStyleGroup}
                     editorRef={editorRef}
@@ -28,18 +28,20 @@ const TextFeatureContainer = ({ editorRef }) => {
                     editorRef={editorRef}
                 />
             </div>
-            <div>
+            <div className="md:w-fit lg:w-full">
                 <CustomComponents.ButtonGroup
                     elements={CustomizationGroup}
                     editorRef={editorRef}
                 />
-                <CustomComponents.ButtonGroup
-                    elements={InfoGroup}
-                    editorRef={editorRef}
-                />
+                <div className="md:w-fit lg:w-full">
+                    <CustomComponents.ButtonGroup
+                        elements={InfoGroup}
+                        editorRef={editorRef}
+                    />
+                </div>
             </div>
         </div>
     );
 };
 
-export default TextFeatureContainer;
+export default FeatureContainer;

@@ -41,7 +41,7 @@ const Editor = ({ editorRef }) => {
     }, []);
 
     return (
-        <div className="flex w-6/12 border-stone-200 border-[1px] rounded-2xl overflow-hidden border-solid">
+        <div className="flex md:w-full lg:w-6/12 border-stone-200 border-[1px] rounded-2xl overflow-hidden border-solid">
             <ScrollArea.Root className="ScrollAreaRoot w-full h-full flex py-1">
                 <ScrollArea.Viewport
                     id="scroll-viewport"

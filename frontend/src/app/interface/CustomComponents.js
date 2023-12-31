@@ -52,8 +52,8 @@ const Button = ({
             className={`text-black select-none outline-none items-center transition justify-center
             ${
                 fitted
-                    ? "h-[28px] rounded-md border-stone-200 border-[1px] bg-stone-100 rounded-[0.4rem] hover:bg-stone-200 active:bg-stone-300`"
-                    : "h-[45px] w-full hover:bg-stone-100 active:bg-stone-300"
+                    ? "h-[28px] rounded-md border-stone-200 border-[1px] bg-stone-100 rounded-[0.4rem] hover:bg-stone-200 active:bg-stone-300"
+                    : "h-[45px] w-[45px] hover:bg-stone-100 active:bg-stone-300"
             } flex p-3`}
         >
             <div
@@ -85,7 +85,7 @@ const TriggerButton = forwardRef((props, forwardedRef) => {
         <button
             {...props}
             ref={forwardedRef}
-            className={`text-black select-none outline-none items-center transition justify-center w-full h-[45px] flex p-3 hover:bg-stone-100 active:bg-stone-200`}
+            className={`text-black select-none outline-none items-center transition justify-center w-[45px] h-[45px] flex p-3 hover:bg-stone-100 active:bg-stone-200`}
         >
             <FontAwesomeIcon icon={props.icon} size="xs" />
         </button>
@@ -159,7 +159,7 @@ const VerticalSwitch = ({ header, icon, dispatcher }) => {
     return (
         <label
             htmlFor={"switch-toggle" + header}
-            className={`flex justify-center w-full transition cursor-pointer hover:bg-stone-100 active:bg-stone-200 h-[45px]`}
+            className={`flex justify-center w-[45px] transition cursor-pointer hover:bg-stone-100 active:bg-stone-200 h-[45px]`}
         >
             <div className="flex flex-col font-bold w-full  items-center flex justify-center">
                 <form>
@@ -337,7 +337,7 @@ const HorizontalPopover = ({
 const ButtonGroup = ({ elements, editorRef, data }) => {
     return (
         <div
-            className={`flex mb-2.5 rounded-xl border-stone-200 border-[1px] flex-col overflow-hidden`}
+            className={`flex mb-2.5 rounded-xl border-stone-200 border-[1px] md:flex-row lg:flex-col justify-center items-center overflow-hidden`}
         >
             {Object.values(elements).map((element, index) => {
                 return element.type === "dropdown" ? (
