@@ -24,12 +24,17 @@ import {
     faListUl,
     faLink,
     faImage,
+    faUpload,
+    faDownload,
     faTableCellsLarge,
     faSuperscript,
     faMinus,
     faFloppyDisk,
+    faQuestion,
     faMoon,
     faInfo,
+    faArrowDownUpLock,
+    faDownLeftAndUpRightToCenter,
 } from "@fortawesome/free-solid-svg-icons";
 
 export const FileOperationGroup = {
@@ -39,7 +44,7 @@ export const FileOperationGroup = {
         symbol: "new",
     },
     upload: {
-        icon: faArrowUp,
+        icon: faUpload,
         func: uploadFile,
         symbol: "upload",
         type: "popover",
@@ -47,7 +52,7 @@ export const FileOperationGroup = {
         placeholder: "https://example.com",
     },
     download: {
-        icon: faArrowDown,
+        icon: faDownload,
         func: downloadFile,
         symbol: "download",
         type: "popover",
@@ -143,6 +148,13 @@ export const CustomizationGroup = {
         type: "switch",
         dispatcher: setSaveState,
     },
+    scroll: {
+        icon: faArrowDownUpLock,
+        func: saveFile,
+        symbol: "saveState",
+        type: "switch",
+        dispatcher: setSaveState,
+    },
     theme: {
         icon: faMoon,
         func: saveFile,
@@ -150,8 +162,11 @@ export const CustomizationGroup = {
         type: "switch",
         dispatcher: setDarkMode,
     },
+};
+
+export const InfoGroup = {
     settings: {
-        icon: faInfo,
+        icon: faQuestion,
         func: updateText,
         symbol: "**",
     },
