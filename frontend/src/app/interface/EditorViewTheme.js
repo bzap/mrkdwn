@@ -7,24 +7,25 @@ export const EditorViewTheme = EditorView.theme({
     },
     ".cm-gutters": {
         borderWidth: "0px",
+
         backgroundColor: "white",
-        marginRight: "15px",
     },
 
+    ".cm-gutterElement": {
+        backgroundColor: "whtite !important",
+        width: "40px",
+        display: "flex",
+        "text-justify": "start",
+        "justify-content": "center",
+    },
     ".cm-activeLine": {
         backgroundColor: "rgba(231, 229, 228, 0.5) !important",
-        borderRadius: "0.4rem",
-        borderRadius: "0.4rem",
+        borderTopRightRadius: "0.4rem",
+        borderBottomRightRadius: "0.4rem",
     },
     ".cm-activeLineGutter": {
-        backgroundColor: "white !important",
+        backgroundColor: "rgba(231, 229, 228, 0.5) !important",
         borderTopLeftRadius: "0.4rem",
         borderBottomLeftRadius: "0.4rem",
-    },
-    ".cm-foldGutter .cm-activeLineGutter": {
-        backgroundColor: "rgba(231, 229, 228, 0.5) !important",
-        width: "20px",
-        borderTopLeftRadius: "0rem",
-        borderBottomLeftRadius: "0rem",
     },
 });
