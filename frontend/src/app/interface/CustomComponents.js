@@ -210,15 +210,17 @@ const HorizontalPopover = ({
                                 <fieldset className="Fieldset">
                                     <div className={"flex gap-1"}>
                                         <input
-                                            className="Input max-w-[100px] transition"
+                                            className="Input max-w-[100px] transition hover:border-stone-300"
                                             id="row-num"
                                             name="row-num"
+                                            autocomplete="off"
                                             type="text"
                                             placeholder={placeholder[0]}
                                         />
                                         <input
-                                            className="Input max-w-[100px] transition"
+                                            className="Input max-w-[100px] transition hover:border-stone-300"
                                             id="col-num"
+                                            autocomplete="off"
                                             name="col-num"
                                             type="text"
                                             placeholder={placeholder[1]}
@@ -234,21 +236,15 @@ const HorizontalPopover = ({
                                 </fieldset>
                             ) : symbol === "upload" ? (
                                 <fieldset className="Fieldset">
-                                    <div
-                                        className={`flex ${
-                                            symbol === "footnote" ||
-                                            symbol === "download"
-                                                ? "min-w-[100px]"
-                                                : "min-w-[300px]"
-                                        } gap-1`}
-                                    >
+                                    <div className={`flex gap-1`}>
                                         <input
                                             type="file"
                                             id="width"
+                                            autocomplete="off"
                                             placeholder={placeholder}
                                             name="input-text"
-                                            className=" flex text-[13px] items-center justify-center text-gray-400 border-[1px] active:bg-stone-100 file:transition rounded-[0.4rem] hover:bg-stone-50 transition
-                                                        file:mr-5 file:py-1 file:px-2 file:outline-none  file:text-xs file:h-[28px] file:border-[0px] file:rounded-none file:border-stone-100 file:text-stone-600
+                                            className=" flex text-[13px] cursor-pointer items-center justify-center text-gray-400 border-[1px] active:bg-stone-100 file:transition rounded-[0.4rem] hover:bg-stone-50 transition
+                                                        file:mr-2.5 file:py-1 file:px-2.5 file:outline-none  file:text-xs file:h-[28px] file:border-[0px] file:rounded-none file:border-stone-100 file:text-stone-600
                                                         h-[28px] file:bg-stone-100 file:rounded-[0.4rem] file:hover:bg-stone-200 file:active:bg-stone-300 file:font-medium"
                                         />
                                         <Button
@@ -263,16 +259,10 @@ const HorizontalPopover = ({
                                 </fieldset>
                             ) : (
                                 <fieldset className="Fieldset">
-                                    <div
-                                        className={`flex ${
-                                            symbol === "footnote" ||
-                                            symbol === "download"
-                                                ? "min-w-[100px]"
-                                                : "min-w-[300px]"
-                                        } gap-1`}
-                                    >
+                                    <div className={`flex min-w-[300px] gap-1`}>
                                         <input
-                                            className="Input transition"
+                                            autocomplete="off"
+                                            className="Input transition hover:border-stone-300"
                                             id="width"
                                             name="input-text"
                                             type="text"
