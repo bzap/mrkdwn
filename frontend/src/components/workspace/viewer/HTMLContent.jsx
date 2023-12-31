@@ -18,6 +18,7 @@ const HTMLContent = ({ editorRef }) => {
         return self.renderToken(tokens, idx, options) + `</div>`;
     };
 
+    console.log(md.render(markdownText));
     return (
         <div className="w-1 min-w-full h-auto ">
             <article

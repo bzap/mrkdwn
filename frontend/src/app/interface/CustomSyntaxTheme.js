@@ -30,7 +30,7 @@ export function xcodeGrayscaleInit(options) {
             { tag: [t.typeName], color: "#522BB2" },
             { tag: [t.variableName], color: "#23575C" },
             { tag: [t.definition(t.variableName)], color: "#327A9E" },
-            { tag: [t.regexp, t.link], color: "#0e0eff" },
+            { tag: [t.regexp, t.link], color: "#6366f1" },
             ...styles,
         ],
     });

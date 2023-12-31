@@ -20,10 +20,16 @@ module.exports = {
                         p: {
                             "word-break": "break-words",
                         },
+                        a: {
+                            color: "#6366f1",
+                        },
+                        "a:hover": {
+                            color: "#818cf8",
+                        },
                         code: {
                             color: "black",
-                            padding: "10px",
-                            "border-radius": "12px",
+                            padding: "6px",
+                            "border-radius": "5px",
                             "background-color": "#f5f5f4",
                             "font-weight": "normal",
                         },
