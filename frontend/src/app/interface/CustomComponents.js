@@ -1,19 +1,22 @@
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import { useState, forwardRef, useEffect } from "react";
-import {
-    HamburgerMenuIcon,
-    DotFilledIcon,
-    CheckIcon,
-    ChevronRightIcon,
-} from "@radix-ui/react-icons";
 import * as Popover from "@radix-ui/react-popover";
-import { MixerHorizontalIcon, Cross2Icon } from "@radix-ui/react-icons";
-import { Icons } from "./Icons";
+import { Cross2Icon } from "@radix-ui/react-icons";
 import { useDispatch, useSelector } from "react-redux";
 import * as Switch from "@radix-ui/react-switch";
-import { setSaveState } from "@/lib/reducers/markdownSlice";
+import { setIsFetching } from "@/lib/reducers/markdownSlice";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+    faRightToBracket,
+    faCircleNotch,
+} from "@fortawesome/free-solid-svg-icons";
+// import {
+//     faHighlighter,
+//     faTableCellsLarge,
+// } from "@fortawesome/free-solid-svg-icons";
 
 const Button = ({
+    props,
     icon,
     index,
     text,
@@ -22,24 +25,48 @@ const Button = ({
     editorRef,
     data,
     symbol,
+    fetcher,
     type = "button",
 }) => {
-    // console.log(icon);
     const dispatch = useDispatch();
+    const isFetching = useSelector((state) => state.isFetching);
+    const onClick = (e) => {
+        if (type !== "submit") {
+            if (symbol === "new" && data.length > 0) {
+                if (
+                    confirm(
+                        "The content in the editor will be lost. Do you wish to proceed?"
+                    )
+                ) {
+                    handler(editorRef, symbol, data, e, dispatch);
+                }
+            } else {
+                handler(editorRef, symbol, data, e, dispatch);
+            }
+        }
+    };
     return (
         <button
             type={"type"}
-            onClick={(e) =>
-                handler && handler(editorRef, symbol, data, e, dispatch)
-            }
+            onClick={onClick}
             className={`text-black select-none outline-none items-center transition justify-center
             ${
                 fitted
-                    ? "h-[25px] rounded-md border-stone-200 border-[1px] bg-stone-100 rounded-[0.4rem] hover:bg-stone-200 active:bg-stone-300`"
-                    : "h-max  w-full hover:bg-stone-100 active:bg-stone-300"
+                    ? "h-[28px] rounded-md border-stone-200 border-[1px] bg-stone-100 rounded-[0.4rem] hover:bg-stone-200 active:bg-stone-300`"
+                    : "h-[45px] w-full hover:bg-stone-100 active:bg-stone-300"
             } flex p-3`}
         >
-            {icon && icon()}
+            <div
+                className={`${
+                    isFetching && fetcher && "animate-spin transition"
+                } `}
+            >
+                <FontAwesomeIcon
+                    icon={isFetching && fetcher ? faCircleNotch : icon}
+                    size="xs"
+                />
+            </div>
+
             {text && (
                 <p
                     className={
@@ -58,9 +85,9 @@ const TriggerButton = forwardRef((props, forwardedRef) => {
         <button
             {...props}
             ref={forwardedRef}
-            className={`text-black select-none outline-none items-center transition justify-center w-full h-max flex p-3 hover:bg-stone-100 active:bg-stone-200`}
+            className={`text-black select-none outline-none items-center transition justify-center w-full h-[45px] flex p-3 hover:bg-stone-100 active:bg-stone-200`}
         >
-            {props.icon && props.icon.icon()}
+            <FontAwesomeIcon icon={props.icon} size="xs" />
         </button>
     );
 });
@@ -72,7 +99,7 @@ const HorizontalDropdownMenu = ({ icon, handler, editorRef }) => {
     return (
         <DropdownMenu.Root>
             <DropdownMenu.Trigger asChild>
-                <TriggerButton icon={{ icon }} />
+                <TriggerButton icon={icon} />
             </DropdownMenu.Trigger>
             <DropdownMenu.Portal>
                 <DropdownMenu.Content
@@ -132,15 +159,14 @@ const VerticalSwitch = ({ header, icon, dispatcher }) => {
     return (
         <label
             htmlFor={"switch-toggle" + header}
-            className={`flex justify-center py-2.5 w-full transition cursor-pointer hover:bg-stone-100 active:bg-stone-200 h-full`}
+            className={`flex justify-center w-full transition cursor-pointer hover:bg-stone-100 active:bg-stone-200 h-[45px]`}
         >
-            <div className="flex flex-col text-[10px] font-bold">
+            <div className="flex flex-col font-bold w-full  items-center flex justify-center">
                 <form>
-                    <div
-                        className="flex-col my-1"
-                        style={{ display: "flex", alignItems: "center" }}
-                    >
-                        <div className="mb-1">{icon && icon()}</div>
+                    <div className="flex-col  w-full h-full items-center justify-center flex">
+                        <div>
+                            <FontAwesomeIcon icon={icon} size="xs" />
+                        </div>
 
                         <Switch.Root
                             defaultChecked={state}
@@ -162,14 +188,46 @@ const HorizontalPopover = ({
     symbol,
     data,
     editorRef,
+    fetcher,
     handler,
 }) => {
     const [isOpen, setIsOpen] = useState(false);
-    //  console.log(icon);
+    const dispatch = useDispatch();
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        if (symbol === "upload" && data.length > 0) {
+            if (
+                confirm(
+                    "The content in the editor will be lost. Do you wish to proceed?"
+                )
+            ) {
+                handler(
+                    editorRef,
+                    symbol,
+                    setIsOpen,
+                    e,
+                    data,
+                    dispatch,
+                    setIsFetching
+                );
+            }
+        } else {
+            handler(
+                editorRef,
+                symbol,
+                setIsOpen,
+                e,
+                data,
+                dispatch,
+                setIsFetching
+            );
+        }
+    };
     return (
         <Popover.Root open={isOpen} onOpenChange={setIsOpen}>
             <Popover.Trigger asChild>
-                <TriggerButton icon={{ icon }} />
+                <TriggerButton icon={icon} />
             </Popover.Trigger>
             <Popover.Portal>
                 <Popover.Content
@@ -184,23 +242,23 @@ const HorizontalPopover = ({
                         <form
                             id="popover-form"
                             name="popover-form"
-                            onSubmit={(e) =>
-                                handler(editorRef, symbol, setIsOpen, e, data)
-                            }
+                            onSubmit={handleSubmit}
                         >
                             {symbol === "table" ? (
                                 <fieldset className="Fieldset">
                                     <div className={"flex gap-1"}>
                                         <input
-                                            className="Input max-w-[100px] transition"
+                                            className="Input max-w-[100px] transition hover:border-stone-300"
                                             id="row-num"
                                             name="row-num"
+                                            autoComplete="off"
                                             type="text"
                                             placeholder={placeholder[0]}
                                         />
                                         <input
-                                            className="Input max-w-[100px] transition"
+                                            className="Input max-w-[100px] transition hover:border-stone-300"
                                             id="col-num"
+                                            autoComplete="off"
                                             name="col-num"
                                             type="text"
                                             placeholder={placeholder[1]}
@@ -208,24 +266,41 @@ const HorizontalPopover = ({
                                         <Button
                                             type={"submit"}
                                             fitted
-                                            icon={Icons.EnterIcon}
+                                            icon={faRightToBracket}
                                             setIsOpen={setIsOpen}
                                             editorRef={editorRef}
                                         />
                                     </div>
                                 </fieldset>
+                            ) : symbol === "upload" ? (
+                                <fieldset className="Fieldset">
+                                    <div className={`flex gap-1`}>
+                                        <input
+                                            type="file"
+                                            id="width"
+                                            autoComplete="off"
+                                            placeholder={placeholder}
+                                            name="input-text"
+                                            className=" flex text-[13px] cursor-pointer items-center justify-center text-gray-400 border-[1px] active:bg-stone-100 file:transition rounded-[0.4rem] hover:bg-stone-50 transition
+                                                        file:mr-2.5 file:py-1 file:px-2.5 file:outline-none  file:text-xs file:h-[28px] file:border-[0px] file:rounded-none file:border-stone-100 file:text-stone-600
+                                                        h-[28px] file:bg-stone-100 file:rounded-[0.4rem] file:hover:bg-stone-200 file:active:bg-stone-300 file:font-medium file:active:border-stone-400"
+                                        />
+                                        <Button
+                                            type={"submit"}
+                                            setIsOpen={setIsOpen}
+                                            editorRef={editorRef}
+                                            fitted
+                                            fetcher={fetcher}
+                                            icon={faRightToBracket}
+                                        />
+                                    </div>
+                                </fieldset>
                             ) : (
                                 <fieldset className="Fieldset">
-                                    <div
-                                        className={`flex ${
-                                            symbol === "footnote" ||
-                                            symbol === "download"
-                                                ? "min-w-[100px]"
-                                                : "min-w-[300px]"
-                                        } gap-1`}
-                                    >
+                                    <div className={`flex min-w-[300px] gap-1`}>
                                         <input
-                                            className="Input transition"
+                                            autoComplete="off"
+                                            className="Input transition hover:border-stone-300"
                                             id="width"
                                             name="input-text"
                                             type="text"
@@ -237,7 +312,8 @@ const HorizontalPopover = ({
                                             setIsOpen={setIsOpen}
                                             editorRef={editorRef}
                                             fitted
-                                            icon={Icons.EnterIcon}
+                                            fetcher={fetcher}
+                                            icon={faRightToBracket}
                                         />
                                     </div>
                                 </fieldset>
@@ -287,6 +363,7 @@ const ButtonGroup = ({ elements, editorRef, data }) => {
                         placeholder={element.placeholder}
                         data={data ? data : ""}
                         handler={element.func}
+                        fetcher={element.fetcher}
                         editorRef={editorRef}
                     />
                 ) : (

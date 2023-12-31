@@ -9,7 +9,7 @@ const TextFeatureContainer = ({ editorRef }) => {
     const markdownText = useSelector((state) => state.markdownText);
 
     return (
-        <div className="flex-col flex mt-8 justify-between h-full">
+        <div className="flex-col flex mt-8 justify-between w-full px-2.5 h-full">
             <div>
                 <CustomComponents.ButtonGroup
                     elements={FileOperationGroup}
