@@ -1,12 +1,15 @@
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import { useState, forwardRef, useEffect } from "react";
 import * as Popover from "@radix-ui/react-popover";
-import { MixerHorizontalIcon, Cross2Icon } from "@radix-ui/react-icons";
+import { Cross2Icon } from "@radix-ui/react-icons";
 import { useDispatch, useSelector } from "react-redux";
 import * as Switch from "@radix-ui/react-switch";
-import { setIsFetching, setSaveState } from "@/lib/reducers/markdownSlice";
+import { setIsFetching } from "@/lib/reducers/markdownSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faRightToBracket } from "@fortawesome/free-solid-svg-icons";
+import {
+    faRightToBracket,
+    faCircleNotch,
+} from "@fortawesome/free-solid-svg-icons";
 // import {
 //     faHighlighter,
 //     faTableCellsLarge,
@@ -53,8 +56,15 @@ const Button = ({
                     : "h-[45px] w-full hover:bg-stone-100 active:bg-stone-300"
             } flex p-3`}
         >
-            <div className={`${isFetching && fetcher && "animate-spin"} `}>
-                <FontAwesomeIcon icon={icon} size="xs" />
+            <div
+                className={`${
+                    isFetching && fetcher && "animate-spin transition"
+                } `}
+            >
+                <FontAwesomeIcon
+                    icon={isFetching && fetcher ? faCircleNotch : icon}
+                    size="xs"
+                />
             </div>
 
             {text && (
