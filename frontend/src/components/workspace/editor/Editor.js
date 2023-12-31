@@ -53,6 +53,9 @@ const Editor = ({ editorRef }) => {
                         className="py-6 px-7 h-full h-auto min-h-full overflow-hidden"
                         id="cm-container"
                         ref={editorRef}
+                        basicSetup={{
+                            foldGutter: false,
+                        }}
                         onChange={(value) => debouncedDispatch(value)}
                         extensions={[
                             markdown({ highlightFormatting: true }),
