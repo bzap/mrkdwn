@@ -273,8 +273,8 @@ const HorizontalPopover = ({
                                     </div>
                                 </fieldset>
                             ) : symbol === "upload" ? (
-                                <fieldset className="Fieldset">
-                                    <div className={`flex gap-1`}>
+                                <fieldset className="Fieldset ">
+                                    <div className={`flex gap-1 `}>
                                         <input
                                             type="file"
                                             id="width"
@@ -282,7 +282,7 @@ const HorizontalPopover = ({
                                             placeholder={placeholder}
                                             name="input-text"
                                             title=" "
-                                            className=" flex text-[13px] file:text-[13px] cursor-pointer items-center justify-center border-[1px] active:bg-stone-100 file:transition rounded-[0.4rem] hover:bg-stone-50 transition
+                                            className=" flex text-[13px] file:cursor-pointer file:text-[13px] hover:border-stone-300 items-center justify-center border-[1px] active:bg-stone-100 file:transition rounded-[0.4rem] transition
                                                         file:mr-2.5 file:py-1 file:px-3 file:outline-none  file:text-xs file:h-[28px] file:border-[0px] file:rounded-none file:border-stone-100 file:text-stone-600
                                                         h-[28px] file:bg-stone-100 file:rounded-[0.4rem] file:hover:bg-neutral-200 file:active:bg-stone-300 file:font-medium file:active:border-stone-400"
                                         />

@@ -15,9 +15,10 @@ module.exports = {
             typography: {
                 DEFAULT: {
                     css: {
+                        // maxWidth: "1-",
                         color: "black",
                         p: {
-                            "word-break": "break-all",
+                            "word-break": "break-words",
                         },
                         code: {
                             color: "black",
@@ -47,6 +48,11 @@ module.exports = {
                         "blockquote p:first-of-type::after": {
                             content: "none",
                         },
+                        // table: {
+                        //     display: "block",
+                        //     width: "100%",
+                        //     color: "#78716c",
+                        // },
                     },
                 },
             },
