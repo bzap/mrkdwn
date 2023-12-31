@@ -118,7 +118,7 @@ export const InsertionFeatureGroup = {
         symbol: "table",
         type: "popover",
         description: "Enter the number of rows and columns:",
-        placeholder: ["rows", "columns"],
+        placeholder: ["Rows", "Columns"],
     },
     footnote: {
         icon: faSuperscript,
@@ -126,7 +126,7 @@ export const InsertionFeatureGroup = {
         symbol: "footnote",
         type: "popover",
         description: "Enter the footnote subscript:",
-        placeholder: "subscript",
+        placeholder: "Subscript",
     },
     divider: {
         icon: faMinus,

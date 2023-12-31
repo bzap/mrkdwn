@@ -394,7 +394,7 @@ tr {
     justify-content: center;
     flex: 1;
     border-radius: 0.4rem;
-    padding: 2px 5px;
+    padding: 2px 10px;
     border: 1px solid #e7e5e4;
     font-size: 13px;
     line-height: 24px;
@@ -418,7 +418,7 @@ tr {
 
 .SwitchRoot {
     width: 14px;
-    height: 5px;
+    height: 3px;
     align-items: center;
     background-color: #e5e5e5;
     border-radius: 24px;

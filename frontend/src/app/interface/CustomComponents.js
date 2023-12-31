@@ -281,9 +281,10 @@ const HorizontalPopover = ({
                                             autoComplete="off"
                                             placeholder={placeholder}
                                             name="input-text"
-                                            className=" flex text-[13px] cursor-pointer items-center justify-center text-gray-400 border-[1px] active:bg-stone-100 file:transition rounded-[0.4rem] hover:bg-stone-50 transition
-                                                        file:mr-2.5 file:py-1 file:px-2.5 file:outline-none  file:text-xs file:h-[28px] file:border-[0px] file:rounded-none file:border-stone-100 file:text-stone-600
-                                                        h-[28px] file:bg-stone-100 file:rounded-[0.4rem] file:hover:bg-stone-200 file:active:bg-stone-300 file:font-medium file:active:border-stone-400"
+                                            title=" "
+                                            className=" flex text-[13px] file:text-[13px] cursor-pointer items-center justify-center border-[1px] active:bg-stone-100 file:transition rounded-[0.4rem] hover:bg-stone-50 transition
+                                                        file:mr-2.5 file:py-1 file:px-3 file:outline-none  file:text-xs file:h-[28px] file:border-[0px] file:rounded-none file:border-stone-100 file:text-stone-600
+                                                        h-[28px] file:bg-stone-100 file:rounded-[0.4rem] file:hover:bg-neutral-200 file:active:bg-stone-300 file:font-medium file:active:border-stone-400"
                                         />
                                         <Button
                                             type={"submit"}

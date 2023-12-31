@@ -8,6 +8,7 @@ const HTMLContent = ({ editorRef }) => {
         .use(require("markdown-it-task-lists"))
         .use(require("markdown-it-mark"));
 
+    console.log(md.render(markdownText));
     return (
         <article
             className={"prose max-w-none py-6 px-7"}
