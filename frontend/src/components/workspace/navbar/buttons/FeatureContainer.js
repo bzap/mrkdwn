@@ -3,6 +3,7 @@ import { InsertionFeatureGroup } from "@/components/workspace/navbar/buttons/But
 import { TextStyleGroup } from "@/components/workspace/navbar/buttons/ButtonGroups";
 import { FileOperationGroup } from "@/components/workspace/navbar/buttons/ButtonGroups";
 import { CustomizationGroup } from "@/components/workspace/navbar/buttons/ButtonGroups";
+import { InfoGroup } from "@/components/workspace/navbar/buttons/ButtonGroups";
 import { useSelector } from "react-redux";
 
 const TextFeatureContainer = ({ editorRef }) => {
@@ -30,6 +31,10 @@ const TextFeatureContainer = ({ editorRef }) => {
             <div>
                 <CustomComponents.ButtonGroup
                     elements={CustomizationGroup}
+                    editorRef={editorRef}
+                />
+                <CustomComponents.ButtonGroup
+                    elements={InfoGroup}
                     editorRef={editorRef}
                 />
             </div>
