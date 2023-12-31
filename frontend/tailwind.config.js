@@ -15,8 +15,37 @@ module.exports = {
             typography: {
                 DEFAULT: {
                     css: {
+                        color: "black",
                         p: {
                             "word-break": "break-all",
+                        },
+                        code: {
+                            color: "black",
+                            padding: "10px",
+                            "border-radius": "12px",
+                            "background-color": "#f5f5f4",
+                            "font-weight": "normal",
+                        },
+                        "code::before": {
+                            content: '""',
+                        },
+                        "code::after": {
+                            content: '""',
+                        },
+                        pre: {
+                            "background-color": "#f5f5f4",
+                            color: "black",
+                        },
+                        blockquote: {
+                            "font-style": "normal",
+                            "font-weight": "normal",
+                            color: "#78716c",
+                        },
+                        "blockquote p:first-of-type::before": {
+                            content: "none",
+                        },
+                        "blockquote p:first-of-type::after": {
+                            content: "none",
                         },
                     },
                 },
