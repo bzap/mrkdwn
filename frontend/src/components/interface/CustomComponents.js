@@ -10,6 +10,7 @@ import {
     faRightToBracket,
     faCircleNotch,
 } from "@fortawesome/free-solid-svg-icons";
+import { setNavBarExpanded } from "../../lib/reducers/markdownSlice";
 // import {
 //     faHighlighter,
 //     faTableCellsLarge,
@@ -52,19 +53,21 @@ const Button = ({
             className={`text-black select-none outline-none items-center transition justify-center
             ${
                 fitted
-                    ? "h-[28px] rounded-md border-stone-200 border-[1px] bg-stone-100 rounded-[0.4rem] hover:bg-stone-200 active:bg-stone-300`"
-                    : "h-[45px] w-full hover:bg-stone-100 active:bg-stone-300"
-            } flex p-3`}
+                    ? "h-[30px] w-[40px] rounded-md border-stone-200 border-[1px] bg-stone-100 rounded-[0.4rem] hover:bg-stone-200 active:bg-stone-300"
+                    : "base:h-[30px] lg:h-[45px] w-[45px] hover:bg-stone-100 active:bg-stone-300"
+            } flex`}
         >
             <div
                 className={`${
                     isFetching && fetcher && "animate-spin transition"
                 } `}
             >
-                <FontAwesomeIcon
-                    icon={isFetching && fetcher ? faCircleNotch : icon}
-                    size="xs"
-                />
+                <div className="base:hidden lg:block">
+                    <FontAwesomeIcon icon={icon} size={`xs`} />
+                </div>
+                <div className="lg:hidden base:block">
+                    <FontAwesomeIcon icon={icon} size={`sm`} />
+                </div>
             </div>
 
             {text && (
@@ -85,9 +88,14 @@ const TriggerButton = forwardRef((props, forwardedRef) => {
         <button
             {...props}
             ref={forwardedRef}
-            className={`text-black select-none outline-none items-center transition justify-center w-full h-[45px] flex p-3 hover:bg-stone-100 active:bg-stone-200`}
+            className={`text-black select-none outline-none items-center transition justify-center base:h-[30px] lg:h-[45px] w-[45px] flex hover:bg-stone-100 active:bg-stone-200`}
         >
-            <FontAwesomeIcon icon={props.icon} size="xs" />
+            <div className="base:hidden lg:block">
+                <FontAwesomeIcon icon={props.icon} size={`xs`} />
+            </div>
+            <div className="lg:hidden base:block">
+                <FontAwesomeIcon icon={props.icon} size={`sm`} />
+            </div>
         </button>
     );
 });
@@ -103,7 +111,7 @@ const HorizontalDropdownMenu = ({ icon, handler, editorRef }) => {
             </DropdownMenu.Trigger>
             <DropdownMenu.Portal>
                 <DropdownMenu.Content
-                    className="DropdownMenuContent shadow-lg"
+                    className="DropdownMenuContent shadow-lg relative z-20"
                     sideOffset={25}
                     side="right"
                 >
@@ -139,31 +147,20 @@ const HorizontalDropdownMenu = ({ icon, handler, editorRef }) => {
 const VerticalSwitch = ({ header, icon, dispatcher }) => {
     const dispatch = useDispatch();
     const state = useSelector((state) => state[header]);
-
-    //  console.log(state, "toggle state <===");
-
     const handleToggle = (value) => {
-        // console.log("in hjandle toggle?");
         if (value !== state) {
-            // console.log("disaptched in handle");
             dispatch(dispatcher());
         }
-
-        //  console.log(val, state);
     };
-
-    // useEffect(() => {
-    //     console.log(state);
-    // }, [state]);
 
     return (
         <label
             htmlFor={"switch-toggle" + header}
-            className={`flex justify-center w-full transition cursor-pointer hover:bg-stone-100 active:bg-stone-200 h-[45px]`}
+            className={`flex justify-center base:h-[30px] lg:h-[45px] w-[45px] transition cursor-pointer hover:bg-stone-100 active:bg-stone-200`}
         >
             <div className="flex flex-col font-bold w-full  items-center flex justify-center">
                 <form>
-                    <div className="flex-col  w-full h-full items-center justify-center flex">
+                    <div className="flex-col  w-full h-full items-center base:pb-1 justify-center flex">
                         <div>
                             <FontAwesomeIcon icon={icon} size="xs" />
                         </div>
@@ -171,7 +168,7 @@ const VerticalSwitch = ({ header, icon, dispatcher }) => {
                         <Switch.Root
                             defaultChecked={state}
                             onCheckedChange={handleToggle}
-                            className="SwitchRoot transition "
+                            className="SwitchRoot transition base:-mt-1 lg:mt-0"
                             id={"switch-toggle" + header}
                         ></Switch.Root>
                     </div>
@@ -233,7 +230,7 @@ const HorizontalPopover = ({
                 <Popover.Content
                     side="right"
                     sideOffset={25}
-                    className="PopoverContent shadow-lg"
+                    className="PopoverContent shadow-lg relative z-20"
                 >
                     <div className="flex flex-col px-[5px] py-[9px]">
                         <p className="Text" style={{ marginBottom: 1 }}>
@@ -282,9 +279,9 @@ const HorizontalPopover = ({
                                             placeholder={placeholder}
                                             name="input-text"
                                             title=" "
-                                            className=" flex text-[13px] file:cursor-pointer file:text-[13px] hover:border-stone-300 items-center justify-center border-[1px] active:bg-stone-100 file:transition rounded-[0.4rem] transition
-                                                        file:mr-2.5 file:py-1 file:px-3 file:outline-none  file:text-xs file:h-[28px] file:border-[0px] file:rounded-none file:border-stone-100 file:text-stone-600
-                                                        h-[28px] file:bg-stone-100 file:rounded-[0.4rem] file:hover:bg-neutral-200 file:active:bg-stone-300 file:font-medium file:active:border-stone-400"
+                                            className=" flex text-[12px] file:cursor-pointer h-[28px] file:h-[28px] file:text-[13px] hover:border-stone-300 items-center justify-center border-[1px] active:bg-stone-100 file:transition rounded-[0.4rem] transition
+                                                        file:mr-2.5 file:py-1 file:px-3 file:outline-none  file:text-xs text-stone-600 file:h-[30px] file:border-[0px] file:rounded-none file:border-stone-100 file:text-stone-600
+                                                        h-[30px] file:bg-stone-100 file:rounded-[0.4rem] file:hover:bg-neutral-200 file:active:bg-stone-300 file:font-medium file:active:border-stone-400"
                                         />
                                         <Button
                                             type={"submit"}
@@ -334,51 +331,85 @@ const HorizontalPopover = ({
     );
 };
 
-const ButtonGroup = ({ elements, editorRef, data }) => {
+export const HamburgerAnimation = () => {
+    const dispatch = useDispatch();
+    const navBarExpanded = useSelector((state) => state.navBarExpanded);
+
+    const handleToggle = () => {
+        dispatch(setNavBarExpanded(navBarExpanded));
+    };
+    const line = `h-[3px] w-[15px] mb-0.5 rounded-[0.4rem] border-[1px] border-[black] bg-black transition ease transform duration-300`;
     return (
-        <div
-            className={`flex mb-2.5 rounded-xl border-stone-200 border-[1px] flex-col overflow-hidden`}
+        <button
+            className="flex flex-col h-4 w-4 justify-center items-center group"
+            onClick={handleToggle}
         >
-            {Object.values(elements).map((element, index) => {
-                return element.type === "dropdown" ? (
-                    <div key={"bgd" + index}>
-                        <HorizontalDropdownMenu
-                            handler={element.func}
-                            editorRef={editorRef}
+            <div
+                className={`${line} ${
+                    navBarExpanded && "rotate-45 translate-y-[5px]"
+                }`}
+            />
+            <div className={`${line} ${navBarExpanded && "opacity-0"}`} />
+            <div
+                className={`${line} ${
+                    navBarExpanded && "-rotate-45 -translate-y-[5px] "
+                }`}
+            />
+        </button>
+    );
+};
+
+const ButtonGroup = ({ elements, editorRef, data, noMargin }) => {
+    return (
+        <div className="lg:flex base:w-fit base:justify-end lg:justify-center">
+            <div
+                className={`flex ${
+                    noMargin ? "mb-0" : "mb-2.5"
+                } rounded-xl lg:w-[88%] base:w-full border-stone-200 ${
+                    !noMargin && "border-[1px]"
+                } base:flex-row lg:flex-col justify-center items-center overflow-hidden`}
+            >
+                {Object.values(elements).map((element, index) => {
+                    return element.type === "dropdown" ? (
+                        <div key={"bgd" + index}>
+                            <HorizontalDropdownMenu
+                                handler={element.func}
+                                editorRef={editorRef}
+                                icon={element.icon}
+                            />
+                        </div>
+                    ) : element.type === "switch" ? (
+                        <VerticalSwitch
+                            key={"bgs" + index}
                             icon={element.icon}
+                            header={element.symbol}
+                            dispatcher={element.dispatcher}
                         />
-                    </div>
-                ) : element.type === "switch" ? (
-                    <VerticalSwitch
-                        key={"bgs" + index}
-                        icon={element.icon}
-                        header={element.symbol}
-                        dispatcher={element.dispatcher}
-                    />
-                ) : element.type === "popover" ? (
-                    <HorizontalPopover
-                        key={"bgh" + index}
-                        icon={element.icon}
-                        description={element.description}
-                        symbol={element.symbol}
-                        placeholder={element.placeholder}
-                        data={data ? data : ""}
-                        handler={element.func}
-                        fetcher={element.fetcher}
-                        editorRef={editorRef}
-                    />
-                ) : (
-                    <Button
-                        editorRef={editorRef}
-                        key={"bgb" + index}
-                        icon={element.icon}
-                        index={index}
-                        data={data ? data : ""}
-                        handler={element.func}
-                        symbol={element.symbol}
-                    />
-                );
-            })}
+                    ) : element.type === "popover" ? (
+                        <HorizontalPopover
+                            key={"bgh" + index}
+                            icon={element.icon}
+                            description={element.description}
+                            symbol={element.symbol}
+                            placeholder={element.placeholder}
+                            data={data ? data : ""}
+                            handler={element.func}
+                            fetcher={element.fetcher}
+                            editorRef={editorRef}
+                        />
+                    ) : (
+                        <Button
+                            editorRef={editorRef}
+                            key={"bgb" + index}
+                            icon={element.icon}
+                            index={index}
+                            data={data ? data : ""}
+                            handler={element.func}
+                            symbol={element.symbol}
+                        />
+                    );
+                })}
+            </div>
         </div>
     );
 };

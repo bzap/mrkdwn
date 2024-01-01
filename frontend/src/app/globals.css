@@ -54,6 +54,14 @@ tr {
     word-wrap: break-word; /* Internet Explorer 5.5+ */
 }
 
+.hide-scrollbar {
+    -ms-overflow-style: none; /* Internet Explorer 10+ */
+    scrollbar-width: none; /* Firefox */
+}
+.hide-scrollbar::-webkit-scrollbar {
+    display: none; /* Safari and Chrome */
+}
+
 .cm-editor {
     flex: 1;
     height: 100%;
@@ -132,13 +140,13 @@ tr {
 
 .ScrollAreaThumb {
     flex: 1;
-    background: var(--mauve-10);
+    background: #78716c;
     border-radius: var(--scrollbar-size);
     position: relative;
 }
 
 .ScrollAreaThumb:hover {
-    background: red;
+    background: #a8a29e;
 }
 /* increase target size for touch devices https://www.w3.org/WAI/WCAG21/Understanding/target-size.html */
 .ScrollAreaThumb::before {
@@ -392,7 +400,7 @@ tr {
     font-size: 13px;
     line-height: 24px;
     color: black;
-    height: 28px;
+    height: 30px;
 }
 .Input:focus {
     border: 1px solid #d6d3d1;
@@ -530,6 +538,16 @@ tr {
     display: flex;
     width: 100%;
     overflow-x: auto;
+}
+
+.feature-wrapper {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 200ms;
+}
+
+.feature-wrapper-open {
+    grid-template-rows: 1fr;
 }
 
 @keyframes overlayShow {

@@ -1,17 +1,19 @@
-import { CustomComponents } from "@/app/interface/CustomComponents";
-import { InsertionFeatureGroup } from "@/components/workspace/navbar/buttons/ButtonGroups";
-import { TextStyleGroup } from "@/components/workspace/navbar/buttons/ButtonGroups";
-import { FileOperationGroup } from "@/components/workspace/navbar/buttons/ButtonGroups";
-import { CustomizationGroup } from "@/components/workspace/navbar/buttons/ButtonGroups";
-import { InfoGroup } from "@/components/workspace/navbar/buttons/ButtonGroups";
+import { CustomComponents } from "@/components/interface/CustomComponents";
+import {
+    InsertionFeatureGroup,
+    TextStyleGroup,
+    FileOperationGroup,
+    CustomizationGroup,
+    InfoGroup,
+} from "./ButtonGroups";
 import { useSelector } from "react-redux";
 
-const TextFeatureContainer = ({ editorRef }) => {
+const FeatureContainer = ({ editorRef }) => {
     const markdownText = useSelector((state) => state.markdownText);
 
     return (
-        <div className="flex-col flex mt-8 justify-between w-full px-2.5 h-full">
-            <div>
+        <div className="flex-col flex lg:mt-0 lg:pt-4 base:justify-end lg:justify-between lg:pb-0 lg:h-auto">
+            <div className="base:hidden lg:block">
                 <CustomComponents.ButtonGroup
                     elements={FileOperationGroup}
                     editorRef={editorRef}
@@ -28,7 +30,7 @@ const TextFeatureContainer = ({ editorRef }) => {
                     editorRef={editorRef}
                 />
             </div>
-            <div>
+            <div className="base:flex lg:block base:justify-end lg:justify-center base:gap-2.5 lg:gap-0">
                 <CustomComponents.ButtonGroup
                     elements={CustomizationGroup}
                     editorRef={editorRef}
@@ -42,4 +44,4 @@ const TextFeatureContainer = ({ editorRef }) => {
     );
 };
 
-export default TextFeatureContainer;
+export default FeatureContainer;
