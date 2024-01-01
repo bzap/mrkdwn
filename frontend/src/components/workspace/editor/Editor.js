@@ -43,8 +43,8 @@ const Editor = ({ editorRef }) => {
 
     return (
         <div
-            className={`md:w-full lg:w-6/12 border-stone-200 border-[1px] rounded-2xl overflow-hidden border-solid flex 
-            ${!editorVisible && "md:hidden lg:flex"}`}
+            className={`base:w-full lg:w-6/12 border-stone-200 border-[1px] rounded-2xl overflow-hidden border-solid flex 
+            ${!editorVisible && "base:hidden lg:flex"}`}
         >
             <ScrollArea.Root className="ScrollAreaRoot w-full h-full flex py-1">
                 <ScrollArea.Viewport

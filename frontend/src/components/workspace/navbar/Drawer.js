@@ -14,7 +14,7 @@ const Drawer = ({ editorRef }) => {
         dispatch(setNavBarExpanded(navBarExpanded));
     };
     return (
-        <div className="flex flex-col lg:px-0 md:mt-0 lg:mt-5 lg:justify-center lg:items-center lg:hidden">
+        <div className="flex flex-col lg:px-0 base:mt-0 lg:mt-5 lg:justify-center lg:items-center lg:hidden">
             <FontAwesomeIcon
                 onClick={handleToggle}
                 className="cursor-pointer"

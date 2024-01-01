@@ -53,7 +53,7 @@ const Button = ({
             ${
                 fitted
                     ? "h-[30px] rounded-md border-stone-200 border-[1px] bg-stone-100 rounded-[0.4rem] hover:bg-stone-200 active:bg-stone-300"
-                    : "md:h-[30px] lg:h-[45px] w-[45px] hover:bg-stone-100 active:bg-stone-300"
+                    : "base:h-[30px] lg:h-[45px] w-[45px] hover:bg-stone-100 active:bg-stone-300"
             } flex`}
         >
             <div
@@ -85,7 +85,7 @@ const TriggerButton = forwardRef((props, forwardedRef) => {
         <button
             {...props}
             ref={forwardedRef}
-            className={`text-black select-none outline-none items-center transition justify-center md:h-[30px] lg:h-[45px] w-[45px] flex hover:bg-stone-100 active:bg-stone-200`}
+            className={`text-black select-none outline-none items-center transition justify-center base:h-[30px] lg:h-[45px] w-[45px] flex hover:bg-stone-100 active:bg-stone-200`}
         >
             <FontAwesomeIcon icon={props.icon} size="xs" />
         </button>
@@ -159,11 +159,11 @@ const VerticalSwitch = ({ header, icon, dispatcher }) => {
     return (
         <label
             htmlFor={"switch-toggle" + header}
-            className={`flex justify-center md:h-[30px] lg:h-[45px] w-[45px] transition cursor-pointer hover:bg-stone-100 active:bg-stone-200`}
+            className={`flex justify-center base:h-[30px] lg:h-[45px] w-[45px] transition cursor-pointer hover:bg-stone-100 active:bg-stone-200`}
         >
             <div className="flex flex-col font-bold w-full  items-center flex justify-center">
                 <form>
-                    <div className="flex-col  w-full h-full items-center md:pb-1 justify-center flex">
+                    <div className="flex-col  w-full h-full items-center base:pb-1 justify-center flex">
                         <div>
                             <FontAwesomeIcon icon={icon} size="xs" />
                         </div>
@@ -171,7 +171,7 @@ const VerticalSwitch = ({ header, icon, dispatcher }) => {
                         <Switch.Root
                             defaultChecked={state}
                             onCheckedChange={handleToggle}
-                            className="SwitchRoot transition md:-mt-1 lg:mt-0"
+                            className="SwitchRoot transition base:-mt-1 lg:mt-0"
                             id={"switch-toggle" + header}
                         ></Switch.Root>
                     </div>
@@ -336,13 +336,13 @@ const HorizontalPopover = ({
 
 const ButtonGroup = ({ elements, editorRef, data, noMargin }) => {
     return (
-        <div className="lg:flex md:w-fit justify-center">
+        <div className="lg:flex base:w-fit justify-center">
             <div
                 className={`flex ${
                     noMargin ? "mb-0" : "mb-2.5"
-                } rounded-xl lg:w-[88%] md:w-full border-stone-200 ${
+                } rounded-xl lg:w-[88%] base:w-full border-stone-200 ${
                     !noMargin && "border-[1px]"
-                } md:flex-row lg:flex-col justify-center items-center overflow-hidden`}
+                } base:flex-row lg:flex-col justify-center items-center overflow-hidden`}
             >
                 {Object.values(elements).map((element, index) => {
                     return element.type === "dropdown" ? (
