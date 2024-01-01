@@ -140,13 +140,13 @@ tr {
 
 .ScrollAreaThumb {
     flex: 1;
-    background: var(--mauve-10);
+    background: #78716c;
     border-radius: var(--scrollbar-size);
     position: relative;
 }
 
 .ScrollAreaThumb:hover {
-    background: red;
+    background: #a8a29e;
 }
 /* increase target size for touch devices https://www.w3.org/WAI/WCAG21/Understanding/target-size.html */
 .ScrollAreaThumb::before {
