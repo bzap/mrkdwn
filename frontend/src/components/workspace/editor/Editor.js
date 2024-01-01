@@ -17,7 +17,7 @@ import { defaultIntro } from "@/data/DefaultIntro";
 const Editor = ({ editorRef, scrollRef }) => {
     const dispatch = useDispatch();
     const handleDispatch = (query) => {
-        rIC(dispatch, setMarkdownText(query));
+        dispatch(setMarkdownText(query));
     };
     const debouncedDispatch = useCallback(debounce(handleDispatch, 400), []);
 

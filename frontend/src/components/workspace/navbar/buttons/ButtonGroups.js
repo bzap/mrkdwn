@@ -1,7 +1,6 @@
 import {
     downloadFile,
     uploadFile,
-    saveFile,
     newFile,
 } from "@/components/workspace/navbar/buttons/BackendButtonHandlers";
 import {
@@ -43,6 +42,7 @@ import {
     faArrowsUpDown,
     faEye,
 } from "@fortawesome/free-solid-svg-icons";
+import { setScrollSynced } from "../../../../lib/reducers/markdownSlice";
 
 export const FileOperationGroup = {
     newFile: {
@@ -150,21 +150,18 @@ export const InsertionFeatureGroup = {
 export const CustomizationGroup = {
     save: {
         icon: faFloppyDisk,
-        func: saveFile,
         symbol: "saveState",
         type: "switch",
         dispatcher: setSaveState,
     },
     scroll: {
         icon: faArrowsDownToLine,
-        func: saveFile,
-        symbol: "saveState",
+        symbol: "scrollSynced",
         type: "switch",
-        dispatcher: setSaveState,
+        dispatcher: setScrollSynced,
     },
     theme: {
         icon: faMoon,
-        func: saveFile,
         symbol: "darkMode",
         type: "switch",
         dispatcher: setDarkMode,

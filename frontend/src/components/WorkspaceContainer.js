@@ -12,6 +12,8 @@ const WorkspaceContainer = () => {
     const firstDivRef = useRef();
     const secondDivRef = useRef();
 
+    const scrollSynced = useSelector((state) => state.scrollSynced);
+
     const handleScroll = (e) => {
         if (e.target.pastRef.current) {
             // Remove the second panel so that it doesn't loop
@@ -24,26 +26,31 @@ const WorkspaceContainer = () => {
             window.requestAnimationFrame(() => {
                 e.target.pastRef.current.addEventListener(
                     "scroll",
-                    handleScroll
+                    handleScroll,
+                    {
+                        passive: true,
+                    }
                 );
             });
         }
     };
 
     useEffect(() => {
-        if (firstDivRef.current) {
-            firstDivRef.current.addEventListener("scroll", handleScroll, {
-                passive: true,
-            });
-            firstDivRef.current.currentRef = firstDivRef;
-            firstDivRef.current.pastRef = secondDivRef;
-        }
-        if (secondDivRef.current) {
-            secondDivRef.current.addEventListener("scroll", handleScroll, {
-                passive: true,
-            });
-            secondDivRef.current.currentRef = secondDivRef;
-            secondDivRef.current.pastRef = firstDivRef;
+        if (scrollSynced) {
+            if (firstDivRef.current) {
+                firstDivRef.current.addEventListener("scroll", handleScroll, {
+                    passive: true,
+                });
+                firstDivRef.current.currentRef = firstDivRef;
+                firstDivRef.current.pastRef = secondDivRef;
+            }
+            if (secondDivRef.current) {
+                secondDivRef.current.addEventListener("scroll", handleScroll, {
+                    passive: true,
+                });
+                secondDivRef.current.currentRef = secondDivRef;
+                secondDivRef.current.pastRef = firstDivRef;
+            }
         }
         return () => {
             if (secondDivRef.current) {
@@ -56,7 +63,7 @@ const WorkspaceContainer = () => {
                 firstDivRef.current.removeEventListener("scroll", handleScroll);
             }
         };
-    }, [firstDivRef, secondDivRef]);
+    }, [firstDivRef, secondDivRef, scrollSynced]);
 
     return (
         <div className="flex base:flex-col lg:flex-row w-full h-full justify-center base:p-2 lg:p-0  max-w-full">

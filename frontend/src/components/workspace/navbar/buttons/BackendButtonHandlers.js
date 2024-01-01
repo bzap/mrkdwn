@@ -105,13 +105,3 @@ export const newFile = (ref, symbol, markdownData, e, dispatch) => {
         },
     });
 };
-
-export const saveFile = (ref, symbol, markdownData, e, dispatch) => {
-    // dipsatch the data to redux here
-    // and set the state while ur at too
-    let dispatchData = {
-        markdownData: markdownData,
-    };
-
-    console.log(markdownData);
-};
