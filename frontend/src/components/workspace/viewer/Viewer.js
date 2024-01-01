@@ -3,7 +3,7 @@ import * as ScrollArea from "@radix-ui/react-scroll-area";
 import StatPanel from "./StatPanel";
 import { useSelector } from "react-redux";
 
-const Viewer = ({ editorRef, handleScroll, scrollRef }) => {
+const Viewer = ({ editorRef, scrollRef }) => {
     const editorVisible = useSelector((state) => state.editorVisible);
 
     return (
@@ -18,7 +18,6 @@ const Viewer = ({ editorRef, handleScroll, scrollRef }) => {
             <ScrollArea.Root className="ScrollAreaRoot w-full h-full relative py-1 ">
                 <ScrollArea.Viewport
                     ref={scrollRef}
-                    // onScroll={handleScroll}
                     id="scroll-viewport-viewer"
                     className="ScrollAreaViewport pb-2 h-auto"
                 >

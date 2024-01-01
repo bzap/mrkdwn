@@ -14,7 +14,7 @@ import { xcodeGrayscale } from "@/components/interface/CustomSyntaxTheme";
 import { UpdateStateListener } from "./UpdateStateListener";
 import { defaultIntro } from "@/data/DefaultIntro";
 
-const Editor = ({ editorRef, handleScroll, scrollRef }) => {
+const Editor = ({ editorRef, scrollRef }) => {
     const dispatch = useDispatch();
     const handleDispatch = (query) => {
         rIC(dispatch, setMarkdownText(query));
@@ -49,8 +49,6 @@ const Editor = ({ editorRef, handleScroll, scrollRef }) => {
             <ScrollArea.Root className="ScrollAreaRoot w-full h-full flex py-1">
                 <ScrollArea.Viewport
                     ref={scrollRef}
-                    // onScroll={handleScroll}
-                    // onScroll={() => console.log("wha")}
                     id="scroll-viewport-editor"
                     className="ScrollAreaViewport h-full flex pb-2"
                 >
