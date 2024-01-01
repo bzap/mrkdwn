@@ -4,7 +4,7 @@ import StatPanel from "./StatPanel";
 
 const Viewer = ({ editorRef }) => {
     return (
-        <div className="flex flex-col w-6/12 border-stone-200 border-[1px] rounded-2xl max-w-6/12 overflow-hidden border-solid relative ">
+        <div className=" flex-col w-6/12 border-stone-200 border-[1px] rounded-2xl max-w-6/12 overflow-hidden border-solid relative md:hidden lg:flex">
             {/* <div className="hover-scroll w-full h-full overflow-y-scroll p-8">
                 <HTMLContent />
             </div> */}
