@@ -14,10 +14,10 @@ import { xcodeGrayscale } from "@/components/interface/CustomSyntaxTheme";
 import { UpdateStateListener } from "./UpdateStateListener";
 import { defaultIntro } from "@/data/DefaultIntro";
 
-const Editor = ({ editorRef }) => {
+const Editor = ({ editorRef, scrollRef }) => {
     const dispatch = useDispatch();
     const handleDispatch = (query) => {
-        rIC(dispatch, setMarkdownText(query));
+        dispatch(setMarkdownText(query));
     };
     const debouncedDispatch = useCallback(debounce(handleDispatch, 400), []);
 
@@ -48,7 +48,8 @@ const Editor = ({ editorRef }) => {
         >
             <ScrollArea.Root className="ScrollAreaRoot w-full h-full flex py-1">
                 <ScrollArea.Viewport
-                    id="scroll-viewport"
+                    ref={scrollRef}
+                    id="scroll-viewport-editor"
                     className="ScrollAreaViewport h-full flex pb-2"
                 >
                     <CodeMirror

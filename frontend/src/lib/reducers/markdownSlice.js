@@ -8,6 +8,7 @@ const initialState = {
     isFetching: false,
     navBarExpanded: false,
     editorVisible: true,
+    scrollSynced: false,
 };
 
 export const markdownSlice = createSlice({
@@ -19,11 +20,10 @@ export const markdownSlice = createSlice({
             console.log("dispatched");
         },
 
-        setSaveState: (state, action) => {
+        setSaveState: (state) => {
             state.saveState = !state.saveState;
-            console.log(state.saveState, "dispatched");
         },
-        setDarkMode: (state, action) => {
+        setDarkMode: (state) => {
             state.darkMode = !state.darkMode;
         },
         setInitState: (state, action) => {
@@ -35,8 +35,11 @@ export const markdownSlice = createSlice({
         setNavBarExpanded: (state, action) => {
             state.navBarExpanded = !action.payload;
         },
-        setEditorVisible: (state, action) => {
+        setEditorVisible: (state) => {
             state.editorVisible = !state.editorVisible;
+        },
+        setScrollSynced: (state) => {
+            state.scrollSynced = !state.scrollSynced;
         },
     },
 });
@@ -49,5 +52,6 @@ export const {
     setIsFetching,
     setNavBarExpanded,
     setEditorVisible,
+    setScrollSynced,
 } = markdownSlice.actions;
 export default markdownSlice.reducer;
