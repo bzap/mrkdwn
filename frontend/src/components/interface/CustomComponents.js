@@ -52,7 +52,7 @@ const Button = ({
             className={`text-black select-none outline-none items-center transition justify-center
             ${
                 fitted
-                    ? "h-[28px] rounded-md border-stone-200 border-[1px] bg-stone-100 rounded-[0.4rem] hover:bg-stone-200 active:bg-stone-300"
+                    ? "h-[30px] rounded-md border-stone-200 border-[1px] bg-stone-100 rounded-[0.4rem] hover:bg-stone-200 active:bg-stone-300"
                     : "md:h-[30px] lg:h-[45px] w-[45px] hover:bg-stone-100 active:bg-stone-300"
             } flex`}
         >
@@ -283,8 +283,8 @@ const HorizontalPopover = ({
                                             name="input-text"
                                             title=" "
                                             className=" flex text-[13px] file:cursor-pointer file:text-[13px] hover:border-stone-300 items-center justify-center border-[1px] active:bg-stone-100 file:transition rounded-[0.4rem] transition
-                                                        file:mr-2.5 file:py-1 file:px-3 file:outline-none  file:text-xs file:h-[28px] file:border-[0px] file:rounded-none file:border-stone-100 file:text-stone-600
-                                                        h-[28px] file:bg-stone-100 file:rounded-[0.4rem] file:hover:bg-neutral-200 file:active:bg-stone-300 file:font-medium file:active:border-stone-400"
+                                                        file:mr-2.5 file:py-1 file:px-3 file:outline-none  file:text-xs file:h-[30px] file:border-[0px] file:rounded-none file:border-stone-100 file:text-stone-600
+                                                        h-[30px] file:bg-stone-100 file:rounded-[0.4rem] file:hover:bg-neutral-200 file:active:bg-stone-300 file:font-medium file:active:border-stone-400"
                                         />
                                         <Button
                                             type={"submit"}
@@ -334,11 +334,15 @@ const HorizontalPopover = ({
     );
 };
 
-const ButtonGroup = ({ elements, editorRef, data }) => {
+const ButtonGroup = ({ elements, editorRef, data, noMargin }) => {
     return (
         <div className="lg:flex md:w-fit justify-center">
             <div
-                className={`flex mb-2.5 rounded-xl lg:w-[88%] md:w-full border-stone-200 border-[1px] md:flex-row lg:flex-col justify-center items-center overflow-hidden`}
+                className={`flex ${
+                    noMargin ? "mb-0" : "mb-2.5"
+                } rounded-xl lg:w-[88%] md:w-full border-stone-200 ${
+                    !noMargin && "border-[1px]"
+                } md:flex-row lg:flex-col justify-center items-center overflow-hidden`}
             >
                 {Object.values(elements).map((element, index) => {
                     return element.type === "dropdown" ? (

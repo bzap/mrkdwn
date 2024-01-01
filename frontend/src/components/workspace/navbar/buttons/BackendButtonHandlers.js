@@ -23,7 +23,6 @@ export const downloadFile = async (
     }
 
     dispatch(setIsFetching(true));
-    console.log(setIsFetching);
     setTimeout(() => {
         fetch(`/api/writeFile`, {
             method: "POST",
@@ -54,7 +53,7 @@ export const downloadFile = async (
                     dispatch(setIsFetching(false));
                 });
         });
-    }, 1000);
+    }, 10);
 };
 
 export const uploadFile = async (

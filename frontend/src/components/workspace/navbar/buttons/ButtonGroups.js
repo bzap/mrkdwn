@@ -9,8 +9,13 @@ import {
     createTable,
     insertText,
     insertList,
+    toggleVisibility,
 } from "@/components/workspace/navbar/buttons/ButtonHandlers";
-import { setDarkMode, setSaveState } from "@/lib/reducers/markdownSlice";
+import {
+    setDarkMode,
+    setEditorVisible,
+    setSaveState,
+} from "@/lib/reducers/markdownSlice";
 import {
     faArrowUp,
     faArrowDown,
@@ -36,6 +41,7 @@ import {
     faArrowsDownToLine,
     faDownLeftAndUpRightToCenter,
     faArrowsUpDown,
+    faEye,
 } from "@fortawesome/free-solid-svg-icons";
 
 export const FileOperationGroup = {
@@ -170,5 +176,15 @@ export const InfoGroup = {
         icon: faQuestion,
         func: updateText,
         symbol: "**",
+    },
+};
+
+export const VisibilityGroup = {
+    settings: {
+        icon: faEye,
+        func: toggleVisibility,
+        type: "switch",
+        symbol: "visiblity",
+        dispatcher: setEditorVisible,
     },
 };

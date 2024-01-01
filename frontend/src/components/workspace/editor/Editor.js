@@ -9,11 +9,10 @@ import { EditorView } from "@codemirror/view";
 import debounce from "lodash.debounce";
 import { useCallback } from "react";
 import * as ScrollArea from "@radix-ui/react-scroll-area";
-import { EditorViewTheme } from "../../../app/interface/EditorViewTheme";
-import { xcodeGrayscale } from "@/app/interface/CustomSyntaxTheme";
+import { EditorViewTheme } from "../../interface/EditorViewTheme";
+import { xcodeGrayscale } from "@/components/interface/CustomSyntaxTheme";
 import { UpdateStateListener } from "./UpdateStateListener";
-import { defaultIntro } from "@/components/workspace/editor/DefaultIntro";
-import { Marko_One } from "next/font/google";
+import { defaultIntro } from "@/data/DefaultIntro";
 
 const Editor = ({ editorRef }) => {
     const dispatch = useDispatch();
@@ -25,6 +24,8 @@ const Editor = ({ editorRef }) => {
     const markdownText = useSelector((state) => state.markdownText);
     const initState = useSelector((state) => state.initState);
     const saveState = useSelector((state) => state.saveState);
+
+    const editorVisible = useSelector((state) => state.editorVisible);
 
     useEffect(() => {
         let cmContainer = document.getElementById("cm-container");
@@ -41,7 +42,10 @@ const Editor = ({ editorRef }) => {
     }, []);
 
     return (
-        <div className="flex md:w-full lg:w-6/12 border-stone-200 border-[1px] rounded-2xl overflow-hidden border-solid">
+        <div
+            className={`md:w-full lg:w-6/12 border-stone-200 border-[1px] rounded-2xl overflow-hidden border-solid flex 
+            ${!editorVisible && "md:hidden lg:flex"}`}
+        >
             <ScrollArea.Root className="ScrollAreaRoot w-full h-full flex py-1">
                 <ScrollArea.Viewport
                     id="scroll-viewport"

@@ -7,6 +7,10 @@ import { useSelector } from "react-redux";
 
 const WorkspaceContainer = () => {
     const editorRef = useRef();
+
+    // useEffect(() => {
+    //     console.log(editorVisible);
+    // }, [editorVisible]);
     // const navBarExpanded = useSelector((state) => state.navBarExpanded);
     return (
         <div className="flex md:flex-col lg:flex-row w-full h-full justify-center md:p-2  max-w-full">
@@ -17,6 +21,10 @@ const WorkspaceContainer = () => {
                 <Editor editorRef={editorRef} />
                 <Viewer editorRef={editorRef} />
             </div>
+            {/* <div className="flex relative md:z-0 lg:z-10 w-full md:w-full lg:max-w-[96%]  md:h-[calc(100vh_-_1rem)] md:pt-[3rem] lg:mt-0 lg:h-[96%]  lg:max-h-screen relative lg:min-h-screen lg:p-4 gap-3 md:hidden">
+                <Editor editorRef={editorRef} />
+                <Viewer editorRef={editorRef} />
+            </div> */}
         </div>
     );
 };

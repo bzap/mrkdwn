@@ -1,5 +1,6 @@
 import { EditorSelection } from "@uiw/react-codemirror";
 import { cursorDocEnd, insertNewlineAndIndent } from "@codemirror/commands";
+import { setEditorVisible } from "@/lib/reducers/markdownSlice";
 
 const dispatchState = (viewState, from, to, highlighted, symbol, baseCase) => {
     switch (symbol) {
@@ -370,4 +371,8 @@ export const updateText = (ref, symbol) => {
                 break;
         }
     }
+};
+
+export const toggleVisibility = (ref, symbol, data, e, dispatch) => {
+    dispatch(setEditorVisible());
 };

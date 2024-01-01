@@ -7,6 +7,7 @@ const initialState = {
     initState: true,
     isFetching: false,
     navBarExpanded: false,
+    editorVisible: true,
 };
 
 export const markdownSlice = createSlice({
@@ -34,6 +35,9 @@ export const markdownSlice = createSlice({
         setNavBarExpanded: (state, action) => {
             state.navBarExpanded = !action.payload;
         },
+        setEditorVisible: (state, action) => {
+            state.editorVisible = !state.editorVisible;
+        },
     },
 });
 
@@ -44,5 +48,6 @@ export const {
     setInitState,
     setIsFetching,
     setNavBarExpanded,
+    setEditorVisible,
 } = markdownSlice.actions;
 export default markdownSlice.reducer;
