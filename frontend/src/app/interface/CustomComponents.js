@@ -53,8 +53,8 @@ const Button = ({
             ${
                 fitted
                     ? "h-[28px] rounded-md border-stone-200 border-[1px] bg-stone-100 rounded-[0.4rem] hover:bg-stone-200 active:bg-stone-300"
-                    : "h-[45px] w-[45px] hover:bg-stone-100 active:bg-stone-300"
-            } flex p-3`}
+                    : "md:h-[30px] lg:h-[45px] w-[45px] hover:bg-stone-100 active:bg-stone-300"
+            } flex`}
         >
             <div
                 className={`${
@@ -85,7 +85,7 @@ const TriggerButton = forwardRef((props, forwardedRef) => {
         <button
             {...props}
             ref={forwardedRef}
-            className={`text-black select-none outline-none items-center transition justify-center w-[45px] h-[45px] flex p-3 hover:bg-stone-100 active:bg-stone-200`}
+            className={`text-black select-none outline-none items-center transition justify-center md:h-[30px] lg:h-[45px] w-[45px] flex hover:bg-stone-100 active:bg-stone-200`}
         >
             <FontAwesomeIcon icon={props.icon} size="xs" />
         </button>
@@ -159,11 +159,11 @@ const VerticalSwitch = ({ header, icon, dispatcher }) => {
     return (
         <label
             htmlFor={"switch-toggle" + header}
-            className={`flex justify-center w-[45px] transition cursor-pointer hover:bg-stone-100 active:bg-stone-200 h-[45px]`}
+            className={`flex justify-center md:h-[30px] lg:h-[45px] w-[45px] transition cursor-pointer hover:bg-stone-100 active:bg-stone-200`}
         >
             <div className="flex flex-col font-bold w-full  items-center flex justify-center">
                 <form>
-                    <div className="flex-col  w-full h-full items-center justify-center flex">
+                    <div className="flex-col  w-full h-full items-center md:pb-1 justify-center flex">
                         <div>
                             <FontAwesomeIcon icon={icon} size="xs" />
                         </div>
@@ -171,7 +171,7 @@ const VerticalSwitch = ({ header, icon, dispatcher }) => {
                         <Switch.Root
                             defaultChecked={state}
                             onCheckedChange={handleToggle}
-                            className="SwitchRoot transition "
+                            className="SwitchRoot transition md:-mt-1 lg:mt-0"
                             id={"switch-toggle" + header}
                         ></Switch.Root>
                     </div>
@@ -336,49 +336,51 @@ const HorizontalPopover = ({
 
 const ButtonGroup = ({ elements, editorRef, data }) => {
     return (
-        <div
-            className={`flex mb-2.5 rounded-xl border-stone-200 border-[1px] md:flex-row lg:flex-col justify-center items-center overflow-hidden`}
-        >
-            {Object.values(elements).map((element, index) => {
-                return element.type === "dropdown" ? (
-                    <div key={"bgd" + index}>
-                        <HorizontalDropdownMenu
-                            handler={element.func}
-                            editorRef={editorRef}
+        <div className="lg:flex md:w-fit justify-center">
+            <div
+                className={`flex mb-2.5 rounded-xl lg:w-[88%] md:w-full border-stone-200 border-[1px] md:flex-row lg:flex-col justify-center items-center overflow-hidden`}
+            >
+                {Object.values(elements).map((element, index) => {
+                    return element.type === "dropdown" ? (
+                        <div key={"bgd" + index}>
+                            <HorizontalDropdownMenu
+                                handler={element.func}
+                                editorRef={editorRef}
+                                icon={element.icon}
+                            />
+                        </div>
+                    ) : element.type === "switch" ? (
+                        <VerticalSwitch
+                            key={"bgs" + index}
                             icon={element.icon}
+                            header={element.symbol}
+                            dispatcher={element.dispatcher}
                         />
-                    </div>
-                ) : element.type === "switch" ? (
-                    <VerticalSwitch
-                        key={"bgs" + index}
-                        icon={element.icon}
-                        header={element.symbol}
-                        dispatcher={element.dispatcher}
-                    />
-                ) : element.type === "popover" ? (
-                    <HorizontalPopover
-                        key={"bgh" + index}
-                        icon={element.icon}
-                        description={element.description}
-                        symbol={element.symbol}
-                        placeholder={element.placeholder}
-                        data={data ? data : ""}
-                        handler={element.func}
-                        fetcher={element.fetcher}
-                        editorRef={editorRef}
-                    />
-                ) : (
-                    <Button
-                        editorRef={editorRef}
-                        key={"bgb" + index}
-                        icon={element.icon}
-                        index={index}
-                        data={data ? data : ""}
-                        handler={element.func}
-                        symbol={element.symbol}
-                    />
-                );
-            })}
+                    ) : element.type === "popover" ? (
+                        <HorizontalPopover
+                            key={"bgh" + index}
+                            icon={element.icon}
+                            description={element.description}
+                            symbol={element.symbol}
+                            placeholder={element.placeholder}
+                            data={data ? data : ""}
+                            handler={element.func}
+                            fetcher={element.fetcher}
+                            editorRef={editorRef}
+                        />
+                    ) : (
+                        <Button
+                            editorRef={editorRef}
+                            key={"bgb" + index}
+                            icon={element.icon}
+                            index={index}
+                            data={data ? data : ""}
+                            handler={element.func}
+                            symbol={element.symbol}
+                        />
+                    );
+                })}
+            </div>
         </div>
     );
 };

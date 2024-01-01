@@ -6,6 +6,7 @@ const initialState = {
     darkMode: false,
     initState: true,
     isFetching: false,
+    navBarExpanded: false,
 };
 
 export const markdownSlice = createSlice({
@@ -30,6 +31,9 @@ export const markdownSlice = createSlice({
         setIsFetching: (state, action) => {
             state.isFetching = action.payload;
         },
+        setNavBarExpanded: (state, action) => {
+            state.navBarExpanded = !action.payload;
+        },
     },
 });
 
@@ -39,5 +43,6 @@ export const {
     setDarkMode,
     setInitState,
     setIsFetching,
+    setNavBarExpanded,
 } = markdownSlice.actions;
 export default markdownSlice.reducer;

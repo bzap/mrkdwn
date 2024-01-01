@@ -532,6 +532,16 @@ tr {
     overflow-x: auto;
 }
 
+.feature-wrapper {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 200ms;
+}
+
+.feature-wrapper-open {
+    grid-template-rows: 1fr;
+}
+
 @keyframes overlayShow {
     from {
         opacity: 0;
