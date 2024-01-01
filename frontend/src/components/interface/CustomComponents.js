@@ -10,6 +10,7 @@ import {
     faRightToBracket,
     faCircleNotch,
 } from "@fortawesome/free-solid-svg-icons";
+import { setNavBarExpanded } from "../../lib/reducers/markdownSlice";
 // import {
 //     faHighlighter,
 //     faTableCellsLarge,
@@ -52,7 +53,7 @@ const Button = ({
             className={`text-black select-none outline-none items-center transition justify-center
             ${
                 fitted
-                    ? "h-[30px] rounded-md border-stone-200 border-[1px] bg-stone-100 rounded-[0.4rem] hover:bg-stone-200 active:bg-stone-300"
+                    ? "h-[30px] w-[40px] rounded-md border-stone-200 border-[1px] bg-stone-100 rounded-[0.4rem] hover:bg-stone-200 active:bg-stone-300"
                     : "base:h-[30px] lg:h-[45px] w-[45px] hover:bg-stone-100 active:bg-stone-300"
             } flex`}
         >
@@ -61,10 +62,12 @@ const Button = ({
                     isFetching && fetcher && "animate-spin transition"
                 } `}
             >
-                <FontAwesomeIcon
-                    icon={isFetching && fetcher ? faCircleNotch : icon}
-                    size="xs"
-                />
+                <div className="base:hidden lg:block">
+                    <FontAwesomeIcon icon={icon} size={`xs`} />
+                </div>
+                <div className="lg:hidden base:block">
+                    <FontAwesomeIcon icon={icon} size={`sm`} />
+                </div>
             </div>
 
             {text && (
@@ -87,7 +90,12 @@ const TriggerButton = forwardRef((props, forwardedRef) => {
             ref={forwardedRef}
             className={`text-black select-none outline-none items-center transition justify-center base:h-[30px] lg:h-[45px] w-[45px] flex hover:bg-stone-100 active:bg-stone-200`}
         >
-            <FontAwesomeIcon icon={props.icon} size="xs" />
+            <div className="base:hidden lg:block">
+                <FontAwesomeIcon icon={props.icon} size={`xs`} />
+            </div>
+            <div className="lg:hidden base:block">
+                <FontAwesomeIcon icon={props.icon} size={`sm`} />
+            </div>
         </button>
     );
 });
@@ -103,7 +111,7 @@ const HorizontalDropdownMenu = ({ icon, handler, editorRef }) => {
             </DropdownMenu.Trigger>
             <DropdownMenu.Portal>
                 <DropdownMenu.Content
-                    className="DropdownMenuContent shadow-lg"
+                    className="DropdownMenuContent shadow-lg relative z-20"
                     sideOffset={25}
                     side="right"
                 >
@@ -139,22 +147,11 @@ const HorizontalDropdownMenu = ({ icon, handler, editorRef }) => {
 const VerticalSwitch = ({ header, icon, dispatcher }) => {
     const dispatch = useDispatch();
     const state = useSelector((state) => state[header]);
-
-    //  console.log(state, "toggle state <===");
-
     const handleToggle = (value) => {
-        // console.log("in hjandle toggle?");
         if (value !== state) {
-            // console.log("disaptched in handle");
             dispatch(dispatcher());
         }
-
-        //  console.log(val, state);
     };
-
-    // useEffect(() => {
-    //     console.log(state);
-    // }, [state]);
 
     return (
         <label
@@ -233,7 +230,7 @@ const HorizontalPopover = ({
                 <Popover.Content
                     side="right"
                     sideOffset={25}
-                    className="PopoverContent shadow-lg"
+                    className="PopoverContent shadow-lg relative z-20"
                 >
                     <div className="flex flex-col px-[5px] py-[9px]">
                         <p className="Text" style={{ marginBottom: 1 }}>
@@ -282,8 +279,8 @@ const HorizontalPopover = ({
                                             placeholder={placeholder}
                                             name="input-text"
                                             title=" "
-                                            className=" flex text-[13px] file:cursor-pointer file:text-[13px] hover:border-stone-300 items-center justify-center border-[1px] active:bg-stone-100 file:transition rounded-[0.4rem] transition
-                                                        file:mr-2.5 file:py-1 file:px-3 file:outline-none  file:text-xs file:h-[30px] file:border-[0px] file:rounded-none file:border-stone-100 file:text-stone-600
+                                            className=" flex text-[12px] file:cursor-pointer h-[28px] file:h-[28px] file:text-[13px] hover:border-stone-300 items-center justify-center border-[1px] active:bg-stone-100 file:transition rounded-[0.4rem] transition
+                                                        file:mr-2.5 file:py-1 file:px-3 file:outline-none  file:text-xs text-stone-600 file:h-[30px] file:border-[0px] file:rounded-none file:border-stone-100 file:text-stone-600
                                                         h-[30px] file:bg-stone-100 file:rounded-[0.4rem] file:hover:bg-neutral-200 file:active:bg-stone-300 file:font-medium file:active:border-stone-400"
                                         />
                                         <Button
@@ -331,6 +328,34 @@ const HorizontalPopover = ({
                 </Popover.Content>
             </Popover.Portal>
         </Popover.Root>
+    );
+};
+
+export const HamburgerAnimation = () => {
+    const dispatch = useDispatch();
+    const navBarExpanded = useSelector((state) => state.navBarExpanded);
+
+    const handleToggle = () => {
+        dispatch(setNavBarExpanded(navBarExpanded));
+    };
+    const line = `h-[3px] w-[15px] mb-0.5 rounded-[0.4rem] border-[1px] border-[black] bg-black transition ease transform duration-300`;
+    return (
+        <button
+            className="flex flex-col h-4 w-4 justify-center items-center group"
+            onClick={handleToggle}
+        >
+            <div
+                className={`${line} ${
+                    navBarExpanded && "rotate-45 translate-y-[5px]"
+                }`}
+            />
+            <div className={`${line} ${navBarExpanded && "opacity-0"}`} />
+            <div
+                className={`${line} ${
+                    navBarExpanded && "-rotate-45 -translate-y-[5px] "
+                }`}
+            />
+        </button>
     );
 };
 
