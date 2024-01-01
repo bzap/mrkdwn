@@ -22,16 +22,15 @@ const NavBar = ({ editorRef }) => {
                 </div>
             </div>
             <div
-                className={`feature-wrapper lg:h-full base:px-5 lg:justify-center lg:flex lg:px-0 ${
+                className={`feature-wrapper lg:h-full base:px-5 lg:justify-center base:justify-end lg:flex lg:px-0 ${
                     navBarExpanded &&
                     "feature-wrapper-open rounded-xl shadow-sm"
                 }`}
             >
                 <div
-                    className={`base:overflow-hidden lg:overflow-visible lg:flex lg-min-h-full lg:h-full`}
+                    className={`base:overflow-hidden lg:overflow-visible lg:flex  lg-min-h-full lg:h-full`}
                 >
                     <div className="bg-stone-100 h-[1px] w-full flex mb-3 justify-center px-5 lg:hidden" />
-
                     <FeatureContainer editorRef={editorRef} />
                 </div>
             </div>

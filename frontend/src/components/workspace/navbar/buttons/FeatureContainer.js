@@ -20,7 +20,6 @@ const FeatureContainer = ({ editorRef }) => {
                     data={markdownText}
                 />
             </div>
-
             <div>
                 <CustomComponents.ButtonGroup
                     elements={TextStyleGroup}
@@ -31,7 +30,7 @@ const FeatureContainer = ({ editorRef }) => {
                     editorRef={editorRef}
                 />
             </div>
-            <div>
+            <div className="base:flex lg:block base:justify-end lg:justify-center base:gap-2.5 lg:gap-0">
                 <CustomComponents.ButtonGroup
                     elements={CustomizationGroup}
                     editorRef={editorRef}

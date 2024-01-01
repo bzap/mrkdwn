@@ -361,7 +361,7 @@ export const HamburgerAnimation = () => {
 
 const ButtonGroup = ({ elements, editorRef, data, noMargin }) => {
     return (
-        <div className="lg:flex base:w-fit justify-center">
+        <div className="lg:flex base:w-fit base:justify-end lg:justify-center">
             <div
                 className={`flex ${
                     noMargin ? "mb-0" : "mb-2.5"
