@@ -111,10 +111,10 @@ module.exports = {
                             "font-weight": "normal",
                         },
                         "code::before": {
-                            content: '""',
+                            content: "",
                         },
                         "code::after": {
-                            content: '""',
+                            content: "",
                         },
                         pre: {
                             "background-color": "#f5f5f4",
@@ -173,8 +173,35 @@ module.exports = {
                         li: {
                             color: "#CECFD0",
                         },
+                        h1: {
+                            "padding-bottom": "8px",
+                            "border-bottom-width": "1px",
+                            "border-color": "#737373",
+                        },
+                        h2: {
+                            "padding-bottom": "8px",
+                            "border-bottom-width": "1px",
+                            "border-color": "#737373",
+                        },
+                        h3: {
+                            "padding-bottom": "8px",
+                            "border-bottom-width": "1px",
+                            "border-color": "#737373",
+                        },
+                        h4: {
+                            "padding-bottom": "8px",
+                            "border-bottom-width": "1px",
+                            "border-color": "#737373",
+                        },
+                        h5: {
+                            "padding-bottom": "8px",
+                            "border-bottom-width": "1px",
+                            "border-color": "#737373",
+                        },
                         h6: {
                             color: "#CECFD0",
+                            "padding-bottom": "8px",
+                            "border-bottom-width": "1px",
                         },
                         a: {
                             color: "#a5b4fc",
@@ -208,10 +235,10 @@ module.exports = {
                             "font-weight": "normal",
                         },
                         "code::before": {
-                            content: '""',
+                            content: "",
                         },
                         "code::after": {
-                            content: '""',
+                            content: "",
                         },
                         pre: {
                             "background-color": "#52525b",
