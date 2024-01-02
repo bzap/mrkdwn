@@ -36,6 +36,7 @@ module.exports = {
             typography: {
                 DEFAULT: {
                     css: {
+                        fontSize: "14px",
                         "--tw-prose-body": "black",
                         "--tw-prose-headings": "black",
                         "--tw-prose-bold": "black",
@@ -47,6 +48,7 @@ module.exports = {
                         "--tw-prose-captions": "#CECFD0",
                         lineHeight: "1.1rem",
                         color: "black",
+
                         h1: {
                             "padding-bottom": "8px",
                             "border-bottom-width": "1px",
@@ -145,6 +147,7 @@ module.exports = {
                 },
                 dark: {
                     css: {
+                        fontSize: "14px",
                         "--tw-prose-body": "#CECFD0",
                         "--tw-prose-headings": "#CECFD0",
                         "--tw-prose-bold": "#CECFD0",
