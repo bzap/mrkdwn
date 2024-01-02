@@ -42,6 +42,7 @@ module.exports = {
                         "--tw-prose-th-borders": "#e7e5e4",
                         "--tw-prose-td-borders": "#e7e5e4",
                         "--tw-prose-captions": "#CECFD0",
+                        lineHeight: "1.1rem",
                         color: "black",
                         p: {
                             "word-break": "break-words",
@@ -51,6 +52,21 @@ module.exports = {
                         },
                         "a:hover": {
                             color: "#818cf8",
+                        },
+                        ul: {
+                            lineHeight: "1.1rem",
+                        },
+                        ol: {
+                            lineHeight: "1.1rem",
+                        },
+                        mark: {
+                            "background-color": "#d1fae5",
+                            padding: "5px",
+                            "border-radius": "5px",
+                            color: "black",
+                        },
+                        input: {
+                            margin: "0",
                         },
                         code: {
                             color: "black",
@@ -104,9 +120,16 @@ module.exports = {
                         "--tw-prose-pre-bg": "#CECFD0",
                         "--tw-prose-th-borders": "#CECFD0",
                         "--tw-prose-td-borders": "#CECFD0",
+                        lineHeight: "1.1rem",
                         p: {
                             color: "#CECFD0",
                             "word-break": "break-words",
+                        },
+                        ul: {
+                            lineHeight: "1.1rem",
+                        },
+                        ol: {
+                            lineHeight: "1.1rem",
                         },
                         li: {
                             color: "#CECFD0",
@@ -116,6 +139,15 @@ module.exports = {
                         },
                         a: {
                             color: "#a5b4fc",
+                        },
+                        mark: {
+                            "background-color": "#0f766e",
+                            padding: "5px",
+                            "border-radius": "5px",
+                            color: "#CECFD0",
+                        },
+                        input: {
+                            margin: "0",
                         },
                         "a:hover": {
                             color: "#c7d2fe",
@@ -152,6 +184,7 @@ module.exports = {
                         td: {
                             color: "#CECFD0",
                         },
+
                         // table: {
                         //     display: "block",
                         //     width: "100%",

@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import * as Switch from "@radix-ui/react-switch";
 import { setIsFetching } from "@/lib/reducers/markdownSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faRightToBracket } from "@fortawesome/free-solid-svg-icons";
+import { faRightToBracket, faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { setNavBarExpanded } from "@/lib/reducers/markdownSlice";
 // import {
 //     faHighlighter,
@@ -67,7 +67,7 @@ const Button = ({
             >
                 <div className="base:hidden lg:block transition">
                     <FontAwesomeIcon
-                        icon={icon}
+                        icon={isFetching && fetcher ? faSpinner : icon}
                         size={`xs`}
                         color={`${darkMode && "#cecfd0"}`}
                     />
@@ -75,7 +75,7 @@ const Button = ({
                 <div className="lg:hidden base:block">
                     <FontAwesomeIcon
                         color={`${darkMode && "#cecfd0"}`}
-                        icon={icon}
+                        icon={isFetching && fetcher ? faSpinner : icon}
                         size={`sm`}
                     />
                 </div>
