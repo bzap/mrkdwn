@@ -354,7 +354,7 @@ const HorizontalPopover = ({
                                             className={`
                                             ${
                                                 darkMode
-                                                    ? "text-[#CECFD0] bg-zinc-600 border-zinc-500 hover:border-zinc-400 file:bg-zinc-400 file:text-zinc-200 hover:file:bg-zinc-400"
+                                                    ? "text-zinc-400 bg-zinc-600 border-zinc-500 hover:border-zinc-400 file:bg-zinc-400 file:text-zinc-200 hover:file:bg-zinc-400"
                                                     : "file:hover:bg-neutral-200"
                                             }
                                             flex text-[12px] file:cursor-pointer h-[28px] file:h-[28px] file:text-[13px] hover:border-stone-300 items-center justify-center border-[1px] active:bg-stone-100 file:transition rounded-[0.4rem] transition
