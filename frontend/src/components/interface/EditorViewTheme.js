@@ -3,11 +3,12 @@ import { EditorView } from "@codemirror/view";
 export const EditorViewTheme = EditorView.theme({
     ".cm-content": {
         height: "100%",
-        fontSize: "14px",
+        fontSize: "13px",
+        fontFamily: "inherit",
+        fontWeight: "500",
     },
     ".cm-gutters": {
         borderWidth: "0px",
-
         backgroundColor: "white",
     },
     ".cm-gutterElement": {

@@ -7,6 +7,9 @@ module.exports = {
     ],
     darkMode: "class",
     theme: {
+        fontFamily: {
+            mono: ["var(--font-fira-code)"],
+        },
         screens: {
             base: "0px",
             sm: "640px",
@@ -44,6 +47,30 @@ module.exports = {
                         "--tw-prose-captions": "#CECFD0",
                         lineHeight: "1.1rem",
                         color: "black",
+                        h1: {
+                            "padding-bottom": "8px",
+                            "border-bottom-width": "1px",
+                        },
+                        h2: {
+                            "padding-bottom": "8px",
+                            "border-bottom-width": "1px",
+                        },
+                        h3: {
+                            "padding-bottom": "8px",
+                            "border-bottom-width": "1px",
+                        },
+                        h4: {
+                            "padding-bottom": "8px",
+                            "border-bottom-width": "1px",
+                        },
+                        h5: {
+                            "padding-bottom": "8px",
+                            "border-bottom-width": "1px",
+                        },
+                        h6: {
+                            "padding-bottom": "8px",
+                            "border-bottom-width": "1px",
+                        },
                         p: {
                             "word-break": "break-words",
                         },
@@ -60,8 +87,12 @@ module.exports = {
                             lineHeight: "1.1rem",
                         },
                         mark: {
-                            "background-color": "#d1fae5",
-                            padding: "5px",
+                            "background-color": "#ecfdf5",
+                            "padding-left": "6px",
+                            "padding-right": "6px",
+                            "padding-top": "2px",
+                            "padding-bottom": "2px",
+                            lineHeight: "1.8rem",
                             "border-radius": "5px",
                             color: "black",
                         },
@@ -70,8 +101,12 @@ module.exports = {
                         },
                         code: {
                             color: "black",
-                            padding: "6px",
+                            "padding-left": "6px",
+                            "padding-right": "6px",
+                            "padding-top": "2px",
+                            "padding-bottom": "2px",
                             "border-radius": "5px",
+                            lineHeight: "1.8rem",
                             "background-color": "#f5f5f4",
                             "font-weight": "normal",
                         },
@@ -90,6 +125,10 @@ module.exports = {
                             "font-weight": "normal",
                             color: "#78716c",
                             borderLeftColor: "#d6d3d1",
+                        },
+                        table: {
+                            margin: "5px",
+                            // lineHeight: "1.1rem",
                         },
                         "blockquote p:first-of-type::before": {
                             content: "none",
@@ -118,8 +157,8 @@ module.exports = {
                         "--tw-prose-code": "#CECFD0",
                         "--tw-prose-pre-code": "#CECFD0",
                         "--tw-prose-pre-bg": "#CECFD0",
-                        "--tw-prose-th-borders": "#CECFD0",
-                        "--tw-prose-td-borders": "#CECFD0",
+                        "--tw-prose-th-borders": "#737373",
+                        "--tw-prose-td-borders": "#737373",
                         lineHeight: "1.1rem",
                         p: {
                             color: "#CECFD0",
@@ -142,7 +181,11 @@ module.exports = {
                         },
                         mark: {
                             "background-color": "#0f766e",
-                            padding: "5px",
+                            "padding-left": "6px",
+                            "padding-right": "6px",
+                            "padding-top": "2px",
+                            "padding-bottom": "2px",
+                            lineHeight: "1.8rem",
                             "border-radius": "5px",
                             color: "#CECFD0",
                         },
@@ -154,7 +197,12 @@ module.exports = {
                         },
                         code: {
                             color: "#CECFD0",
-                            padding: "6px",
+                            "padding-left": "6px",
+                            "padding-right": "2px",
+                            "padding-top": "2px",
+                            "padding-bottom": "2px",
+                            "border-radius": "5px",
+                            lineHeight: "1.8rem",
                             "border-radius": "5px",
                             "background-color": "#52525b",
                             "font-weight": "normal",
