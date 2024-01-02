@@ -5,29 +5,35 @@ import { useSelector } from "react-redux";
 
 const Viewer = ({ editorRef, scrollRef }) => {
     const editorVisible = useSelector((state) => state.editorVisible);
-
+    const darkMode = useSelector((state) => state.darkMode);
     return (
         <div
-            className={`flex-col base:w-full lg:w-6/12 border-stone-200 border-[1px] rounded-2xl max-w-6/12 overflow-hidden border-solid relative ${
+            className={`flex-col base:w-full lg:w-6/12 border-stone-200 border-[1px] dark:border-zinc-700 rounded-2xl max-w-6/12 overflow-hidden border-solid relative ${
                 editorVisible && "base:hidden lg:flex"
             }`}
         >
             {/* <div className="hover-scroll w-full h-full overflow-y-scroll p-8">
                 <HTMLContent />
             </div> */}
-            <ScrollArea.Root className="ScrollAreaRoot w-full h-full relative py-1 ">
+            <ScrollArea.Root className="ScrollAreaRoot w-full h-full relative py-1 dark:bg-zinc-800">
                 <ScrollArea.Viewport
                     ref={scrollRef}
                     id="scroll-viewport-viewer"
-                    className="ScrollAreaViewport pb-2 h-auto"
+                    className="ScrollAreaViewport pb-2 h-auto dark:bg-zinc-800"
                 >
                     <HTMLContent editorRef={editorRef} />
                 </ScrollArea.Viewport>
                 <ScrollArea.Scrollbar
-                    className="ScrollAreaScrollbar"
+                    className={`ScrollAreaScrollbar`}
                     orientation="vertical"
                 >
-                    <ScrollArea.Thumb className="ScrollAreaThumb" />
+                    <ScrollArea.Thumb
+                        className={`${
+                            darkMode
+                                ? "ScrollAreaThumb-Dark"
+                                : "ScrollAreaThumb"
+                        } `}
+                    />
                 </ScrollArea.Scrollbar>
                 <ScrollArea.Corner className="ScrollAreaCorner" />
             </ScrollArea.Root>

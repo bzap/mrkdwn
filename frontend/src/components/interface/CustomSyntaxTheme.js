@@ -36,4 +36,36 @@ export function xcodeGrayscaleInit(options) {
     });
 }
 
+export const defaultSettingsDark = {
+    background: "#27272a",
+    foreground: "#CECFD0",
+    caret: "#fff",
+    selection: "#52525b",
+    selectionMatch: "#52525b",
+    lineHighlight: "#ffffff0f",
+};
+
+export const xcodeGrayscaleDarkInit = (options) => {
+    const { theme = "dark", settings = {}, styles = [] } = options || {};
+    return createTheme({
+        theme: theme,
+        settings: {
+            ...defaultSettingsDark,
+            ...settings,
+        },
+        styles: [
+            { tag: [t.comment, t.quote], color: "#7F8C98" },
+            { tag: [t.keyword], color: "#FF7AB2", fontWeight: "bold" },
+            { tag: [t.string, t.meta], color: "#f472b6" },
+            { tag: [t.typeName], color: "#DABAFF" },
+            { tag: [t.definition(t.variableName)], color: "#6BDFFF" },
+            { tag: [t.name], color: "#6BAA9F" },
+            { tag: [t.variableName], color: "#ACF2E4" },
+            { tag: [t.regexp, t.link], color: "#a5b4fc" },
+            ...styles,
+        ],
+    });
+};
+
 export const xcodeGrayscale = xcodeGrayscaleInit();
+export const xcodeGrayscaleDark = xcodeGrayscaleDarkInit();

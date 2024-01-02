@@ -11,7 +11,7 @@ const NavBar = ({ editorRef }) => {
     // ${navBarExpanded && "max-h-[300px]"}`}
     return (
         <div
-            className={`hide-scrollbar base:absolute lg:relative lg:flex z-1 w-full lg:flex-col border-stone-200 border-[1px] bg-white rounded-xl transition-all overflow-scroll
+            className={`hide-scrollbar base:absolute lg:relative lg:flex z-1 w-full lg:flex-col border-stone-200 dark:border-zinc-700 border-[1px] bg-white dark:bg-zinc-800 rounded-xl transition-all overflow-scroll
             `}
         >
             <div className="flex w-full base:justify-between lg:justify-center base:px-5 items-center base:min-h-10 lg:min-h-container  select-none">
@@ -30,7 +30,7 @@ const NavBar = ({ editorRef }) => {
                 <div
                     className={`base:overflow-hidden lg:overflow-visible lg:flex  lg-min-h-full lg:h-full`}
                 >
-                    <div className="bg-stone-100 h-[1px] w-full flex mb-3 justify-center px-5 lg:hidden" />
+                    <div className="bg-stone-100 dark:bg-zinc-700 h-[1px] w-full flex mb-3 justify-center px-5 lg:hidden" />
                     <FeatureContainer editorRef={editorRef} />
                 </div>
             </div>

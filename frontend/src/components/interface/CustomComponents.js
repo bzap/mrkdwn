@@ -1,16 +1,13 @@
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
-import { useState, forwardRef, useEffect } from "react";
+import { useState, forwardRef } from "react";
 import * as Popover from "@radix-ui/react-popover";
 import { Cross2Icon } from "@radix-ui/react-icons";
 import { useDispatch, useSelector } from "react-redux";
 import * as Switch from "@radix-ui/react-switch";
 import { setIsFetching } from "@/lib/reducers/markdownSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-    faRightToBracket,
-    faCircleNotch,
-} from "@fortawesome/free-solid-svg-icons";
-import { setNavBarExpanded } from "../../lib/reducers/markdownSlice";
+import { faRightToBracket } from "@fortawesome/free-solid-svg-icons";
+import { setNavBarExpanded } from "@/lib/reducers/markdownSlice";
 // import {
 //     faHighlighter,
 //     faTableCellsLarge,
@@ -31,6 +28,7 @@ const Button = ({
 }) => {
     const dispatch = useDispatch();
     const isFetching = useSelector((state) => state.isFetching);
+    const darkMode = useSelector((state) => state.darkMode);
     const onClick = (e) => {
         if (type !== "submit") {
             if (symbol === "new" && data.length > 0) {
@@ -52,9 +50,14 @@ const Button = ({
             onClick={onClick}
             className={`text-black select-none outline-none items-center transition justify-center
             ${
+                fitted &&
+                darkMode &&
+                "bg-zinc-600 hover:bg-zinc-500 border-zinc-600 active:bg-zinc-400"
+            }
+            ${
                 fitted
-                    ? "h-[30px] w-[40px] rounded-md border-stone-200 border-[1px] bg-stone-100 rounded-[0.4rem] hover:bg-stone-200 active:bg-stone-300"
-                    : "base:h-[30px] lg:h-[45px] w-[45px] hover:bg-stone-100 active:bg-stone-300"
+                    ? "h-[30px] w-[40px] rounded-md border-stone-200 border-[1px] bg-stone-100 rounded-[0.4rem] dark:hover:bg-zinc-600 dark:active:bg-zinc-700 hover:bg-stone-200 active:bg-stone-300"
+                    : "base:h-[30px] lg:h-[45px] w-[45px] hover:bg-stone-100 dark:hover:bg-zinc-600 dark:active:bg-zinc-700 active:bg-stone-300"
             } flex`}
         >
             <div
@@ -62,11 +65,19 @@ const Button = ({
                     isFetching && fetcher && "animate-spin transition"
                 } `}
             >
-                <div className="base:hidden lg:block">
-                    <FontAwesomeIcon icon={icon} size={`xs`} />
+                <div className="base:hidden lg:block transition">
+                    <FontAwesomeIcon
+                        icon={icon}
+                        size={`xs`}
+                        color={`${darkMode && "#cecfd0"}`}
+                    />
                 </div>
                 <div className="lg:hidden base:block">
-                    <FontAwesomeIcon icon={icon} size={`sm`} />
+                    <FontAwesomeIcon
+                        color={`${darkMode && "#cecfd0"}`}
+                        icon={icon}
+                        size={`sm`}
+                    />
                 </div>
             </div>
 
@@ -84,17 +95,26 @@ const Button = ({
 };
 
 const TriggerButton = forwardRef((props, forwardedRef) => {
+    const darkMode = useSelector((state) => state.darkMode);
     return (
         <button
             {...props}
             ref={forwardedRef}
-            className={`text-black select-none outline-none items-center transition justify-center base:h-[30px] lg:h-[45px] w-[45px] flex hover:bg-stone-100 active:bg-stone-200`}
+            className={`text-black select-none outline-none items-center transition justify-center base:h-[30px] lg:h-[45px] w-[45px] dark:hover:bg-zinc-600 dark:active:bg-zinc-700 flex hover:bg-stone-100 active:bg-stone-200`}
         >
-            <div className="base:hidden lg:block">
-                <FontAwesomeIcon icon={props.icon} size={`xs`} />
+            <div className="base:hidden lg:block transition">
+                <FontAwesomeIcon
+                    color={`${darkMode && "#cecfd0"}`}
+                    icon={props.icon}
+                    size={`xs`}
+                />
             </div>
-            <div className="lg:hidden base:block">
-                <FontAwesomeIcon icon={props.icon} size={`sm`} />
+            <div className="lg:hidden base:block transition">
+                <FontAwesomeIcon
+                    color={`${darkMode && "#cecfd0"}`}
+                    icon={props.icon}
+                    size={`sm`}
+                />
             </div>
         </button>
     );
@@ -104,6 +124,9 @@ const HorizontalDropdownMenu = ({ icon, handler, editorRef }) => {
     const onSelect = (e) => {
         handler(editorRef, e.target.getAttribute("value"));
     };
+    // need to use the selector because using the tw dark class doesnt seem to apply to the primitives
+    //#52525b
+    const darkMode = useSelector((state) => state.darkMode);
     return (
         <DropdownMenu.Root>
             <DropdownMenu.Trigger asChild>
@@ -111,33 +134,65 @@ const HorizontalDropdownMenu = ({ icon, handler, editorRef }) => {
             </DropdownMenu.Trigger>
             <DropdownMenu.Portal>
                 <DropdownMenu.Content
-                    className="DropdownMenuContent shadow-lg relative z-20"
+                    className={`${
+                        darkMode && "DropdownMenuContent-Dark"
+                    } DropdownMenuContent shadow-lg relative z-20 dark:bg-red-100 bg-red-200`}
                     sideOffset={25}
                     side="right"
                 >
                     <DropdownMenu.Item
                         onSelect={onSelect}
-                        className="DropdownMenuItem transition"
+                        className={`${
+                            darkMode && "DropdownMenuItem-Dark"
+                        } DropdownMenuItem transition `}
                         value={"- "}
                     >
-                        Unordered List <div className="RightSlot">- - -</div>
+                        Unordered List{" "}
+                        <div
+                            className={`${
+                                darkMode && "RightSlot-Dark"
+                            } RightSlot`}
+                        >
+                            - - -
+                        </div>
                     </DropdownMenu.Item>
                     <DropdownMenu.Item
                         onSelect={onSelect}
                         value={"1. "}
-                        className="DropdownMenuItem transition"
+                        className={`${
+                            darkMode && "DropdownMenuItem-Dark"
+                        } DropdownMenuItem transition `}
                     >
-                        Ordered List <div className="RightSlot">1. 2. 3.</div>
+                        Ordered List{" "}
+                        <div
+                            className={`${
+                                darkMode && "RightSlot-Dark"
+                            } RightSlot`}
+                        >
+                            1. 2. 3.
+                        </div>
                     </DropdownMenu.Item>
                     <DropdownMenu.Item
                         onSelect={onSelect}
                         value={"- [ ] "}
-                        className="DropdownMenuItem transition"
+                        className={`${
+                            darkMode && "DropdownMenuItem-Dark"
+                        } DropdownMenuItem transition `}
                     >
                         Task List
-                        <div className="RightSlot">{"- [ ] - [x]"}</div>
+                        <div
+                            className={`${
+                                darkMode && "RightSlot-Dark"
+                            } RightSlot`}
+                        >
+                            {"- [ ] - [x]"}
+                        </div>
                     </DropdownMenu.Item>
-                    <DropdownMenu.Arrow className="DropdownMenuArrow" />
+                    <DropdownMenu.Arrow
+                        className={`${
+                            darkMode && "DropdownMenuArrow-Dark"
+                        } DropdownMenuArrow`}
+                    />
                 </DropdownMenu.Content>
             </DropdownMenu.Portal>
         </DropdownMenu.Root>
@@ -145,6 +200,7 @@ const HorizontalDropdownMenu = ({ icon, handler, editorRef }) => {
 };
 
 const VerticalSwitch = ({ header, icon, dispatcher }) => {
+    const darkMode = useSelector((state) => state.darkMode);
     const dispatch = useDispatch();
     const state = useSelector((state) => state[header]);
     const handleToggle = (value) => {
@@ -156,19 +212,25 @@ const VerticalSwitch = ({ header, icon, dispatcher }) => {
     return (
         <label
             htmlFor={"switch-toggle" + header}
-            className={`flex justify-center base:h-[30px] lg:h-[45px] w-[45px] transition cursor-pointer hover:bg-stone-100 active:bg-stone-200`}
+            className={`flex justify-center base:h-[30px] lg:h-[45px] w-[45px] transition cursor-pointer hover:bg-stone-100 active:bg-stone-200 dark:hover:bg-zinc-600 dark:active:bg-zinc-700`}
         >
             <div className="flex flex-col font-bold w-full  items-center flex justify-center">
                 <form>
                     <div className="flex-col  w-full h-full items-center base:pb-1 justify-center flex">
-                        <div>
-                            <FontAwesomeIcon icon={icon} size="xs" />
+                        <div className="transition">
+                            <FontAwesomeIcon
+                                color={`${darkMode && "#cecfd0"}`}
+                                icon={icon}
+                                size="xs"
+                            />
                         </div>
 
                         <Switch.Root
                             defaultChecked={state}
                             onCheckedChange={handleToggle}
-                            className="SwitchRoot transition base:-mt-1 lg:mt-0"
+                            className={`${
+                                darkMode ? "SwitchRoot-Dark" : "SwitchRoot"
+                            } transition base:-mt-1 lg:mt-0`}
                             id={"switch-toggle" + header}
                         ></Switch.Root>
                     </div>
@@ -190,6 +252,7 @@ const HorizontalPopover = ({
 }) => {
     const [isOpen, setIsOpen] = useState(false);
     const dispatch = useDispatch();
+    const darkMode = useSelector((state) => state.darkMode);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -230,10 +293,15 @@ const HorizontalPopover = ({
                 <Popover.Content
                     side="right"
                     sideOffset={25}
-                    className="PopoverContent shadow-lg relative z-20"
+                    className={` ${
+                        darkMode && "PopoverContent-Dark"
+                    } PopoverContent shadow-lg relative z-20`}
                 >
                     <div className="flex flex-col px-[5px] py-[9px]">
-                        <p className="Text" style={{ marginBottom: 1 }}>
+                        <p
+                            className={`${darkMode && "Text-Dark"} Text`}
+                            style={{ marginBottom: 1 }}
+                        >
                             {description}
                         </p>
                         <form
@@ -245,7 +313,9 @@ const HorizontalPopover = ({
                                 <fieldset className="Fieldset">
                                     <div className={"flex gap-1"}>
                                         <input
-                                            className="Input max-w-[100px] transition hover:border-stone-300"
+                                            className={`${
+                                                darkMode && "Input-Dark"
+                                            } Input max-w-[100px] transition  dark:hover:border-stone-700`}
                                             id="row-num"
                                             name="row-num"
                                             autoComplete="off"
@@ -253,7 +323,9 @@ const HorizontalPopover = ({
                                             placeholder={placeholder[0]}
                                         />
                                         <input
-                                            className="Input max-w-[100px] transition hover:border-stone-300"
+                                            className={`${
+                                                darkMode && "Input-Dark"
+                                            } Input max-w-[100px] transition  dark:hover:border-stone-700`}
                                             id="col-num"
                                             autoComplete="off"
                                             name="col-num"
@@ -279,9 +351,15 @@ const HorizontalPopover = ({
                                             placeholder={placeholder}
                                             name="input-text"
                                             title=" "
-                                            className=" flex text-[12px] file:cursor-pointer h-[28px] file:h-[28px] file:text-[13px] hover:border-stone-300 items-center justify-center border-[1px] active:bg-stone-100 file:transition rounded-[0.4rem] transition
+                                            className={`
+                                            ${
+                                                darkMode
+                                                    ? "text-[#CECFD0] bg-zinc-600 border-zinc-500 hover:border-zinc-400 file:bg-zinc-400 file:text-zinc-200 hover:file:bg-zinc-400"
+                                                    : "file:hover:bg-neutral-200"
+                                            }
+                                            flex text-[12px] file:cursor-pointer h-[28px] file:h-[28px] file:text-[13px] hover:border-stone-300 items-center justify-center border-[1px] active:bg-stone-100 file:transition rounded-[0.4rem] transition
                                                         file:mr-2.5 file:py-1 file:px-3 file:outline-none  file:text-xs text-stone-600 file:h-[30px] file:border-[0px] file:rounded-none file:border-stone-100 file:text-stone-600
-                                                        h-[30px] file:bg-stone-100 file:rounded-[0.4rem] file:hover:bg-neutral-200 file:active:bg-stone-300 file:font-medium file:active:border-stone-400"
+                                                        h-[30px] file:bg-stone-100 file:rounded-[0.4rem]  file:active:bg-stone-300 file:font-medium file:active:border-stone-400`}
                                         />
                                         <Button
                                             type={"submit"}
@@ -298,7 +376,9 @@ const HorizontalPopover = ({
                                     <div className={`flex min-w-[300px] gap-1`}>
                                         <input
                                             autoComplete="off"
-                                            className="Input transition hover:border-stone-300"
+                                            className={`${
+                                                darkMode && "Input-Dark"
+                                            } Input transition  dark:hover:border-stone-700`}
                                             id="width"
                                             name="input-text"
                                             type="text"
@@ -319,12 +399,18 @@ const HorizontalPopover = ({
                         </form>
                     </div>
                     <Popover.Close
-                        className="PopoverClose transition"
+                        className={`${
+                            darkMode ? "PopoverClose-Dark" : "PopoverClose"
+                        }  transition`}
                         aria-label="Close"
                     >
                         <Cross2Icon />
                     </Popover.Close>
-                    <Popover.Arrow className="PopoverArrow" />
+                    <Popover.Arrow
+                        className={`${
+                            darkMode && "PopoverArrow-Dark"
+                        } PopoverArrow`}
+                    />
                 </Popover.Content>
             </Popover.Portal>
         </Popover.Root>
@@ -338,7 +424,7 @@ export const HamburgerAnimation = () => {
     const handleToggle = () => {
         dispatch(setNavBarExpanded(navBarExpanded));
     };
-    const line = `h-[3px] w-[15px] mb-0.5 rounded-[0.4rem] border-[1px] border-[black] bg-black transition ease transform duration-300`;
+    const line = `h-[3px] w-[15px] mb-0.5 rounded-[0.4rem] border-[1px] border-[black] bg-black dark:bg-[#CECFD0] dark:border-[#CECFD0] transition ease transform duration-300`;
     return (
         <button
             className="flex flex-col h-4 w-4 justify-center items-center group"
@@ -365,7 +451,7 @@ const ButtonGroup = ({ elements, editorRef, data, noMargin }) => {
             <div
                 className={`flex ${
                     noMargin ? "mb-0" : "mb-2.5"
-                } rounded-xl lg:w-[88%] base:w-full border-stone-200 ${
+                } rounded-xl lg:w-[88%] base:w-full border-stone-200 dark:border-zinc-700 ${
                     !noMargin && "border-[1px]"
                 } base:flex-row lg:flex-col justify-center items-center overflow-hidden`}
             >
