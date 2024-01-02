@@ -1,16 +1,18 @@
 "use client";
-import React, { useContext, useRef, useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import CodeMirror from "@uiw/react-codemirror";
 import { markdown } from "@codemirror/lang-markdown";
 import { useDispatch, useSelector } from "react-redux";
 import { setInitState, setMarkdownText } from "@/lib/reducers/markdownSlice";
-import { rIC } from "@/util/RICDispatch";
 import { EditorView } from "@codemirror/view";
 import debounce from "lodash.debounce";
 import { useCallback } from "react";
 import * as ScrollArea from "@radix-ui/react-scroll-area";
 import { EditorViewTheme } from "../../interface/EditorViewTheme";
-import { xcodeGrayscale } from "@/components/interface/CustomSyntaxTheme";
+import {
+    xcodeGrayscale,
+    xcodeGrayscaleDark,
+} from "@/components/interface/CustomSyntaxTheme";
 import { UpdateStateListener } from "./UpdateStateListener";
 import { defaultIntro } from "@/data/DefaultIntro";
 
@@ -26,6 +28,7 @@ const Editor = ({ editorRef, scrollRef }) => {
     const saveState = useSelector((state) => state.saveState);
 
     const editorVisible = useSelector((state) => state.editorVisible);
+    const darkMode = useSelector((state) => state.darkMode);
 
     useEffect(() => {
         let cmContainer = document.getElementById("cm-container");
@@ -43,19 +46,19 @@ const Editor = ({ editorRef, scrollRef }) => {
 
     return (
         <div
-            className={`base:w-full lg:w-6/12 border-stone-200 border-[1px] rounded-2xl overflow-hidden border-solid flex 
+            className={`base:w-full lg:w-6/12  transition-all border-stone-200 dark:border-zinc-700 border-[1px] rounded-2xl overflow-hidden border-solid flex 
             ${!editorVisible && "base:hidden lg:flex"}`}
         >
-            <ScrollArea.Root className="ScrollAreaRoot w-full h-full flex py-1">
+            <ScrollArea.Root className="ScrollAreaRoot w-full h-full flex">
                 <ScrollArea.Viewport
                     ref={scrollRef}
                     id="scroll-viewport-editor"
-                    className="ScrollAreaViewport h-full flex pb-2"
+                    className="ScrollAreaViewport h-full flex pb-2 dark:bg-zinc-800"
                 >
                     <CodeMirror
                         value={markdownText}
-                        theme={xcodeGrayscale}
-                        className="py-6 px-7 h-full h-auto min-h-full overflow-hidden"
+                        theme={darkMode ? xcodeGrayscaleDark : xcodeGrayscale}
+                        className="py-6 px-7 h-full h-auto min-h-full overflow-hidden "
                         id="cm-container"
                         ref={editorRef}
                         basicSetup={{
