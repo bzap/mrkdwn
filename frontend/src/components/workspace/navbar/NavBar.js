@@ -30,7 +30,7 @@ const NavBar = ({ editorRef }) => {
                 <div
                     className={`base:overflow-hidden lg:overflow-visible lg:flex  lg-min-h-full lg:h-full`}
                 >
-                    <div className="bg-stone-100 h-[1px] w-full flex mb-3 justify-center px-5 lg:hidden" />
+                    <div className="bg-stone-100 dark:bg-zinc-700 h-[1px] w-full flex mb-3 justify-center px-5 lg:hidden" />
                     <FeatureContainer editorRef={editorRef} />
                 </div>
             </div>

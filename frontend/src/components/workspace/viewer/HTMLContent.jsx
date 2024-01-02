@@ -18,11 +18,15 @@ const HTMLContent = ({ editorRef }) => {
         return self.renderToken(tokens, idx, options) + `</div>`;
     };
 
+    console.log(md.render(markdownText));
+
     //console.log(md.render(markdownText));
     return (
         <div className="w-1 min-w-full h-auto ">
             <article
-                className={"prose py-6 px-7 max-w-none break-words"}
+                className={
+                    "prose py-6 px-7 max-w-none break-words dark:!prose-dark"
+                }
                 dangerouslySetInnerHTML={{
                     __html: md.render(markdownText),
                 }}

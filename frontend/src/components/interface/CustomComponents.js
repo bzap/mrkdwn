@@ -7,7 +7,7 @@ import * as Switch from "@radix-ui/react-switch";
 import { setIsFetching } from "@/lib/reducers/markdownSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRightToBracket } from "@fortawesome/free-solid-svg-icons";
-import { setNavBarExpanded } from "../../lib/reducers/markdownSlice";
+import { setNavBarExpanded } from "@/lib/reducers/markdownSlice";
 // import {
 //     faHighlighter,
 //     faTableCellsLarge,
@@ -424,7 +424,7 @@ export const HamburgerAnimation = () => {
     const handleToggle = () => {
         dispatch(setNavBarExpanded(navBarExpanded));
     };
-    const line = `h-[3px] w-[15px] mb-0.5 rounded-[0.4rem] border-[1px] border-[black] bg-black transition ease transform duration-300`;
+    const line = `h-[3px] w-[15px] mb-0.5 rounded-[0.4rem] border-[1px] border-[black] bg-black dark:bg-[#CECFD0] dark:border-[#CECFD0] transition ease transform duration-300`;
     return (
         <button
             className="flex flex-col h-4 w-4 justify-center items-center group"

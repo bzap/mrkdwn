@@ -8,7 +8,10 @@ import { EditorView } from "@codemirror/view";
 import debounce from "lodash.debounce";
 import { useCallback } from "react";
 import * as ScrollArea from "@radix-ui/react-scroll-area";
-import { EditorViewTheme } from "../../interface/EditorViewTheme";
+import {
+    EditorViewTheme,
+    EditorViewDarkTheme,
+} from "../../interface/EditorViewTheme";
 import {
     xcodeGrayscale,
     xcodeGrayscaleDark,
@@ -49,7 +52,7 @@ const Editor = ({ editorRef, scrollRef }) => {
             className={`base:w-full lg:w-6/12  transition-all border-stone-200 dark:border-zinc-700 border-[1px] rounded-2xl overflow-hidden border-solid flex 
             ${!editorVisible && "base:hidden lg:flex"}`}
         >
-            <ScrollArea.Root className="ScrollAreaRoot w-full h-full flex">
+            <ScrollArea.Root className="ScrollAreaRoot w-full h-full flex py-1 dark:bg-zinc-800">
                 <ScrollArea.Viewport
                     ref={scrollRef}
                     id="scroll-viewport-editor"
@@ -68,7 +71,7 @@ const Editor = ({ editorRef, scrollRef }) => {
                         extensions={[
                             markdown({ highlightFormatting: true }),
                             EditorView.lineWrapping,
-                            EditorViewTheme,
+                            darkMode ? EditorViewDarkTheme : EditorViewTheme,
                             UpdateStateListener,
                         ]}
                     />
