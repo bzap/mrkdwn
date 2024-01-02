@@ -16,7 +16,7 @@ const WorkspaceContainer = () => {
     const scrollSynced = useSelector((state) => state.scrollSynced);
 
     const handleScroll = (e) => {
-        if (e.target.pastRef.current) {
+        if (e.target.pastRef) {
             // Remove the second panel so that it doesn't loop
             e.target.pastRef.current.removeEventListener(
                 "scroll",

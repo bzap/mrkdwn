@@ -140,14 +140,26 @@ tr {
 
 .ScrollAreaThumb {
     flex: 1;
-    background: #78716c;
+    background: #d6d3d1;
     border-radius: var(--scrollbar-size);
     position: relative;
 }
 
 .ScrollAreaThumb:hover {
-    background: #a8a29e;
+    background: #e7e5e4;
 }
+
+.ScrollAreaThumb-Dark {
+    flex: 1;
+    background: #52525b;
+    border-radius: var(--scrollbar-size);
+    position: relative;
+}
+
+.ScrollAreaThumb-Dark:hover {
+    background: #71717a;
+}
+
 /* increase target size for touch devices https://www.w3.org/WAI/WCAG21/Understanding/target-size.html */
 .ScrollAreaThumb::before {
     content: "";

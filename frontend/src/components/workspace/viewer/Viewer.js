@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 
 const Viewer = ({ editorRef, scrollRef }) => {
     const editorVisible = useSelector((state) => state.editorVisible);
-
+    const darkMode = useSelector((state) => state.darkMode);
     return (
         <div
             className={`flex-col base:w-full lg:w-6/12 border-stone-200 border-[1px] dark:border-zinc-700 rounded-2xl max-w-6/12 overflow-hidden border-solid relative ${
@@ -24,10 +24,16 @@ const Viewer = ({ editorRef, scrollRef }) => {
                     <HTMLContent editorRef={editorRef} />
                 </ScrollArea.Viewport>
                 <ScrollArea.Scrollbar
-                    className="ScrollAreaScrollbar"
+                    className={`ScrollAreaScrollbar`}
                     orientation="vertical"
                 >
-                    <ScrollArea.Thumb className="ScrollAreaThumb" />
+                    <ScrollArea.Thumb
+                        className={`${
+                            darkMode
+                                ? "ScrollAreaThumb-Dark"
+                                : "ScrollAreaThumb"
+                        } `}
+                    />
                 </ScrollArea.Scrollbar>
                 <ScrollArea.Corner className="ScrollAreaCorner" />
             </ScrollArea.Root>

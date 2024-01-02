@@ -80,7 +80,13 @@ const Editor = ({ editorRef, scrollRef }) => {
                     className="ScrollAreaScrollbar"
                     orientation="vertical"
                 >
-                    <ScrollArea.Thumb className="ScrollAreaThumb" />
+                    <ScrollArea.Thumb
+                        className={`${
+                            darkMode
+                                ? "ScrollAreaThumb-Dark"
+                                : "ScrollAreaThumb"
+                        } `}
+                    />
                 </ScrollArea.Scrollbar>
                 <ScrollArea.Corner className="ScrollAreaCorner" />
             </ScrollArea.Root>
