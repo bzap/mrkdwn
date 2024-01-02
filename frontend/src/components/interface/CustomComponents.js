@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import * as Switch from "@radix-ui/react-switch";
 import { setIsFetching } from "@/lib/reducers/markdownSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faRightToBracket } from "@fortawesome/free-solid-svg-icons";
+import { faRightToBracket, faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { setNavBarExpanded } from "@/lib/reducers/markdownSlice";
 // import {
 //     faHighlighter,
@@ -57,7 +57,7 @@ const Button = ({
             ${
                 fitted
                     ? "h-[30px] w-[40px] rounded-md border-stone-200 border-[1px] bg-stone-100 rounded-[0.4rem] dark:hover:bg-zinc-600 dark:active:bg-zinc-700 hover:bg-stone-200 active:bg-stone-300"
-                    : "base:h-[30px] lg:h-[45px] w-[45px] hover:bg-stone-100 dark:hover:bg-zinc-600 dark:active:bg-zinc-700 active:bg-stone-300"
+                    : "base:h-[30px] lg:h-[2.4rem] w-[45px] hover:bg-stone-100 dark:hover:bg-zinc-600 dark:active:bg-zinc-700 active:bg-stone-300"
             } flex`}
         >
             <div
@@ -67,7 +67,7 @@ const Button = ({
             >
                 <div className="base:hidden lg:block transition">
                     <FontAwesomeIcon
-                        icon={icon}
+                        icon={isFetching && fetcher ? faSpinner : icon}
                         size={`xs`}
                         color={`${darkMode && "#cecfd0"}`}
                     />
@@ -75,7 +75,7 @@ const Button = ({
                 <div className="lg:hidden base:block">
                     <FontAwesomeIcon
                         color={`${darkMode && "#cecfd0"}`}
-                        icon={icon}
+                        icon={isFetching && fetcher ? faSpinner : icon}
                         size={`sm`}
                     />
                 </div>
@@ -100,7 +100,7 @@ const TriggerButton = forwardRef((props, forwardedRef) => {
         <button
             {...props}
             ref={forwardedRef}
-            className={`text-black select-none outline-none items-center transition justify-center base:h-[30px] lg:h-[45px] w-[45px] dark:hover:bg-zinc-600 dark:active:bg-zinc-700 flex hover:bg-stone-100 active:bg-stone-200`}
+            className={`text-black select-none outline-none items-center transition justify-center base:h-[30px] lg:h-[2.4rem] w-[45px] dark:hover:bg-zinc-600 dark:active:bg-zinc-700 flex hover:bg-stone-100 active:bg-stone-200`}
         >
             <div className="base:hidden lg:block transition">
                 <FontAwesomeIcon
@@ -212,7 +212,7 @@ const VerticalSwitch = ({ header, icon, dispatcher }) => {
     return (
         <label
             htmlFor={"switch-toggle" + header}
-            className={`flex justify-center base:h-[30px] lg:h-[45px] w-[45px] transition cursor-pointer hover:bg-stone-100 active:bg-stone-200 dark:hover:bg-zinc-600 dark:active:bg-zinc-700`}
+            className={`flex justify-center base:h-[30px] lg:h-[2.4rem] w-[45px] transition cursor-pointer hover:bg-stone-100 active:bg-stone-200 dark:hover:bg-zinc-600 dark:active:bg-zinc-700`}
         >
             <div className="flex flex-col font-bold w-full  items-center flex justify-center">
                 <form>

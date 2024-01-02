@@ -7,6 +7,9 @@ module.exports = {
     ],
     darkMode: "class",
     theme: {
+        fontFamily: {
+            mono: ["var(--font-fira-code)"],
+        },
         screens: {
             base: "0px",
             sm: "640px",
@@ -42,7 +45,32 @@ module.exports = {
                         "--tw-prose-th-borders": "#e7e5e4",
                         "--tw-prose-td-borders": "#e7e5e4",
                         "--tw-prose-captions": "#CECFD0",
+                        lineHeight: "1.1rem",
                         color: "black",
+                        h1: {
+                            "padding-bottom": "8px",
+                            "border-bottom-width": "1px",
+                        },
+                        h2: {
+                            "padding-bottom": "8px",
+                            "border-bottom-width": "1px",
+                        },
+                        h3: {
+                            "padding-bottom": "8px",
+                            "border-bottom-width": "1px",
+                        },
+                        h4: {
+                            "padding-bottom": "8px",
+                            "border-bottom-width": "1px",
+                        },
+                        h5: {
+                            "padding-bottom": "8px",
+                            "border-bottom-width": "1px",
+                        },
+                        h6: {
+                            "padding-bottom": "8px",
+                            "border-bottom-width": "1px",
+                        },
                         p: {
                             "word-break": "break-words",
                         },
@@ -52,18 +80,41 @@ module.exports = {
                         "a:hover": {
                             color: "#818cf8",
                         },
+                        ul: {
+                            lineHeight: "1.1rem",
+                        },
+                        ol: {
+                            lineHeight: "1.1rem",
+                        },
+                        mark: {
+                            "background-color": "#ecfdf5",
+                            "padding-left": "6px",
+                            "padding-right": "6px",
+                            "padding-top": "2px",
+                            "padding-bottom": "2px",
+                            lineHeight: "1.8rem",
+                            "border-radius": "5px",
+                            color: "black",
+                        },
+                        input: {
+                            margin: "0",
+                        },
                         code: {
                             color: "black",
-                            padding: "6px",
+                            "padding-left": "6px",
+                            "padding-right": "6px",
+                            "padding-top": "2px",
+                            "padding-bottom": "2px",
                             "border-radius": "5px",
+                            lineHeight: "1.8rem",
                             "background-color": "#f5f5f4",
                             "font-weight": "normal",
                         },
                         "code::before": {
-                            content: '""',
+                            content: "",
                         },
                         "code::after": {
-                            content: '""',
+                            content: "",
                         },
                         pre: {
                             "background-color": "#f5f5f4",
@@ -74,6 +125,10 @@ module.exports = {
                             "font-weight": "normal",
                             color: "#78716c",
                             borderLeftColor: "#d6d3d1",
+                        },
+                        table: {
+                            margin: "5px",
+                            // lineHeight: "1.1rem",
                         },
                         "blockquote p:first-of-type::before": {
                             content: "none",
@@ -102,36 +157,88 @@ module.exports = {
                         "--tw-prose-code": "#CECFD0",
                         "--tw-prose-pre-code": "#CECFD0",
                         "--tw-prose-pre-bg": "#CECFD0",
-                        "--tw-prose-th-borders": "#CECFD0",
-                        "--tw-prose-td-borders": "#CECFD0",
+                        "--tw-prose-th-borders": "#737373",
+                        "--tw-prose-td-borders": "#737373",
+                        lineHeight: "1.1rem",
                         p: {
                             color: "#CECFD0",
                             "word-break": "break-words",
                         },
+                        ul: {
+                            lineHeight: "1.1rem",
+                        },
+                        ol: {
+                            lineHeight: "1.1rem",
+                        },
                         li: {
                             color: "#CECFD0",
                         },
+                        h1: {
+                            "padding-bottom": "8px",
+                            "border-bottom-width": "1px",
+                            "border-color": "#737373",
+                        },
+                        h2: {
+                            "padding-bottom": "8px",
+                            "border-bottom-width": "1px",
+                            "border-color": "#737373",
+                        },
+                        h3: {
+                            "padding-bottom": "8px",
+                            "border-bottom-width": "1px",
+                            "border-color": "#737373",
+                        },
+                        h4: {
+                            "padding-bottom": "8px",
+                            "border-bottom-width": "1px",
+                            "border-color": "#737373",
+                        },
+                        h5: {
+                            "padding-bottom": "8px",
+                            "border-bottom-width": "1px",
+                            "border-color": "#737373",
+                        },
                         h6: {
                             color: "#CECFD0",
+                            "padding-bottom": "8px",
+                            "border-bottom-width": "1px",
                         },
                         a: {
                             color: "#a5b4fc",
+                        },
+                        mark: {
+                            "background-color": "#0f766e",
+                            "padding-left": "6px",
+                            "padding-right": "6px",
+                            "padding-top": "2px",
+                            "padding-bottom": "2px",
+                            lineHeight: "1.8rem",
+                            "border-radius": "5px",
+                            color: "#CECFD0",
+                        },
+                        input: {
+                            margin: "0",
                         },
                         "a:hover": {
                             color: "#c7d2fe",
                         },
                         code: {
                             color: "#CECFD0",
-                            padding: "6px",
+                            "padding-left": "6px",
+                            "padding-right": "2px",
+                            "padding-top": "2px",
+                            "padding-bottom": "2px",
+                            "border-radius": "5px",
+                            lineHeight: "1.8rem",
                             "border-radius": "5px",
                             "background-color": "#52525b",
                             "font-weight": "normal",
                         },
                         "code::before": {
-                            content: '""',
+                            content: "",
                         },
                         "code::after": {
-                            content: '""',
+                            content: "",
                         },
                         pre: {
                             "background-color": "#52525b",
@@ -152,6 +259,7 @@ module.exports = {
                         td: {
                             color: "#CECFD0",
                         },
+
                         // table: {
                         //     display: "block",
                         //     width: "100%",

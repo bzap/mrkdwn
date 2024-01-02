@@ -8,7 +8,7 @@ const initialState = {
     isFetching: false,
     navBarExpanded: false,
     editorVisible: true,
-    scrollSynced: false,
+    scrollSynced: true,
 };
 
 export const markdownSlice = createSlice({
