@@ -80,7 +80,7 @@ module.exports = {
                             lineHeight: "1.1rem",
                         },
                         mark: {
-                            "background-color": "#ecfdf5",
+                            "background-color": "#d1fae5",
                             "padding-left": "6px",
                             "padding-right": "6px",
                             "padding-top": "2px",
