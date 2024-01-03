@@ -466,6 +466,7 @@ export const SettingsDialog = ({ icon }) => {
                             >
                                 Editor
                             </div>
+
                             {/* <fieldset className="Fieldset pt-2">
                                 <div className="text-sm">Font</div>
                                 <input

@@ -48,6 +48,7 @@ const dispatchState = (viewState, from, to, highlighted, symbol, baseCase) => {
                     insert: highlighted,
                 },
             });
+
             if (baseCase) {
                 let head = viewState.state.selection.main.head;
                 let line = viewState.state.doc.lineAt(head);
@@ -122,6 +123,32 @@ const dispatchState = (viewState, from, to, highlighted, symbol, baseCase) => {
                     }))
                 );
             }, 10);
+            break;
+        case "#":
+            if (baseCase) {
+                const offset = symbol.length;
+                viewState.dispatch(
+                    viewState.state.changeByRange((range) => ({
+                        changes: {
+                            from: from,
+                            to: to,
+                            insert: highlighted,
+                        },
+                        range: EditorSelection.range(
+                            range.from + offset + 1,
+                            range.to + offset + 5
+                        ),
+                    }))
+                );
+            } else {
+                viewState.dispatch({
+                    changes: {
+                        from: from,
+                        to: to,
+                        insert: highlighted,
+                    },
+                });
+            }
             break;
         default:
             if (baseCase) {
@@ -347,6 +374,30 @@ export const updateText = (ref, symbol) => {
                     dispatchState(viewState, from, to, highlighted, symbol);
                 }
                 break;
+            case "#":
+                if (slice === "") {
+                    highlighted = `${symbol} Text`;
+                    dispatchState(
+                        viewState,
+                        from,
+                        to,
+                        highlighted,
+                        symbol,
+                        true
+                    );
+                } else {
+                    if (slice.slice(0, 6) === "######") {
+                        highlighted = "#" + slice.slice(6);
+                    } else {
+                        if (slice.slice(0, 1) === "#") {
+                            highlighted = "#" + slice;
+                        } else {
+                            highlighted = "# " + slice;
+                        }
+                    }
+                    dispatchState(viewState, from, to, highlighted, symbol);
+                }
+                break;
             case "---":
                 highlighted = `${symbol}${slice}`;
                 dispatchState(viewState, from, to, highlighted, symbol);
@@ -364,6 +415,7 @@ export const updateText = (ref, symbol) => {
                     );
                 } else {
                     highlighted = `${symbol}\n${slice}\n${symbol}`;
+                    dispatchState(viewState, from, to, highlighted, symbol);
                 }
                 break;
             default:
