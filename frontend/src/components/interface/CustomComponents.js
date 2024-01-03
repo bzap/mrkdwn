@@ -8,10 +8,6 @@ import { setIsFetching } from "@/lib/reducers/markdownSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRightToBracket, faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { setNavBarExpanded } from "@/lib/reducers/markdownSlice";
-// import {
-//     faHighlighter,
-//     faTableCellsLarge,
-// } from "@fortawesome/free-solid-svg-icons";
 
 const Button = ({
     props,
