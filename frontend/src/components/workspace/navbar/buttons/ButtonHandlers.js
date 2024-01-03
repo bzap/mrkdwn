@@ -48,6 +48,7 @@ const dispatchState = (viewState, from, to, highlighted, symbol, baseCase) => {
                     insert: highlighted,
                 },
             });
+
             if (baseCase) {
                 let head = viewState.state.selection.main.head;
                 let line = viewState.state.doc.lineAt(head);
@@ -364,6 +365,7 @@ export const updateText = (ref, symbol) => {
                     );
                 } else {
                     highlighted = `${symbol}\n${slice}\n${symbol}`;
+                    dispatchState(viewState, from, to, highlighted, symbol);
                 }
                 break;
             default:
