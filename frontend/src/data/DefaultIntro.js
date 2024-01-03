@@ -4,8 +4,7 @@ Mrkdwn is a simple, open source markdown editor[^Ref].
 
 ## General Features 
 - Follows and supports GFM guidelines[^Ref2]
-- Easy insertion of commonly used elements and conversion of existing text
-  
+- Easy insertion of commonly used elements (and conversion by selection)
 - Mobile friendly
 - Cached save
 - Dark mode

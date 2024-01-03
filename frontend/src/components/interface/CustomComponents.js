@@ -531,7 +531,7 @@ export const SettingsDialog = ({ icon }) => {
                                     darkMode && "text-zinc-600"
                                 } text-sm flex justify-center text-stone-300`}
                             >
-                                Developed by
+                                Designed and developed by
                                 <a
                                     target="_blank"
                                     className={`hover:text-stone-400 text-stone-300 ${
