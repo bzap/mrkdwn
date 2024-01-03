@@ -148,6 +148,7 @@ module.exports = {
                         },
                     },
                 },
+
                 dark: {
                     css: {
                         fontSize: "14px",

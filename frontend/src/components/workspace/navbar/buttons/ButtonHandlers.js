@@ -375,7 +375,6 @@ export const updateText = (ref, symbol) => {
                 }
                 break;
             case "#":
-                let splitHeader;
                 if (slice === "") {
                     highlighted = `${symbol} Text`;
                     dispatchState(

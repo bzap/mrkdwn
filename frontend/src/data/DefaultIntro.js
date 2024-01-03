@@ -46,7 +46,13 @@ const demonstration = () => {
 
 Footnotes[^Footnote]
 
-Dividers
+# H1
+## H2
+### H3
+#### H4
+##### H5
+###### H6
+ 
 ---
 
 ==**All** of which _can_ be combined==. Check out the spec for more! 
