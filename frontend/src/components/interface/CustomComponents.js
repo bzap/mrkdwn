@@ -4,7 +4,7 @@ import * as Popover from "@radix-ui/react-popover";
 import { Cross2Icon } from "@radix-ui/react-icons";
 import { useDispatch, useSelector } from "react-redux";
 import * as Switch from "@radix-ui/react-switch";
-import { setIsFetching } from "@/lib/reducers/markdownSlice";
+import { setEditorFontSize, setIsFetching } from "@/lib/reducers/markdownSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRightToBracket, faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { setNavBarExpanded } from "@/lib/reducers/markdownSlice";
@@ -443,6 +443,7 @@ export const HamburgerAnimation = () => {
 };
 
 export const SettingsDialog = ({ icon }) => {
+    const dispatch = useDispatch();
     const darkMode = useSelector((state) => state.darkMode);
     return (
         <Dialog.Root>
@@ -466,6 +467,16 @@ export const SettingsDialog = ({ icon }) => {
                             >
                                 Editor
                             </div>
+                            <button
+                                onClick={() => dispatch(setEditorFontSize("+"))}
+                            >
+                                increase
+                            </button>
+                            <button
+                                onClick={() => dispatch(setEditorFontSize("-"))}
+                            >
+                                decrease
+                            </button>
 
                             {/* <fieldset className="Fieldset pt-2">
                                 <div className="text-sm">Font</div>
