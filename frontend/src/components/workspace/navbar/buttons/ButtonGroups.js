@@ -19,6 +19,7 @@ import {
     faPlus,
     faBold,
     faItalic,
+    faHeading,
     faStrikethrough,
     faHighlighter,
     faQuoteRight,
@@ -79,6 +80,11 @@ export const TextStyleGroup = {
         icon: faStrikethrough,
         func: updateText,
         symbol: "~~",
+    },
+    header: {
+        icon: faHeading,
+        func: updateText,
+        symbol: "#",
     },
     highlight: {
         icon: faHighlighter,

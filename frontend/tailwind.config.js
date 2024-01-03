@@ -43,26 +43,44 @@ module.exports = {
                         h1: {
                             "padding-bottom": "8px",
                             "border-bottom-width": "1px",
+                            lineHeight: 1,
                         },
                         h2: {
                             "padding-bottom": "8px",
                             "border-bottom-width": "1px",
+                            marginBottom: "2.5rem",
+                            fontSize: "1.6rem",
+                            lineHeight: 1,
                         },
                         h3: {
                             "padding-bottom": "8px",
-                            "border-bottom-width": "1px",
+                            marginBottom: "1.5rem",
+                            fontSize: "1.3rem",
+                            lineHeight: 1,
                         },
                         h4: {
                             "padding-bottom": "8px",
-                            "border-bottom-width": "1px",
+                            fontSize: "1rem",
+                            marginBottom: "1.5rem",
+                            lineHeight: 1,
                         },
                         h5: {
                             "padding-bottom": "8px",
-                            "border-bottom-width": "1px",
+                            fontSize: "0.8rem",
+                            fontWeight: "bold",
+                            marginBottom: "1.5rem",
+                            lineHeight: 1,
                         },
                         h6: {
                             "padding-bottom": "8px",
-                            "border-bottom-width": "1px",
+                            fontSize: "0.8rem",
+                            fontWeight: "bold",
+                            color: "#a8a29e",
+                            marginBottom: "1.5rem",
+                            lineHeight: 1,
+                        },
+                        hr: {
+                            borderWidth: "2px",
                         },
                         p: {
                             "word-break": "break-words",
@@ -134,7 +152,6 @@ module.exports = {
                     css: {
                         fontSize: "14px",
                         "--tw-prose-body": "#CECFD0",
-                        "--tw-prose-headings": "#CECFD0",
                         "--tw-prose-bold": "#CECFD0",
                         "--tw-prose-counters": "#CECFD0",
                         "--tw-prose-bullets": "#CECFD0",
@@ -162,46 +179,37 @@ module.exports = {
                             color: "#CECFD0",
                         },
                         h1: {
-                            "padding-bottom": "8px",
-                            "border-bottom-width": "1px",
+                            color: "#CECFD0",
                             "border-color": "#737373",
                         },
                         h2: {
-                            "padding-bottom": "8px",
-                            "border-bottom-width": "1px",
+                            color: "#CECFD0",
                             "border-color": "#737373",
                         },
                         h3: {
-                            "padding-bottom": "8px",
-                            "border-bottom-width": "1px",
+                            color: "#CECFD0",
                             "border-color": "#737373",
                         },
                         h4: {
-                            "padding-bottom": "8px",
-                            "border-bottom-width": "1px",
+                            color: "#CECFD0",
                             "border-color": "#737373",
                         },
                         h5: {
-                            "padding-bottom": "8px",
-                            "border-bottom-width": "1px",
+                            color: "#CECFD0",
                             "border-color": "#737373",
                         },
                         h6: {
-                            color: "#CECFD0",
-                            "padding-bottom": "8px",
-                            "border-bottom-width": "1px",
+                            color: "#a1a1aa",
+                            "border-color": "#737373",
+                        },
+                        hr: {
+                            borderColor: "#737373",
                         },
                         a: {
                             color: "#a5b4fc",
                         },
                         mark: {
                             "background-color": "#0f766e",
-                            "padding-left": "6px",
-                            "padding-right": "6px",
-                            "padding-top": "2px",
-                            "padding-bottom": "2px",
-                            lineHeight: "1.8rem",
-                            "border-radius": "5px",
                             color: "#CECFD0",
                         },
                         input: {
@@ -212,15 +220,7 @@ module.exports = {
                         },
                         code: {
                             color: "#CECFD0",
-                            "padding-left": "6px",
-                            "padding-right": "6px",
-                            "padding-top": "2px",
-                            "padding-bottom": "2px",
-                            "border-radius": "5px",
-
-                            "border-radius": "5px",
                             "background-color": "#52525b",
-                            "font-weight": "normal",
                         },
                         "code::before": {
                             content: "",
@@ -233,8 +233,6 @@ module.exports = {
                             color: "#CECFD0",
                         },
                         blockquote: {
-                            "font-style": "normal",
-                            "font-weight": "normal",
                             color: "#a1a1aa",
                             borderLeftColor: "#52525b",
                         },
@@ -245,6 +243,9 @@ module.exports = {
                             content: "none",
                         },
                         td: {
+                            color: "#CECFD0",
+                        },
+                        th: {
                             color: "#CECFD0",
                         },
                     },
