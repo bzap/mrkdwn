@@ -213,11 +213,11 @@ module.exports = {
                         code: {
                             color: "#CECFD0",
                             "padding-left": "6px",
-                            "padding-right": "2px",
+                            "padding-right": "6px",
                             "padding-top": "2px",
                             "padding-bottom": "2px",
                             "border-radius": "5px",
-                            lineHeight: "1.8rem",
+
                             "border-radius": "5px",
                             "background-color": "#52525b",
                             "font-weight": "normal",
