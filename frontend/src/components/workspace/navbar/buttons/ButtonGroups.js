@@ -166,8 +166,8 @@ export const CustomizationGroup = {
 export const InfoGroup = {
     settings: {
         icon: faGear,
-        func: updateText,
-        symbol: "**",
+        type: "dialog",
+        // func: updateText,
     },
 };
 

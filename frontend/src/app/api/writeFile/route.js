@@ -6,6 +6,5 @@ export async function POST(req, request) {
         if (err) throw err;
         console.log("File write successful.");
     });
-
     return new Response("OK");
 }
