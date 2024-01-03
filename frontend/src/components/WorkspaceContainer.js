@@ -8,10 +8,8 @@ import { useSelector } from "react-redux";
 
 const WorkspaceContainer = () => {
     const editorRef = useRef();
-
     const firstDivRef = useRef();
     const secondDivRef = useRef();
-
     const darkMode = useSelector((state) => state.darkMode);
     const scrollSynced = useSelector((state) => state.scrollSynced);
 
@@ -79,10 +77,6 @@ const WorkspaceContainer = () => {
                 <Editor editorRef={editorRef} scrollRef={firstDivRef} />
                 <Viewer scrollRef={secondDivRef} editorRef={editorRef} />
             </div>
-            {/* <div className="flex relative base:z-0 lg:z-10 w-full base:w-full lg:max-w-[96%]  base:h-[calc(100vh_-_1rem)] base:pt-[3rem] lg:mt-0 lg:h-[96%]  lg:max-h-screen relative lg:min-h-screen lg:p-4 gap-3 base:hidden">
-                <Editor editorRef={editorRef} />
-                <Viewer editorRef={editorRef} />
-            </div> */}
         </div>
     );
 };

@@ -8,10 +8,7 @@ import { setIsFetching } from "@/lib/reducers/markdownSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRightToBracket, faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { setNavBarExpanded } from "@/lib/reducers/markdownSlice";
-// import {
-//     faHighlighter,
-//     faTableCellsLarge,
-// } from "@fortawesome/free-solid-svg-icons";
+import * as Dialog from "@radix-ui/react-dialog";
 
 const Button = ({
     props,
@@ -445,6 +442,146 @@ export const HamburgerAnimation = () => {
     );
 };
 
+export const SettingsDialog = ({ icon }) => {
+    const darkMode = useSelector((state) => state.darkMode);
+    return (
+        <Dialog.Root>
+            <Dialog.Trigger asChild>
+                <TriggerButton icon={icon} />
+            </Dialog.Trigger>
+            <Dialog.Portal>
+                <Dialog.Overlay className="DialogOverlay" />
+                <Dialog.Content
+                    onOpenAutoFocus={(e) => e.preventDefault()}
+                    className={`${
+                        darkMode ? "DialogContent-Dark" : "DialogContent"
+                    }`}
+                >
+                    <div className="flex gap-3 flex-col">
+                        <div className="flex flex-col gap-2">
+                            <div
+                                className={`pb-1 font-bold text-md border-b-[1px] border-stone-200 ${
+                                    darkMode && "text-[#CECFD0] border-zinc-600"
+                                }`}
+                            >
+                                Editor
+                            </div>
+                            {/* <fieldset className="Fieldset pt-2">
+                                <div className="text-sm">Font</div>
+                                <input
+                                    className={`${
+                                        darkMode && "Input-Dark"
+                                    } Input transition  dark:hover:border-stone-700`}
+                                    id="name"
+                                    disabled
+                                    defaultValue="Placeholder"
+                                />
+                            </fieldset>
+                            <fieldset className="Fieldset">
+                                <div className="text-sm">Size</div>
+                                <input
+                                    className={`${
+                                        darkMode && "Input-Dark"
+                                    } Input transition  dark:hover:border-stone-700`}
+                                    id="name"
+                                    disabled
+                                    defaultValue="Placeholder"
+                                />
+                            </fieldset> */}
+                        </div>
+                        <div className="flex flex-col gap-2">
+                            <div
+                                className={`pb-1 font-bold text-md border-b-[1px] border-stone-200 ${
+                                    darkMode && "text-[#CECFD0] border-zinc-600"
+                                }`}
+                            >
+                                Viewer
+                            </div>
+                            {/* <fieldset className="Fieldset pt-2">
+                                <div className="text-sm">Font</div>
+                                <input
+                                    className={`${
+                                        darkMode && "Input-Dark"
+                                    } Input transition  dark:hover:border-stone-700`}
+                                    id="name"
+                                    disabled
+                                    defaultValue="Placeholder"
+                                />
+                            </fieldset>
+                            <fieldset className="Fieldset">
+                                <div className="text-sm">Size</div>
+                                <input
+                                    className={`${
+                                        darkMode && "Input-Dark"
+                                    } Input transition  dark:hover:border-stone-700`}
+                                    id="name"
+                                    disabled
+                                    defaultValue="Placeholder"
+                                />
+                            </fieldset> */}
+                        </div>
+                        <div>
+                            <div
+                                className={`mt-5 ${
+                                    darkMode ? "bg-zinc-600" : "bg-stone-200 "
+                                } h-[1px] w-full flex mb-3 justify-center px-5`}
+                            />
+                            <div
+                                className={` ${
+                                    darkMode && "text-zinc-600"
+                                } text-sm flex justify-center text-stone-300`}
+                            >
+                                Designed and developed by
+                                <a
+                                    target="_blank"
+                                    className={`hover:text-stone-400 text-stone-300 ${
+                                        darkMode && "text-zinc-600"
+                                    } transition`}
+                                    href="https://github.com/bzap"
+                                >
+                                    &nbsp;@bzap
+                                </a>
+                                .
+                            </div>
+                            <div
+                                className={`text-sm text-stone-300 ${
+                                    darkMode && "text-zinc-600"
+                                } flex justify-center`}
+                            >
+                                V1.0.0
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* <div
+                        style={{
+                            display: "flex",
+                            marginTop: 25,
+                            justifyContent: "flex-end",
+                        }}
+                    > */}
+                    {/* <Dialog.Close asChild>
+                            <button className="Button green">
+                                Save changes
+                            </button>
+                        </Dialog.Close> */}
+                    {/* </div> */}
+                    <Dialog.Close asChild>
+                        <button
+                            className={`${
+                                darkMode ? "PopoverClose-Dark" : "PopoverClose"
+                            }  transition p-1`}
+                            aria-label="Close"
+                        >
+                            <Cross2Icon />
+                        </button>
+                    </Dialog.Close>
+                </Dialog.Content>
+            </Dialog.Portal>
+        </Dialog.Root>
+    );
+};
+
 const ButtonGroup = ({ elements, editorRef, data, noMargin }) => {
     return (
         <div className="lg:flex base:w-fit base:justify-end lg:justify-center">
@@ -483,6 +620,8 @@ const ButtonGroup = ({ elements, editorRef, data, noMargin }) => {
                             fetcher={element.fetcher}
                             editorRef={editorRef}
                         />
+                    ) : element.type === "dialog" ? (
+                        <SettingsDialog icon={element.icon} />
                     ) : (
                         <Button
                             editorRef={editorRef}

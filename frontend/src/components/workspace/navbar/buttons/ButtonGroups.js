@@ -16,8 +16,6 @@ import {
     setSaveState,
 } from "@/lib/reducers/markdownSlice";
 import {
-    faArrowUp,
-    faArrowDown,
     faPlus,
     faBold,
     faItalic,
@@ -34,12 +32,9 @@ import {
     faSuperscript,
     faMinus,
     faFloppyDisk,
-    faQuestion,
-    faMoon,
-    faInfo,
     faArrowsDownToLine,
-    faDownLeftAndUpRightToCenter,
-    faArrowsUpDown,
+    faMoon,
+    faGear,
     faEye,
 } from "@fortawesome/free-solid-svg-icons";
 import { setScrollSynced } from "../../../../lib/reducers/markdownSlice";
@@ -170,9 +165,9 @@ export const CustomizationGroup = {
 
 export const InfoGroup = {
     settings: {
-        icon: faQuestion,
-        func: updateText,
-        symbol: "**",
+        icon: faGear,
+        type: "dialog",
+        // func: updateText,
     },
 };
 

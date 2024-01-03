@@ -1,10 +1,4 @@
-import { setIsFetching, setMarkdownText } from "@/lib/reducers/markdownSlice";
-// import { EditorState, EditorView, lineNumbers } from "@uiw/react-codemirror";
-// import { EditorViewTheme } from "@/app/interface/EditorViewTheme";
-// import { UpdateStateListener } from "../../editor/UpdateStateListener";
-// import { markdown } from "@codemirror/lang-markdown";
-// import { Compartment } from "@uiw/react-codemirror";
-// import { xcodeGrayscale } from "@/app/interface/CustomSyntaxTheme";
+import { setIsFetching } from "@/lib/reducers/markdownSlice";
 
 export const downloadFile = async (
     ref,
@@ -101,7 +95,7 @@ export const newFile = (ref, symbol, markdownData, e, dispatch) => {
         changes: {
             from: 0,
             to: viewState.state.doc.length,
-            insert: "this should be the default content? or not ",
+            insert: " ",
         },
     });
 };

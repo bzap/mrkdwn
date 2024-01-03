@@ -12,9 +12,6 @@ const Viewer = ({ editorRef, scrollRef }) => {
                 editorVisible && "base:hidden lg:flex"
             }`}
         >
-            {/* <div className="hover-scroll w-full h-full overflow-y-scroll p-8">
-                <HTMLContent />
-            </div> */}
             <ScrollArea.Root className="ScrollAreaRoot w-full h-full relative py-1 dark:bg-zinc-800">
                 <ScrollArea.Viewport
                     ref={scrollRef}

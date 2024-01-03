@@ -8,24 +8,15 @@ module.exports = {
     darkMode: "class",
     theme: {
         fontFamily: {
-            mono: ["var(--font-fira-code)"],
+            mono: ["var(--font-fira-mono)"],
         },
         screens: {
             base: "0px",
             sm: "640px",
-            // => @media (min-width: 640px) { ... }
-
             md: "768px",
-            // => @media (min-width: 768px) { ... }
-
             lg: "1024px",
-            // => @media (min-width: 1024px) { ... }
-
             xl: "1280px",
-            // => @media (min-width: 1280px) { ... }
-
             "2xl": "1536px",
-            // => @media (min-width: 1536px) { ... }
         },
         extend: {
             backgroundImage: {
@@ -130,7 +121,6 @@ module.exports = {
                         },
                         table: {
                             margin: "5px",
-                            // lineHeight: "1.1rem",
                         },
                         "blockquote p:first-of-type::before": {
                             content: "none",
@@ -138,11 +128,6 @@ module.exports = {
                         "blockquote p:first-of-type::after": {
                             content: "none",
                         },
-                        // table: {
-                        //     display: "block",
-                        //     width: "100%",
-                        //     color: "#78716c",
-                        // },
                     },
                 },
                 dark: {
@@ -262,12 +247,6 @@ module.exports = {
                         td: {
                             color: "#CECFD0",
                         },
-
-                        // table: {
-                        //     display: "block",
-                        //     width: "100%",
-                        //     color: "#78716c",
-                        // },
                     },
                 },
             },

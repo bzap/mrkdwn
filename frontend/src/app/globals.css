@@ -431,10 +431,10 @@ tr {
 }
 
 .PopoverClose:hover {
-    background-color: #fafaf9;
+    background-color: #e7e5e4;
 }
 .PopoverClose:focus {
-    background-color: #e7e5e4;
+    background-color: #d6d3d1;
 }
 
 .IconButton {
@@ -562,61 +562,6 @@ tr {
     border-radius: 24px;
 }
 
-/* .SwitchThumb {
-    display: block;
-    width: 8px;
-    height: 3px;
-    outline: none;
-    background-color: white;
-    border-radius: 9999px;
-    transition: transform 100ms;
-    transform: translateX(1px);
-    will-change: transform;
-}
-.SwitchThumb[data-state="checked"] {
-    transform: translateX(9px);
-} */
-
-.AlertDialogOverlay {
-    background-color: var(--black-a9);
-    position: fixed;
-    inset: 0;
-    animation: overlayShow 150ms cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.AlertDialogContent {
-    background-color: white;
-    border-radius: 6px;
-    box-shadow: hsl(206 22% 7% / 35%) 0px 10px 38px -10px,
-        hsl(206 22% 7% / 20%) 0px 10px 20px -15px;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 90vw;
-    max-width: 500px;
-    max-height: 85vh;
-    padding: 25px;
-    animation: contentShow 150ms cubic-bezier(0.16, 1, 0.3, 1);
-}
-.AlertDialogContent:focus {
-    outline: none;
-}
-
-.AlertDialogTitle {
-    margin: 0;
-    color: var(--mauve-12);
-    font-size: 17px;
-    font-weight: 500;
-}
-
-.AlertDialogDescription {
-    margin-bottom: 20px;
-    color: var(--mauve-11);
-    font-size: 15px;
-    line-height: 1.5;
-}
-
 .Button {
     display: inline-flex;
     align-items: center;
@@ -676,6 +621,66 @@ tr {
     grid-template-rows: 1fr;
 }
 
+.DialogOverlay {
+    background-color: var(--black-a9);
+    position: fixed;
+    inset: 0;
+    z-index: 30;
+    animation: overlayShow 150ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.DialogContent {
+    background-color: white;
+    border-radius: 6px;
+    position: fixed;
+    z-index: 30;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90vw;
+    max-width: 450px;
+    max-height: 85vh;
+    padding: 25px;
+    animation: contentShow 150ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.DialogContent:focus {
+    outline: none;
+}
+
+.DialogContent-Dark {
+    border-radius: 6px;
+    position: fixed;
+    background-color: #27272a;
+    border-width: 1px;
+    border-color: #3f3f46;
+    z-index: 30;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90vw;
+    max-width: 450px;
+    max-height: 85vh;
+    padding: 25px;
+    animation: contentShow 150ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.DialogContent-Dark:focus {
+    outline: none;
+}
+
+.DialogTitle {
+    margin: 0;
+    font-weight: 500;
+    color: var(--mauve-12);
+    font-size: 17px;
+}
+
+.DialogDescription {
+    margin: 10px 0 20px;
+    color: var(--mauve-11);
+    font-size: 15px;
+    line-height: 1.5;
+}
+
 @keyframes overlayShow {
     from {
         opacity: 0;
@@ -704,5 +709,25 @@ tr {
     to {
         opacity: 1;
         transform: translateX(0);
+    }
+}
+
+@keyframes overlayShow {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes contentShow {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -48%) scale(0.96);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
     }
 }
