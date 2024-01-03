@@ -10,9 +10,9 @@ const initialState = {
     editorVisible: true,
     scrollSynced: true,
     editorFontSize: 13,
-    editorFont: "fira",
+    editorFont: "var(--font-fira-mono)",
     viewerFontSize: 13,
-    editorFont: "inter",
+    viewerFont: "inter",
 };
 
 export const markdownSlice = createSlice({
@@ -50,6 +50,9 @@ export const markdownSlice = createSlice({
                 state.editorFontSize++;
             }
         },
+        setEditorFont: (state, action) => {
+            state.editorFont = action.payload;
+        },
     },
 });
 
@@ -63,5 +66,6 @@ export const {
     setEditorVisible,
     setScrollSynced,
     setEditorFontSize,
+    setEditorFont,
 } = markdownSlice.actions;
 export default markdownSlice.reducer;

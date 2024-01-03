@@ -1,4 +1,4 @@
-import { Inter, Fira_Code } from "next/font/google";
+import { Inter, Fira_Code, Roboto_Mono } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({
@@ -13,6 +13,13 @@ const firaCode = Fira_Code({
     variable: "--font-fira-mono",
 });
 
+const robotoMono = Roboto_Mono({
+    weight: "400",
+    subsets: ["latin"],
+    display: "swap",
+    variable: "--font-roboto-mono",
+});
+
 export const metadata = {
     title: "Mrkdwn",
     description: "A simple, but powerful markdown editor.",
@@ -21,7 +28,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
     return (
         <html lang="en">
-            <body className={`${inter.className} ${firaCode.variable}`}>
+            <body
+                className={`${inter.className} ${firaCode.variable} ${robotoMono.variable}`}
+            >
                 {children}
             </body>
         </html>

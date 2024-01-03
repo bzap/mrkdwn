@@ -4,9 +4,8 @@ export const EditorViewTheme = (style, size) => {
     return EditorView.theme({
         ".cm-content": {
             height: "100%",
-            // fontSize: "13px",
             fontSize: `${size}px`,
-            fontFamily: "var(--font-fira-mono)",
+            fontFamily: style,
         },
         ".cm-gutters": {
             borderWidth: "0px",

@@ -34,6 +34,8 @@ const Editor = ({ editorRef, scrollRef }) => {
     const darkMode = useSelector((state) => state.darkMode);
 
     const editorFontSize = useSelector((state) => state.editorFontSize);
+    const editorFont = useSelector((state) => state.editorFont);
+    console.log(editorFont);
 
     useEffect(() => {
         let cmContainer = document.getElementById("cm-container");
@@ -74,8 +76,11 @@ const Editor = ({ editorRef, scrollRef }) => {
                             markdown({ highlightFormatting: true }),
                             EditorView.lineWrapping,
                             darkMode
-                                ? EditorViewDarkTheme(0, editorFontSize)
-                                : EditorViewTheme(0, editorFontSize),
+                                ? EditorViewDarkTheme(
+                                      editorFont,
+                                      editorFontSize
+                                  )
+                                : EditorViewTheme(editorFont, editorFontSize),
                             // EditorFontChanges(0, 0),
                             UpdateStateListener,
                         ]}

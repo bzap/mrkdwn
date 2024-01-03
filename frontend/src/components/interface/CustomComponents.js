@@ -4,7 +4,11 @@ import * as Popover from "@radix-ui/react-popover";
 import { Cross2Icon } from "@radix-ui/react-icons";
 import { useDispatch, useSelector } from "react-redux";
 import * as Switch from "@radix-ui/react-switch";
-import { setEditorFontSize, setIsFetching } from "@/lib/reducers/markdownSlice";
+import {
+    setEditorFont,
+    setEditorFontSize,
+    setIsFetching,
+} from "@/lib/reducers/markdownSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRightToBracket, faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { setNavBarExpanded } from "@/lib/reducers/markdownSlice";
@@ -476,6 +480,24 @@ export const SettingsDialog = ({ icon }) => {
                                 onClick={() => dispatch(setEditorFontSize("-"))}
                             >
                                 decrease
+                            </button>
+                            <button
+                                onClick={() =>
+                                    dispatch(
+                                        setEditorFont("var(--font-fira-mono)")
+                                    )
+                                }
+                            >
+                                fira
+                            </button>
+                            <button
+                                onClick={() =>
+                                    dispatch(
+                                        setEditorFont("var(--font-roboto-mono)")
+                                    )
+                                }
+                            >
+                                roboto
                             </button>
 
                             {/* <fieldset className="Fieldset pt-2">
