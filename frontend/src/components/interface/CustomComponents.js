@@ -9,7 +9,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRightToBracket, faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { setNavBarExpanded } from "@/lib/reducers/markdownSlice";
 import * as Dialog from "@radix-ui/react-dialog";
-import Settings from "../workspace/navbar/buttons/Settings";
+import Settings from "../workspace/navbar/buttons/SettingsContainer";
 
 export const Button = ({
     props,

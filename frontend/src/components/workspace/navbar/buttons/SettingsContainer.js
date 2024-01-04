@@ -1,5 +1,10 @@
 import { useDispatch, useSelector } from "react-redux";
-import { setEditorFont, setEditorFontSize } from "@/lib/reducers/markdownSlice";
+import {
+    setEditorFont,
+    setEditorFontSize,
+    setViewerFont,
+    setViewerFontSize,
+} from "@/lib/reducers/markdownSlice";
 import { forwardRef } from "react";
 import { Button } from "@/components/interface/CustomComponents";
 import * as Select from "@radix-ui/react-select";
@@ -9,7 +14,7 @@ import {
     ChevronUpIcon,
 } from "@radix-ui/react-icons";
 import classnames from "classnames";
-import { availableFonts } from "@/data/Fonts";
+import { editorFonts, viewerFonts } from "@/data/Fonts";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown, faCheck } from "@fortawesome/free-solid-svg-icons";
 
@@ -30,12 +35,87 @@ const SelectItem = forwardRef(
     }
 );
 
-const Settings = ({ darkMode }) => {
-    const dispatch = useDispatch();
-    const editorFontSize = useSelector((state) => state.editorFontSize);
-    const editorFont = useSelector((state) => state.editorFont);
+const FontSize = ({ fontSize, dispatcher }) => {
+    const currentFontSize = useSelector((state) => state[fontSize]);
     return (
-        <div className="flex gap-3 flex-col">
+        <div className="flex w-full justify-between">
+            <div className="font-medium flex gap-2.5 text-sm">Font size:</div>
+            <div className="flex items-center gap-1">
+                <Button
+                    type="dispatch"
+                    fitted
+                    height={"20"}
+                    dispatcher={dispatcher}
+                    data={"-"}
+                    text={"-"}
+                />
+                <div className="text-stone-600 border-[1px] rounded-md px-2 text-sm w-12 text-center font-medium">
+                    {currentFontSize}px
+                </div>
+                <Button
+                    type="dispatch"
+                    fitted
+                    height={"20"}
+                    dispatcher={dispatcher}
+                    data={"+"}
+                    text={"+"}
+                />
+            </div>
+        </div>
+    );
+};
+
+const FontStyle = ({ dispatch, fontList, dispatcher, fontStyle }) => {
+    const handleChange = (value) => {
+        dispatch(dispatcher(value));
+    };
+    const currentFontStyle = useSelector((state) => state[fontStyle]);
+    console.log(currentFontStyle);
+    return (
+        <div className="flex w-full justify-between">
+            <div className="font-medium flex gap-2.5 text-sm">Font style:</div>
+            <div className="flex items-center gap-1">
+                <Select.Root
+                    defaultValue={currentFontStyle}
+                    onValueChange={(value) => handleChange(value)}
+                >
+                    <Select.Trigger className="SelectTrigger transition">
+                        <Select.Value placeholder="Select a font…" />
+                        <Select.Icon className="SelectIcon">
+                            <FontAwesomeIcon icon={faChevronDown} size="sm" />
+                        </Select.Icon>
+                    </Select.Trigger>
+                    <Select.Portal>
+                        <Select.Content className="SelectContent">
+                            <Select.Viewport className="SelectViewport">
+                                <Select.Group>
+                                    {Object.values(fontList).map(
+                                        (value, index) => {
+                                            return (
+                                                <SelectItem
+                                                    key={"select" + index}
+                                                    className={"transition"}
+                                                    value={value.var}
+                                                >
+                                                    {value.name}
+                                                </SelectItem>
+                                            );
+                                        }
+                                    )}
+                                </Select.Group>
+                            </Select.Viewport>
+                        </Select.Content>
+                    </Select.Portal>
+                </Select.Root>
+            </div>
+        </div>
+    );
+};
+
+const SettingsContainer = ({ darkMode }) => {
+    const dispatch = useDispatch();
+    return (
+        <div className="flex gap-3 flex-col select-none">
             <div className="flex flex-col gap-3">
                 <div
                     className={`pb-1 font-bold text-md border-b-[1px] border-stone-200 ${
@@ -44,75 +124,35 @@ const Settings = ({ darkMode }) => {
                 >
                     Editor
                 </div>
-                <div className="flex w-full justify-between">
-                    <div className="font-medium flex gap-2.5 text-sm">
-                        Font size:
-                    </div>
-                    <div className="flex items-center gap-1">
-                        <Button
-                            type="dispatch"
-                            fitted
-                            height={"20"}
-                            dispatcher={setEditorFontSize}
-                            data={"-"}
-                            text={"-"}
-                        />
-                        <div className="text-stone-600 border-[1px] rounded-md px-2 text-sm w-12 text-center font-medium">
-                            {editorFontSize}px
-                        </div>
-                        <Button
-                            type="dispatch"
-                            fitted
-                            height={"20"}
-                            dispatcher={setEditorFontSize}
-                            data={"+"}
-                            text={"+"}
-                        />
-                    </div>
+                <FontSize
+                    dispatcher={setEditorFontSize}
+                    fontSize={"editorFontSize"}
+                    dispatch={dispatch}
+                />
+                <FontStyle
+                    dispatcher={setEditorFont}
+                    fontList={editorFonts}
+                    dispatch={dispatch}
+                    fontStyle={"editorFont"}
+                />
+                <div
+                    className={`pb-1 font-bold text-md border-b-[1px] border-stone-200 ${
+                        darkMode && "text-[#CECFD0] border-zinc-600"
+                    }`}
+                >
+                    Viewer
                 </div>
-                <div className="flex w-full justify-between">
-                    <div className="font-medium flex gap-2.5 text-sm">
-                        Font style:
-                    </div>
-                    <div className="flex items-center gap-1">
-                        <Select.Root>
-                            <Select.Trigger className="SelectTrigger transition">
-                                <Select.Value placeholder="Select a font…" />
-                                <Select.Icon className="SelectIcon">
-                                    <FontAwesomeIcon
-                                        icon={faChevronDown}
-                                        size="sm"
-                                    />
-                                </Select.Icon>
-                            </Select.Trigger>
-                            <Select.Portal>
-                                <Select.Content className="SelectContent">
-                                    <Select.Viewport className="SelectViewport">
-                                        <Select.Group>
-                                            {Object.values(availableFonts).map(
-                                                (value, index) => {
-                                                    return (
-                                                        <SelectItem
-                                                            key={
-                                                                "select" + index
-                                                            }
-                                                            className={
-                                                                "transition"
-                                                            }
-                                                            value={value.var}
-                                                        >
-                                                            {value.name}
-                                                        </SelectItem>
-                                                    );
-                                                }
-                                            )}
-                                        </Select.Group>
-                                    </Select.Viewport>
-                                </Select.Content>
-                            </Select.Portal>
-                        </Select.Root>
-                    </div>
-                </div>
+                <FontSize
+                    dispatcher={setViewerFontSize}
+                    fontSize={"editorFontSize"}
+                    dispatch={dispatch}
+                />
+                <FontStyle
+                    dispatcher={setViewerFont}
+                    fontList={viewerFonts}
+                    dispatch={dispatch}
+                    fontStyle={"viewerFont"}
+                />
                 {/* <button
                     onClick={() =>
                         dispatch(setEditorFont("var(--font-fira-mono)"))
@@ -217,4 +257,4 @@ const Settings = ({ darkMode }) => {
     );
 };
 
-export default Settings;
+export default SettingsContainer;

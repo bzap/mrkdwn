@@ -11,6 +11,7 @@ const inter = Inter({
     variable: "--font-inter",
     display: "swap",
     subsets: ["latin"],
+    variable: "--font-inter",
 });
 const firaCode = Fira_Code({
     weight: "400",
@@ -53,7 +54,8 @@ export default function RootLayout({ children }) {
                 ${firaCode.variable} 
                 ${robotoMono.variable} 
                 ${plexMono.variable} 
-                ${jetMono.variable}`}
+                ${jetMono.variable}
+                ${inter.variable}`}
             >
                 {children}
             </body>

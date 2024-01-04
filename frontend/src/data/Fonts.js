@@ -1,4 +1,4 @@
-export const availableFonts = {
+export const editorFonts = {
     roboto: {
         var: "var(--font-roboto-mono)",
         name: "Roboto Mono",
@@ -14,5 +14,12 @@ export const availableFonts = {
     jetbrain: {
         var: "var(--font-jet-mono)",
         name: "JetBrains Mono",
+    },
+};
+
+export const viewerFonts = {
+    inter: {
+        var: "var(--font-inter)",
+        name: "Inter",
     },
 };
