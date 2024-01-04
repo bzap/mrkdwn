@@ -4,17 +4,14 @@ import * as Popover from "@radix-ui/react-popover";
 import { Cross2Icon } from "@radix-ui/react-icons";
 import { useDispatch, useSelector } from "react-redux";
 import * as Switch from "@radix-ui/react-switch";
-import {
-    setEditorFont,
-    setEditorFontSize,
-    setIsFetching,
-} from "@/lib/reducers/markdownSlice";
+import { setIsFetching } from "@/lib/reducers/markdownSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRightToBracket, faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { setNavBarExpanded } from "@/lib/reducers/markdownSlice";
 import * as Dialog from "@radix-ui/react-dialog";
+import Settings from "../workspace/navbar/buttons/Settings";
 
-const Button = ({
+export const Button = ({
     props,
     icon,
     index,
@@ -23,6 +20,8 @@ const Button = ({
     handler,
     editorRef,
     data,
+    height,
+    dispatcher,
     symbol,
     fetcher,
     type = "button",
@@ -40,6 +39,8 @@ const Button = ({
                 ) {
                     handler(editorRef, symbol, data, e, dispatch);
                 }
+            } else if (type === "dispatch") {
+                dispatch(dispatcher(data));
             } else {
                 handler(editorRef, symbol, data, e, dispatch);
             }
@@ -57,30 +58,34 @@ const Button = ({
             }
             ${
                 fitted
-                    ? "h-[30px] w-[40px] rounded-md border-stone-200 border-[1px] bg-stone-100 rounded-[0.4rem] dark:hover:bg-zinc-600 dark:active:bg-zinc-700 hover:bg-stone-200 active:bg-stone-300"
+                    ? `h-[${
+                          height ? height : "30"
+                      }px] w-[40px] rounded-md border-stone-200 border-[1px] bg-stone-100 rounded-[0.4rem] dark:hover:bg-zinc-600 dark:active:bg-zinc-700 hover:bg-stone-200 active:bg-stone-300`
                     : "base:h-[30px] lg:h-[2.4rem] w-[45px] hover:bg-stone-100 dark:hover:bg-zinc-600 dark:active:bg-zinc-700 active:bg-stone-300"
             } flex`}
         >
-            <div
-                className={`${
-                    isFetching && fetcher && "animate-spin transition"
-                } `}
-            >
-                <div className="base:hidden lg:block transition">
-                    <FontAwesomeIcon
-                        icon={isFetching && fetcher ? faSpinner : icon}
-                        size={`xs`}
-                        color={`${darkMode && "#cecfd0"}`}
-                    />
+            {icon && (
+                <div
+                    className={`${
+                        isFetching && fetcher && "animate-spin transition"
+                    } `}
+                >
+                    <div className="base:hidden lg:block transition">
+                        <FontAwesomeIcon
+                            icon={isFetching && fetcher ? faSpinner : icon}
+                            size={`xs`}
+                            color={`${darkMode && "#cecfd0"}`}
+                        />
+                    </div>
+                    <div className="lg:hidden base:block">
+                        <FontAwesomeIcon
+                            color={`${darkMode && "#cecfd0"}`}
+                            icon={isFetching && fetcher ? faSpinner : icon}
+                            size={`sm`}
+                        />
+                    </div>
                 </div>
-                <div className="lg:hidden base:block">
-                    <FontAwesomeIcon
-                        color={`${darkMode && "#cecfd0"}`}
-                        icon={isFetching && fetcher ? faSpinner : icon}
-                        size={`sm`}
-                    />
-                </div>
-            </div>
+            )}
 
             {text && (
                 <p
@@ -447,7 +452,6 @@ export const HamburgerAnimation = () => {
 };
 
 export const SettingsDialog = ({ icon }) => {
-    const dispatch = useDispatch();
     const darkMode = useSelector((state) => state.darkMode);
     return (
         <Dialog.Root>
@@ -462,144 +466,7 @@ export const SettingsDialog = ({ icon }) => {
                         darkMode ? "DialogContent-Dark" : "DialogContent"
                     }`}
                 >
-                    <div className="flex gap-3 flex-col">
-                        <div className="flex flex-col gap-2">
-                            <div
-                                className={`pb-1 font-bold text-md border-b-[1px] border-stone-200 ${
-                                    darkMode && "text-[#CECFD0] border-zinc-600"
-                                }`}
-                            >
-                                Editor
-                            </div>
-                            <button
-                                onClick={() => dispatch(setEditorFontSize("+"))}
-                            >
-                                increase
-                            </button>
-                            <button
-                                onClick={() => dispatch(setEditorFontSize("-"))}
-                            >
-                                decrease
-                            </button>
-                            <button
-                                onClick={() =>
-                                    dispatch(
-                                        setEditorFont("var(--font-fira-mono)")
-                                    )
-                                }
-                            >
-                                fira
-                            </button>
-                            <button
-                                onClick={() =>
-                                    dispatch(
-                                        setEditorFont("var(--font-roboto-mono)")
-                                    )
-                                }
-                            >
-                                roboto
-                            </button>
-
-                            {/* <fieldset className="Fieldset pt-2">
-                                <div className="text-sm">Font</div>
-                                <input
-                                    className={`${
-                                        darkMode && "Input-Dark"
-                                    } Input transition  dark:hover:border-stone-700`}
-                                    id="name"
-                                    disabled
-                                    defaultValue="Placeholder"
-                                />
-                            </fieldset>
-                            <fieldset className="Fieldset">
-                                <div className="text-sm">Size</div>
-                                <input
-                                    className={`${
-                                        darkMode && "Input-Dark"
-                                    } Input transition  dark:hover:border-stone-700`}
-                                    id="name"
-                                    disabled
-                                    defaultValue="Placeholder"
-                                />
-                            </fieldset> */}
-                        </div>
-                        <div className="flex flex-col gap-2">
-                            <div
-                                className={`pb-1 font-bold text-md border-b-[1px] border-stone-200 ${
-                                    darkMode && "text-[#CECFD0] border-zinc-600"
-                                }`}
-                            >
-                                Viewer
-                            </div>
-                            {/* <fieldset className="Fieldset pt-2">
-                                <div className="text-sm">Font</div>
-                                <input
-                                    className={`${
-                                        darkMode && "Input-Dark"
-                                    } Input transition  dark:hover:border-stone-700`}
-                                    id="name"
-                                    disabled
-                                    defaultValue="Placeholder"
-                                />
-                            </fieldset>
-                            <fieldset className="Fieldset">
-                                <div className="text-sm">Size</div>
-                                <input
-                                    className={`${
-                                        darkMode && "Input-Dark"
-                                    } Input transition  dark:hover:border-stone-700`}
-                                    id="name"
-                                    disabled
-                                    defaultValue="Placeholder"
-                                />
-                            </fieldset> */}
-                        </div>
-                        <div>
-                            <div
-                                className={`mt-5 ${
-                                    darkMode ? "bg-zinc-600" : "bg-stone-200 "
-                                } h-[1px] w-full flex mb-3 justify-center px-5`}
-                            />
-                            <div
-                                className={` ${
-                                    darkMode && "text-zinc-600"
-                                } text-sm flex justify-center text-stone-300`}
-                            >
-                                Designed and developed by
-                                <a
-                                    target="_blank"
-                                    className={`hover:text-stone-400 text-stone-300 ${
-                                        darkMode && "text-zinc-600"
-                                    } transition`}
-                                    href="https://github.com/bzap"
-                                >
-                                    &nbsp;@bzap
-                                </a>
-                                .
-                            </div>
-                            <div
-                                className={`text-sm text-stone-300 ${
-                                    darkMode && "text-zinc-600"
-                                } flex justify-center`}
-                            >
-                                V1.0.0
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* <div
-                        style={{
-                            display: "flex",
-                            marginTop: 25,
-                            justifyContent: "flex-end",
-                        }}
-                    > */}
-                    {/* <Dialog.Close asChild>
-                            <button className="Button green">
-                                Save changes
-                            </button>
-                        </Dialog.Close> */}
-                    {/* </div> */}
+                    <Settings darkMode={darkMode} />
                     <Dialog.Close asChild>
                         <button
                             className={`${

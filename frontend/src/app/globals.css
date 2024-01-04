@@ -638,7 +638,7 @@ tr {
     left: 50%;
     transform: translate(-50%, -50%);
     width: 90vw;
-    max-width: 450px;
+    max-width: 400px;
     max-height: 85vh;
     padding: 25px;
     animation: contentShow 150ms cubic-bezier(0.16, 1, 0.3, 1);
@@ -679,6 +679,120 @@ tr {
     color: var(--mauve-11);
     font-size: 15px;
     line-height: 1.5;
+}
+
+.SelectTrigger {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 0.4rem;
+    padding: 0px 10px;
+    font-size: 13px;
+    line-height: 1;
+    height: 26px;
+    border-width: 1px;
+    border-color: #e5e7eb;
+    width: 9rem;
+    gap: 5px;
+    background-color: #f5f5f4;
+    outline: none;
+    font-weight: 500;
+}
+.SelectTrigger:hover {
+    background-color: #e7e5e4;
+    border-width: 1px;
+    border-color: #e5e7eb;
+    color: black;
+}
+
+.SelectTrigger[data-placeholder] {
+    color: black;
+}
+
+.SelectIcon {
+    color: black;
+}
+
+.SelectContent {
+    overflow: hidden;
+    background-color: white;
+    border-radius: 0.75rem;
+    padding: 0.2rem;
+    border-width: 1px;
+    border-color: #e5e7eb;
+    position: relative;
+
+    z-index: 30;
+    box-shadow: 0px 10px 38px -10px rgba(22, 23, 24, 0.35),
+        0px 10px 20px -15px rgba(22, 23, 24, 0.2);
+    animation: overlayShow 150ms;
+}
+
+.SelectViewport {
+    padding: 5px;
+    position: relative;
+    z-index: 30;
+}
+
+.SelectItem {
+    z-index: 30;
+    padding: 0 35px 0 25px;
+    cursor: pointer;
+    font-size: 13px;
+    line-height: 26px;
+    color: black;
+    border-radius: 0.4rem;
+    display: flex;
+    border-width: 1px;
+    border-color: white;
+    font-weight: 500;
+    align-items: center;
+    height: 26px;
+    position: relative;
+    user-select: none;
+    outline: none;
+}
+.SelectItem[data-disabled] {
+    color: var(--mauve-8);
+    pointer-events: none;
+}
+.SelectItem[data-highlighted] {
+    background-color: #f5f5f4;
+    border-width: 1px;
+    border-color: #e5e7eb;
+    color: black;
+}
+
+.SelectLabel {
+    padding: 0 25px;
+    font-size: 12px;
+    line-height: 25px;
+    color: var(--mauve-11);
+}
+
+.SelectSeparator {
+    height: 1px;
+    background-color: var(--violet-6);
+    margin: 5px;
+}
+
+.SelectItemIndicator {
+    position: absolute;
+    left: 0;
+    width: 25px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.SelectScrollButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 25px;
+    background-color: white;
+    color: var(--violet-11);
+    cursor: default;
 }
 
 @keyframes overlayShow {
