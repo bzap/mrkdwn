@@ -8,11 +8,6 @@ import {
 import { forwardRef } from "react";
 import { Button } from "@/components/interface/CustomComponents";
 import * as Select from "@radix-ui/react-select";
-import {
-    CheckIcon,
-    ChevronDownIcon,
-    ChevronUpIcon,
-} from "@radix-ui/react-icons";
 import classnames from "classnames";
 import { editorFonts, viewerFonts } from "@/data/Fonts";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -40,7 +35,7 @@ const FontSize = ({ fontSize, dispatcher }) => {
     return (
         <div className="flex w-full justify-between">
             <div className="font-medium flex gap-2.5 text-sm">Font size:</div>
-            <div className="flex items-center gap-1">
+            <div className="flex items-center gap-1 items-center">
                 <Button
                     type="dispatch"
                     fitted
@@ -70,9 +65,8 @@ const FontStyle = ({ dispatch, fontList, dispatcher, fontStyle }) => {
         dispatch(dispatcher(value));
     };
     const currentFontStyle = useSelector((state) => state[fontStyle]);
-    console.log(currentFontStyle);
     return (
-        <div className="flex w-full justify-between">
+        <div className="flex w-full justify-between items-center">
             <div className="font-medium flex gap-2.5 text-sm">Font style:</div>
             <div className="flex items-center gap-1">
                 <Select.Root
@@ -115,8 +109,8 @@ const FontStyle = ({ dispatch, fontList, dispatcher, fontStyle }) => {
 const SettingsContainer = ({ darkMode }) => {
     const dispatch = useDispatch();
     return (
-        <div className="flex gap-3 flex-col select-none">
-            <div className="flex flex-col gap-3">
+        <div className="flex gap-0 flex-col select-none">
+            <div className="flex flex-col gap-2">
                 <div
                     className={`pb-1 font-bold text-md border-b-[1px] border-stone-200 ${
                         darkMode && "text-[#CECFD0] border-zinc-600"
@@ -124,6 +118,7 @@ const SettingsContainer = ({ darkMode }) => {
                 >
                     Editor
                 </div>
+
                 <FontSize
                     dispatcher={setEditorFontSize}
                     fontSize={"editorFontSize"}
@@ -136,7 +131,7 @@ const SettingsContainer = ({ darkMode }) => {
                     fontStyle={"editorFont"}
                 />
                 <div
-                    className={`pb-1 font-bold text-md border-b-[1px] border-stone-200 ${
+                    className={`pb-1 mt-4 font-bold text-md border-b-[1px] border-stone-200 ${
                         darkMode && "text-[#CECFD0] border-zinc-600"
                     }`}
                 >
@@ -153,91 +148,23 @@ const SettingsContainer = ({ darkMode }) => {
                     dispatch={dispatch}
                     fontStyle={"viewerFont"}
                 />
-                {/* <button
-                    onClick={() =>
-                        dispatch(setEditorFont("var(--font-fira-mono)"))
-                    }
-                >
-                    fira
-                </button>
-                <button
-                    onClick={() =>
-                        dispatch(setEditorFont("var(--font-roboto-mono)"))
-                    }
-                >
-                    roboto
-                </button> */}
-
-                {/* <fieldset className="Fieldset pt-2">
-                <div className="text-sm">Font</div>
-                <input
-                    className={`${
-                        darkMode && "Input-Dark"
-                    } Input transition  dark:hover:border-stone-700`}
-                    id="name"
-                    disabled
-                    defaultValue="Placeholder"
-                />
-            </fieldset>
-            <fieldset className="Fieldset">
-                <div className="text-sm">Size</div>
-                <input
-                    className={`${
-                        darkMode && "Input-Dark"
-                    } Input transition  dark:hover:border-stone-700`}
-                    id="name"
-                    disabled
-                    defaultValue="Placeholder"
-                />
-            </fieldset> */}
             </div>
-            <div className="flex flex-col gap-2">
-                <div
-                    className={`pb-1 font-bold text-md border-b-[1px] border-stone-200 ${
-                        darkMode && "text-[#CECFD0] border-zinc-600"
-                    }`}
-                >
-                    Viewer
-                </div>
-                {/* <fieldset className="Fieldset pt-2">
-                <div className="text-sm">Font</div>
-                <input
-                    className={`${
-                        darkMode && "Input-Dark"
-                    } Input transition  dark:hover:border-stone-700`}
-                    id="name"
-                    disabled
-                    defaultValue="Placeholder"
-                />
-            </fieldset>
-            <fieldset className="Fieldset">
-                <div className="text-sm">Size</div>
-                <input
-                    className={`${
-                        darkMode && "Input-Dark"
-                    } Input transition  dark:hover:border-stone-700`}
-                    id="name"
-                    disabled
-                    defaultValue="Placeholder"
-                />
-            </fieldset> */}
-            </div>
-            <div>
+            <div className="mt-2">
                 <div
                     className={`mt-5 ${
-                        darkMode ? "bg-zinc-600" : "bg-stone-200 "
-                    } h-[1px] w-full flex mb-3 justify-center px-5`}
+                        darkMode ? "bg-zinc-700" : "bg-stone-100 "
+                    } h-[1px] w-full flex mb-3 justify-center px-5 `}
                 />
                 <div
                     className={` ${
-                        darkMode && "text-zinc-600"
-                    } text-sm flex justify-center text-stone-300`}
+                        darkMode && "text-zinc-700"
+                    } text-xs flex justify-center text-stone-200`}
                 >
                     Designed and developed by
                     <a
                         target="_blank"
-                        className={`hover:text-stone-400 text-stone-300 ${
-                            darkMode && "text-zinc-600"
+                        className={`hover:text-stone-400 text-stone-200 ${
+                            darkMode && "text-zinc-700"
                         } transition`}
                         href="https://github.com/bzap"
                     >
@@ -246,8 +173,8 @@ const SettingsContainer = ({ darkMode }) => {
                     .
                 </div>
                 <div
-                    className={`text-sm text-stone-300 ${
-                        darkMode && "text-zinc-600"
+                    className={`text-xs text-stone-200 ${
+                        darkMode && "text-zinc-700"
                     } flex justify-center`}
                 >
                     V1.0.0

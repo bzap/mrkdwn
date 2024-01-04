@@ -27,7 +27,7 @@ module.exports = {
             typography: {
                 DEFAULT: {
                     css: {
-                        fontSize: "14px",
+                        // fontSize: "14px",
                         "--tw-prose-body": "black",
                         "--tw-prose-headings": "black",
                         "--tw-prose-bold": "black",

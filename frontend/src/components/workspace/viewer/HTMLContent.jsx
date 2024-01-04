@@ -15,8 +15,9 @@ const HTMLContent = () => {
     md.renderer.rules.table_close = function (tokens, idx, options, env, self) {
         return self.renderToken(tokens, idx, options) + `</div>`;
     };
+
     return (
-        <div className="w-1 min-w-full h-auto ">
+        <div className="w-1 min-w-full h-auto text-[23px]">
             <article
                 className={
                     "prose py-6 px-7 max-w-none break-words dark:!prose-dark"

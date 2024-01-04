@@ -10,6 +10,8 @@ export const EditorViewTheme = (style, size) => {
         ".cm-gutters": {
             borderWidth: "0px",
             backgroundColor: "white",
+            fontSize: `${size}px`,
+            fontFamily: style,
         },
         ".cm-gutterElement": {
             backgroundColor: "white",
@@ -37,7 +39,8 @@ export const EditorViewDarkTheme = (style, size) => {
         ".cm-content": {
             height: "100%",
             fontSize: "13px",
-            fontFamily: "var(--font-fira-mono)",
+            fontSize: `${size}px`,
+            fontFamily: style,
         },
         ".cm-gutters": {
             borderWidth: "0px",

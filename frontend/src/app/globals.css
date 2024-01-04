@@ -795,6 +795,11 @@ tr {
     cursor: default;
 }
 
+.font-change {
+    font-size: 22px;
+    /* fontFamily: style, */
+}
+
 @keyframes overlayShow {
     from {
         opacity: 0;

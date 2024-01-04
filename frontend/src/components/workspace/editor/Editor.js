@@ -35,7 +35,6 @@ const Editor = ({ editorRef, scrollRef }) => {
 
     const editorFontSize = useSelector((state) => state.editorFontSize);
     const editorFont = useSelector((state) => state.editorFont);
-    console.log(editorFont);
 
     useEffect(() => {
         let cmContainer = document.getElementById("cm-container");
