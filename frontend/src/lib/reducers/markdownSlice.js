@@ -59,7 +59,6 @@ export const markdownSlice = createSlice({
             } else {
                 state.viewerFontSize++;
             }
-            console.log(state.viewerFont);
         },
         setViewerFont: (state, action) => {
             state.viewerFont = action.payload;
