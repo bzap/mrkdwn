@@ -1,17 +1,11 @@
-import { Inter, Fira_Code } from "next/font/google";
 import "./globals.css";
-
-const inter = Inter({
-    variable: "--font-inter",
-    display: "swap",
-    subsets: ["latin"],
-});
-const firaCode = Fira_Code({
-    weight: "400",
-    subsets: ["latin"],
-    display: "swap",
-    variable: "--font-fira-mono",
-});
+import {
+    robotoMono,
+    firaCode,
+    plexMono,
+    jetMono,
+    interSans,
+} from "@/components/interface/Fonts";
 
 export const metadata = {
     title: "Mrkdwn",
@@ -21,7 +15,13 @@ export const metadata = {
 export default function RootLayout({ children }) {
     return (
         <html lang="en">
-            <body className={`${inter.className} ${firaCode.variable}`}>
+            <body
+                className={`${interSans.className} 
+                ${firaCode.variable} 
+                ${robotoMono.variable} 
+                ${plexMono.variable} 
+                ${jetMono.variable}`}
+            >
                 {children}
             </body>
         </html>

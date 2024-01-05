@@ -1,5 +1,19 @@
 import { setIsFetching } from "@/lib/reducers/markdownSlice";
 
+const getFile = async (input, setIsOpen, dispatch) => {
+    return new Promise((resolve) => {
+        let result;
+        const reader = new FileReader();
+        reader.readAsText(input);
+        reader.onload = () => {
+            result = reader.result;
+            setIsOpen(false);
+            dispatch(setIsFetching(false));
+            resolve(result);
+        };
+    });
+};
+
 export const downloadFile = async (
     ref,
     symbol,
@@ -66,27 +80,16 @@ export const uploadFile = async (
             input = value;
         }
     }
-    const reader = new FileReader();
+
     let viewState = ref.current?.view;
-    reader.readAsText(input);
-    reader.onload = () => {
-        setTimeout(() => {
-            viewState.dispatch({
-                changes: {
-                    from: 0,
-                    to: viewState.state.doc.length,
-                    insert: reader.result,
-                },
-            });
-        }, 100);
-
-        setIsOpen(false);
-        dispatch(setIsFetching(false));
-    };
-
-    reader.onerror = () => {
-        console.log(reader.error);
-    };
+    let result = await getFile(input, setIsOpen, dispatch);
+    viewState.dispatch({
+        changes: {
+            from: 0,
+            to: viewState.state.doc.length,
+            insert: result,
+        },
+    });
 };
 
 export const newFile = (ref, symbol, markdownData, e, dispatch) => {

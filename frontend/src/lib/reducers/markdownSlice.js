@@ -9,6 +9,10 @@ const initialState = {
     navBarExpanded: false,
     editorVisible: true,
     scrollSynced: true,
+    editorFontSize: 13,
+    editorFont: "var(--font-fira-mono)",
+    viewerFontSize: 13,
+    viewerFont: "__className_e66fe9",
 };
 
 export const markdownSlice = createSlice({
@@ -39,6 +43,26 @@ export const markdownSlice = createSlice({
         setScrollSynced: (state) => {
             state.scrollSynced = !state.scrollSynced;
         },
+        setEditorFontSize: (state, action) => {
+            if (action.payload === "-") {
+                state.editorFontSize--;
+            } else {
+                state.editorFontSize++;
+            }
+        },
+        setEditorFont: (state, action) => {
+            state.editorFont = action.payload;
+        },
+        setViewerFontSize: (state, action) => {
+            if (action.payload === "-") {
+                state.viewerFontSize--;
+            } else {
+                state.viewerFontSize++;
+            }
+        },
+        setViewerFont: (state, action) => {
+            state.viewerFont = action.payload;
+        },
     },
 });
 
@@ -51,5 +75,9 @@ export const {
     setNavBarExpanded,
     setEditorVisible,
     setScrollSynced,
+    setEditorFontSize,
+    setEditorFont,
+    setViewerFontSize,
+    setViewerFont,
 } = markdownSlice.actions;
 export default markdownSlice.reducer;

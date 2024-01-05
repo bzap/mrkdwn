@@ -21,7 +21,7 @@ import { defaultIntro } from "@/data/DefaultIntro";
 
 const Editor = ({ editorRef, scrollRef }) => {
     const dispatch = useDispatch();
-    const handleDispatch = (query) => {
+    const handleDispatch = async (query) => {
         dispatch(setMarkdownText(query));
     };
     const debouncedDispatch = useCallback(debounce(handleDispatch, 400), []);
@@ -32,6 +32,9 @@ const Editor = ({ editorRef, scrollRef }) => {
 
     const editorVisible = useSelector((state) => state.editorVisible);
     const darkMode = useSelector((state) => state.darkMode);
+
+    const editorFontSize = useSelector((state) => state.editorFontSize);
+    const editorFont = useSelector((state) => state.editorFont);
 
     useEffect(() => {
         let cmContainer = document.getElementById("cm-container");
@@ -71,7 +74,12 @@ const Editor = ({ editorRef, scrollRef }) => {
                         extensions={[
                             markdown({ highlightFormatting: true }),
                             EditorView.lineWrapping,
-                            darkMode ? EditorViewDarkTheme : EditorViewTheme,
+                            darkMode
+                                ? EditorViewDarkTheme(
+                                      editorFont,
+                                      editorFontSize
+                                  )
+                                : EditorViewTheme(editorFont, editorFontSize),
                             UpdateStateListener,
                         ]}
                     />
