@@ -89,9 +89,9 @@ export const Button = ({
 
             {text && (
                 <p
-                    className={
-                        "flex w-full justify-center text-[13px] font-medium"
-                    }
+                    className={`flex w-full justify-center text-[13px] font-medium ${
+                        darkMode && "text-[#cecfd0]"
+                    }`}
                 >
                     {text}
                 </p>

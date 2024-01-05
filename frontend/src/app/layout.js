@@ -5,7 +5,7 @@ import {
     plexMono,
     jetMono,
     interSans,
-} from "@/data/Fonts";
+} from "@/components/interface/Fonts";
 
 export const metadata = {
     title: "Mrkdwn",
