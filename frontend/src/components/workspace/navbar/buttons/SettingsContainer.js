@@ -15,7 +15,6 @@ import { faChevronDown, faCheck } from "@fortawesome/free-solid-svg-icons";
 
 const SelectItem = forwardRef(
     ({ children, className, ...props }, forwardedRef) => {
-        console.log(props);
         return (
             <Select.Item
                 className={classnames(

@@ -631,7 +631,7 @@ tr {
 
 .DialogContent {
     background-color: white;
-    border-radius: 0.4rem;
+    border-radius: 0.9rem;
     position: fixed;
     z-index: 30;
     top: 50%;
@@ -648,8 +648,7 @@ tr {
 }
 
 .DialogContent-Dark {
-    border-radius: 0.4rem;
-    border-width: 1px;
+    border-radius: 0.9rem;
     position: fixed;
     background-color: #27272a;
     border-width: 1px;

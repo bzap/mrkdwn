@@ -3,7 +3,7 @@ export const defaultIntro = `# Welcome to Mrkdwn! 🎉
 Mrkdwn is a simple, open source markdown editor[^Ref]. 
 
 ## General Features 
-- Follows and supports GFM guidelines[^Ref2]
+- Follows GFM guidelines[^Ref2]
 - Easy insertion of commonly used elements (and conversion by selection)
 - Mobile friendly
 - Cached save
@@ -46,13 +46,6 @@ const demonstration = () => {
 
 Footnotes[^Footnote]
 
-# H1
-## H2
-### H3
-#### H4
-##### H5
-###### H6
- 
 ---
 
 ==**All** of which _can_ be combined==. Check out the spec for more! 
