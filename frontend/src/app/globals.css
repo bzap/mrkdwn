@@ -631,14 +631,14 @@ tr {
 
 .DialogContent {
     background-color: white;
-    border-radius: 6px;
+    border-radius: 0.4rem;
     position: fixed;
     z-index: 30;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 90vw;
-    max-width: 400px;
+    max-width: 280px;
     max-height: 85vh;
     padding: 25px;
     animation: contentShow 150ms cubic-bezier(0.16, 1, 0.3, 1);
@@ -648,7 +648,8 @@ tr {
 }
 
 .DialogContent-Dark {
-    border-radius: 6px;
+    border-radius: 0.4rem;
+    border-width: 1px;
     position: fixed;
     background-color: #27272a;
     border-width: 1px;
@@ -658,7 +659,7 @@ tr {
     left: 50%;
     transform: translate(-50%, -50%);
     width: 90vw;
-    max-width: 450px;
+    max-width: 300px;
     max-height: 85vh;
     padding: 25px;
     animation: contentShow 150ms cubic-bezier(0.16, 1, 0.3, 1);
@@ -692,7 +693,7 @@ tr {
     height: 26px;
     border-width: 1px;
     border-color: #e5e7eb;
-    width: 9rem;
+    width: 8.5rem;
     gap: 5px;
     background-color: #f5f5f4;
     outline: none;
@@ -793,11 +794,6 @@ tr {
     background-color: white;
     color: var(--violet-11);
     cursor: default;
-}
-
-.font-change {
-    font-size: 22px;
-    /* fontFamily: style, */
 }
 
 @keyframes overlayShow {

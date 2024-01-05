@@ -43,41 +43,28 @@ module.exports = {
                         h1: {
                             "padding-bottom": "8px",
                             "border-bottom-width": "1px",
-                            lineHeight: 1,
                         },
                         h2: {
                             "padding-bottom": "8px",
                             "border-bottom-width": "1px",
                             marginBottom: "2.5rem",
-                            fontSize: "1.6rem",
-                            lineHeight: 1,
                         },
                         h3: {
                             "padding-bottom": "8px",
                             marginBottom: "1.5rem",
-                            fontSize: "1.3rem",
-                            lineHeight: 1,
                         },
                         h4: {
                             "padding-bottom": "8px",
-                            fontSize: "1rem",
-                            marginBottom: "1.5rem",
-                            lineHeight: 1,
                         },
                         h5: {
                             "padding-bottom": "8px",
-                            fontSize: "0.8rem",
+
                             fontWeight: "bold",
-                            marginBottom: "1.5rem",
-                            lineHeight: 1,
                         },
                         h6: {
                             "padding-bottom": "8px",
-                            fontSize: "0.8rem",
                             fontWeight: "bold",
                             color: "#a8a29e",
-                            marginBottom: "1.5rem",
-                            lineHeight: 1,
                         },
                         hr: {
                             borderWidth: "2px",

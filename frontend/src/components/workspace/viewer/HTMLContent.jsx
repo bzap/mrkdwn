@@ -16,12 +16,14 @@ const HTMLContent = () => {
         return self.renderToken(tokens, idx, options) + `</div>`;
     };
 
+    const fontStyle = useSelector((state) => state.viewerFont);
+    const fontSize = useSelector((state) => state.viewerFontSize);
+
     return (
-        <div className="w-1 min-w-full h-auto text-[23px]">
+        <div className={`w-1 min-w-full h-auto `}>
             <article
-                className={
-                    "prose py-6 px-7 max-w-none break-words dark:!prose-dark"
-                }
+                style={{ "font-size": `${fontSize}px` }}
+                className={`prose py-6 px-7 max-w-none break-words dark:!prose-dark ${fontStyle} `}
                 dangerouslySetInnerHTML={{
                     __html: md.render(markdownText),
                 }}

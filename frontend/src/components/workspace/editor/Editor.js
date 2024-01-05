@@ -21,7 +21,7 @@ import { defaultIntro } from "@/data/DefaultIntro";
 
 const Editor = ({ editorRef, scrollRef }) => {
     const dispatch = useDispatch();
-    const handleDispatch = (query) => {
+    const handleDispatch = async (query) => {
         dispatch(setMarkdownText(query));
     };
     const debouncedDispatch = useCallback(debounce(handleDispatch, 400), []);
@@ -80,7 +80,6 @@ const Editor = ({ editorRef, scrollRef }) => {
                                       editorFontSize
                                   )
                                 : EditorViewTheme(editorFont, editorFontSize),
-                            // EditorFontChanges(0, 0),
                             UpdateStateListener,
                         ]}
                     />

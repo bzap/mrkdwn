@@ -12,7 +12,7 @@ const initialState = {
     editorFontSize: 13,
     editorFont: "var(--font-fira-mono)",
     viewerFontSize: 13,
-    viewerFont: "var(--font-inter)",
+    viewerFont: "__className_e66fe9",
 };
 
 export const markdownSlice = createSlice({
@@ -52,6 +52,7 @@ export const markdownSlice = createSlice({
         },
         setEditorFont: (state, action) => {
             state.editorFont = action.payload;
+            console.log(action.payload, "dispatched");
         },
         setViewerFontSize: (state, action) => {
             if (action.payload === "-") {

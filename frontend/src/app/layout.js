@@ -1,45 +1,11 @@
-import {
-    Inter,
-    Fira_Code,
-    Roboto_Mono,
-    JetBrains_Mono,
-    IBM_Plex_Mono,
-} from "next/font/google";
 import "./globals.css";
-
-const inter = Inter({
-    variable: "--font-inter",
-    display: "swap",
-    subsets: ["latin"],
-    variable: "--font-inter",
-});
-const firaCode = Fira_Code({
-    weight: "400",
-    subsets: ["latin"],
-    display: "swap",
-    variable: "--font-fira-mono",
-});
-
-const robotoMono = Roboto_Mono({
-    weight: "400",
-    subsets: ["latin"],
-    display: "swap",
-    variable: "--font-roboto-mono",
-});
-
-const plexMono = IBM_Plex_Mono({
-    weight: "400",
-    subsets: ["latin"],
-    display: "swap",
-    variable: "--font-plex-mono",
-});
-
-const jetMono = JetBrains_Mono({
-    weight: "400",
-    subsets: ["latin"],
-    display: "swap",
-    variable: "--font-jet-mono",
-});
+import {
+    robotoMono,
+    firaCode,
+    plexMono,
+    jetMono,
+    interSans,
+} from "@/data/Fonts";
 
 export const metadata = {
     title: "Mrkdwn",
@@ -50,12 +16,11 @@ export default function RootLayout({ children }) {
     return (
         <html lang="en">
             <body
-                className={`${inter.className} 
+                className={`${interSans.className} 
                 ${firaCode.variable} 
                 ${robotoMono.variable} 
                 ${plexMono.variable} 
-                ${jetMono.variable}
-                ${inter.variable}`}
+                ${jetMono.variable}`}
             >
                 {children}
             </body>
