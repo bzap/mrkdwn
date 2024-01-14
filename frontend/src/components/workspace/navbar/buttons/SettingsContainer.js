@@ -198,14 +198,14 @@ const SettingsContainer = ({ darkMode }) => {
                 />
                 <div
                     className={` ${
-                        darkMode && "text-zinc-700"
-                    } text-xs flex justify-center text-stone-200`}
+                        darkMode ? "text-zinc-700" : "text-black"
+                    } text-xs flex justify-center text-stone-300`}
                 >
                     Designed and developed by
                     <a
                         target="_blank"
-                        className={`hover:text-stone-400 text-stone-200 ${
-                            darkMode && "text-zinc-700"
+                        className={`hover:text-stone-400 ${
+                            darkMode ? "text-zinc-700" : "text-stone-300"
                         } transition`}
                         href="https://github.com/bzap"
                     >
@@ -214,8 +214,8 @@ const SettingsContainer = ({ darkMode }) => {
                     .
                 </div>
                 <div
-                    className={`text-xs text-stone-200 ${
-                        darkMode && "text-zinc-700"
+                    className={`text-xs ${
+                        darkMode ? "text-zinc-700" : "text-stone-300"
                     } flex justify-center`}
                 >
                     V1.0.1
