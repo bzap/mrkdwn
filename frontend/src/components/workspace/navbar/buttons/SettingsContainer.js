@@ -38,8 +38,8 @@ const FontSize = ({ fontSize, dispatcher, darkMode }) => {
     return (
         <div className="flex w-full justify-between">
             <div
-                className={`font-medium flex gap-2.5 ${
-                    darkMode && "text-[#CECFD0]"
+                className={`font-medium flex text-black gap-2.5 ${
+                    darkMode ? "text-[#CECFD0]" : "text-black"
                 } text-sm`}
             >
                 Font size:
@@ -55,7 +55,7 @@ const FontSize = ({ fontSize, dispatcher, darkMode }) => {
                 />
                 <div
                     className={`${
-                        darkMode && "text-zinc-300"
+                        darkMode ? "text-zinc-300" : "text-black"
                     } rounded-md px-2 text-sm w-12 text-center font-medium`}
                 >
                     {currentFontSize}px
@@ -82,7 +82,7 @@ const FontStyle = ({ dispatch, fontList, dispatcher, fontStyle, darkMode }) => {
         <div className="flex w-full justify-between items-center">
             <div
                 className={`font-medium flex gap-2.5 ${
-                    darkMode && "text-[#CECFD0]"
+                    darkMode ? "text-[#CECFD0]" : "text-black"
                 } text-sm`}
             >
                 Font style:
@@ -102,7 +102,7 @@ const FontStyle = ({ dispatch, fontList, dispatcher, fontStyle, darkMode }) => {
                             <FontAwesomeIcon
                                 icon={faChevronDown}
                                 size="sm"
-                                color={`${darkMode && "#cecfd0"}`}
+                                color={`${darkMode ? "#cecfd0" : "black"}`}
                             />
                         </Select.Icon>
                     </Select.Trigger>
