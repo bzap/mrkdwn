@@ -9,7 +9,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRightToBracket, faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { setNavBarExpanded } from "@/lib/reducers/markdownSlice";
 import * as Dialog from "@radix-ui/react-dialog";
-import Settings from "../workspace/navbar/buttons/SettingsContainer";
+import SettingsContainer from "../workspace/navbar/buttons/SettingsContainer";
 
 export const Button = ({
     props,
@@ -466,7 +466,7 @@ export const SettingsDialog = ({ icon }) => {
                         darkMode ? "DialogContent-Dark" : "DialogContent"
                     }`}
                 >
-                    <Settings darkMode={darkMode} />
+                    <SettingsContainer darkMode={darkMode} />
                     <Dialog.Close asChild>
                         <button
                             className={`${
@@ -522,7 +522,10 @@ const ButtonGroup = ({ elements, editorRef, data, noMargin }) => {
                             editorRef={editorRef}
                         />
                     ) : element.type === "dialog" ? (
-                        <SettingsDialog icon={element.icon} />
+                        <SettingsDialog
+                            key={"bgs" + index}
+                            icon={element.icon}
+                        />
                     ) : (
                         <Button
                             editorRef={editorRef}

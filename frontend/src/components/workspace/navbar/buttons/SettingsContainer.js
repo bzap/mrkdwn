@@ -122,7 +122,6 @@ const FontStyle = ({ dispatch, fontList, dispatcher, fontStyle, darkMode }) => {
                                                 <SelectItem
                                                     key={"select" + index}
                                                     className={"transition"}
-                                                    darkMode={darkMode}
                                                     value={value.var}
                                                 >
                                                     {value.name}
@@ -141,6 +140,7 @@ const FontStyle = ({ dispatch, fontList, dispatcher, fontStyle, darkMode }) => {
 };
 
 const SettingsContainer = ({ darkMode }) => {
+    console.log(darkMode);
     const dispatch = useDispatch();
     return (
         <div className="flex gap-0 flex-col select-none">
@@ -188,7 +188,7 @@ const SettingsContainer = ({ darkMode }) => {
             </div>
             <div className="mt-2">
                 <div
-                    className={`mt-4 mb-2 ${
+                    className={`mt-6 mb-2 ${
                         darkMode ? "bg-zinc-700" : "bg-stone-100 "
                     } h-[1px] w-full flex mb-1 justify-center px-5 `}
                 />

@@ -138,7 +138,7 @@ module.exports = {
 
                 dark: {
                     css: {
-                        fontSize: "14px",
+                        // fontSize: "14px",
                         "--tw-prose-body": "#CECFD0",
                         "--tw-prose-bold": "#CECFD0",
                         "--tw-prose-counters": "#CECFD0",
@@ -167,14 +167,18 @@ module.exports = {
                             color: "#CECFD0",
                         },
                         h1: {
+                            "border-bottom-width": "1px",
                             color: "#CECFD0",
                             "border-color": "#737373",
                         },
                         h2: {
+                            "border-bottom-width": "1px",
+                            marginBottom: "2.5rem",
                             color: "#CECFD0",
                             "border-color": "#737373",
                         },
                         h3: {
+                            marginBottom: "1.5rem",
                             color: "#CECFD0",
                             "border-color": "#737373",
                         },
@@ -185,9 +189,13 @@ module.exports = {
                         h5: {
                             color: "#CECFD0",
                             "border-color": "#737373",
+
+                            fontWeight: "bold",
                         },
                         h6: {
-                            color: "#a1a1aa",
+                            fontWeight: "bold",
+                            color: "#a8a29e",
+                            color: "#CECFD0",
                             "border-color": "#737373",
                         },
                         hr: {
@@ -235,6 +243,9 @@ module.exports = {
                         },
                         th: {
                             color: "#CECFD0",
+                        },
+                        table: {
+                            margin: "5px",
                         },
                     },
                 },
