@@ -34,11 +34,12 @@ const SelectItem = forwardRef(
 );
 
 const FontSize = ({ fontSize, dispatcher, darkMode }) => {
+    console.log(darkMode);
     const currentFontSize = useSelector((state) => state[fontSize]);
     return (
         <div className="flex w-full justify-between">
             <div
-                className={`font-medium flex text-black gap-2.5 ${
+                className={`font-medium flex gap-2.5 ${
                     darkMode ? "text-[#CECFD0]" : "text-black"
                 } text-sm`}
             >
@@ -198,14 +199,14 @@ const SettingsContainer = ({ darkMode }) => {
                 />
                 <div
                     className={` ${
-                        darkMode ? "text-zinc-700" : "text-black"
+                        darkMode ? "text-zinc-500" : "text-black"
                     } text-xs flex justify-center text-stone-300`}
                 >
                     Designed and developed by
                     <a
                         target="_blank"
                         className={`hover:text-stone-400 ${
-                            darkMode ? "text-zinc-700" : "text-stone-300"
+                            darkMode ? "text-zinc-500" : "text-stone-300"
                         } transition`}
                         href="https://github.com/bzap"
                     >
@@ -215,7 +216,7 @@ const SettingsContainer = ({ darkMode }) => {
                 </div>
                 <div
                     className={`text-xs ${
-                        darkMode ? "text-zinc-700" : "text-stone-300"
+                        darkMode ? "text-zinc-500" : "text-stone-300"
                     } flex justify-center`}
                 >
                     V1.0.1
