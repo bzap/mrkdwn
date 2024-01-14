@@ -147,7 +147,9 @@ const SettingsContainer = ({ darkMode }) => {
             <div className="flex flex-col gap-2">
                 <div
                     className={`font-bold mb-3 text-md border-b-[1px] border-stone-200 ${
-                        darkMode && "text-[#CECFD0] border-zinc-600"
+                        darkMode
+                            ? "text-[#CECFD0] border-zinc-600"
+                            : "text-black"
                     }`}
                 >
                     Editor
@@ -167,7 +169,9 @@ const SettingsContainer = ({ darkMode }) => {
                 />
                 <div
                     className={`mt-4 mb-3 font-bold text-md border-b-[1px] border-stone-200 ${
-                        darkMode && "text-[#CECFD0] border-zinc-600"
+                        darkMode
+                            ? "text-[#CECFD0] border-zinc-600"
+                            : "text-black"
                     }`}
                 >
                     Viewer
