@@ -6,6 +6,7 @@ import {
     jetMono,
     interSans,
 } from "@/components/interface/Fonts";
+import { Analytics } from "@vercel/analytics/react";
 
 export const metadata = {
     title: "Mrkdwn",
@@ -22,6 +23,7 @@ export default function RootLayout({ children }) {
                 ${plexMono.variable} 
                 ${jetMono.variable}`}
             >
+                <Analytics />
                 {children}
             </body>
         </html>

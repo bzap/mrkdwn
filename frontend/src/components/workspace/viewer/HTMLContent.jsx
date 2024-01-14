@@ -18,7 +18,6 @@ const HTMLContent = () => {
 
     const fontStyle = useSelector((state) => state.viewerFont);
     const fontSize = useSelector((state) => state.viewerFontSize);
-    console.log(fontSize);
 
     return (
         <div className={`w-1 min-w-full h-auto `}>
