@@ -6,6 +6,7 @@ import NavFeatureContainer from "./NavFeatureContainer";
 
 const NavBar = ({ editorRef }) => {
     const navBarExpanded = useSelector((state) => state.navBarExpanded);
+
     return (
         <div
             className={`hide-scrollbar base:absolute lg:relative lg:flex z-1 w-full lg:flex-col border-stone-200 dark:border-zinc-700 border-[1px] bg-white dark:bg-zinc-800 rounded-xl transition-all overflow-scroll

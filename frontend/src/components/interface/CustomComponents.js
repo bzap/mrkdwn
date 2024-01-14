@@ -225,7 +225,7 @@ const VerticalSwitch = ({ header, icon, dispatcher }) => {
                     <div className="flex-col  w-full h-full items-center base:pb-1 justify-center flex">
                         <div className="transition">
                             <FontAwesomeIcon
-                                color={`${darkMode && "#cecfd0"}`}
+                                color={`${darkMode ? "#cecfd0" : "black"}`}
                                 icon={icon}
                                 size="xs"
                             />
