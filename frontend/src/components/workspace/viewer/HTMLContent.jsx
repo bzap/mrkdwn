@@ -22,7 +22,7 @@ const HTMLContent = () => {
     return (
         <div className={`w-1 min-w-full h-auto `}>
             <article
-                style={{ "font-size": `${fontSize}px` }}
+                style={{ fontSize: `${fontSize}px` }}
                 className={`prose py-6 px-7 max-w-none break-words dark:!prose-dark ${fontStyle} `}
                 dangerouslySetInnerHTML={{
                     __html: md.render(markdownText),
