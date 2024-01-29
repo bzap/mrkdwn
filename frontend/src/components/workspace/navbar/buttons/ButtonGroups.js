@@ -45,6 +45,7 @@ export const FileOperationGroup = {
         icon: faPlus,
         func: newFile,
         symbol: "new",
+        title: "New file",
     },
     upload: {
         icon: faUpload,
@@ -53,6 +54,7 @@ export const FileOperationGroup = {
         type: "popover",
         description: "Select an existing markdown file:",
         placeholder: "https://example.com",
+        title: "Upload file",
     },
     download: {
         icon: faDownload,
@@ -62,6 +64,7 @@ export const FileOperationGroup = {
         fetcher: true,
         description: "Enter the name of the file:",
         placeholder: "README",
+        title: "Download file",
     },
 };
 
@@ -70,36 +73,43 @@ export const TextStyleGroup = {
         icon: faBold,
         func: updateText,
         symbol: "**",
+        title: "Bold text",
     },
     italic: {
         icon: faItalic,
         func: updateText,
         symbol: "_",
+        title: "Italic text",
     },
     strikeThrough: {
         icon: faStrikethrough,
         func: updateText,
         symbol: "~~",
+        title: "Strikethrough text",
     },
     header: {
         icon: faHeading,
         func: updateText,
         symbol: "#",
+        title: "Heading",
     },
     highlight: {
         icon: faHighlighter,
         func: updateText,
         symbol: "==",
+        title: "Highlight text",
     },
     quote: {
         icon: faQuoteRight,
         func: updateText,
         symbol: ">",
+        title: "Blockquote",
     },
     code: {
         icon: faCode,
         func: updateText,
         symbol: "```",
+        title: "Code block",
     },
 };
 
@@ -108,6 +118,7 @@ export const InsertionFeatureGroup = {
         icon: faListUl,
         func: insertList,
         type: "dropdown",
+        title: "List",
     },
     link: {
         icon: faLink,
@@ -116,6 +127,7 @@ export const InsertionFeatureGroup = {
         type: "popover",
         description: "Enter the link URL:",
         placeholder: "https://example.com",
+        title: "Link",
     },
     image: {
         icon: faImage,
@@ -124,6 +136,7 @@ export const InsertionFeatureGroup = {
         type: "popover",
         description: "Enter the image URL:",
         placeholder: "https://example.com",
+        title: "Image",
     },
     table: {
         icon: faTableCellsLarge,
@@ -132,6 +145,7 @@ export const InsertionFeatureGroup = {
         type: "popover",
         description: "Enter the number of rows and columns:",
         placeholder: ["Rows", "Columns"],
+        title: "Table",
     },
     footnote: {
         icon: faSuperscript,
@@ -140,11 +154,13 @@ export const InsertionFeatureGroup = {
         type: "popover",
         description: "Enter the footnote subscript:",
         placeholder: "Subscript",
+        title: "Footnote",
     },
     divider: {
         icon: faMinus,
         func: updateText,
         symbol: "---",
+        title: "Divider",
     },
 };
 
@@ -154,18 +170,21 @@ export const CustomizationGroup = {
         symbol: "saveState",
         type: "switch",
         dispatcher: setSaveState,
+        title: "Save state",
     },
     scroll: {
         icon: faArrowsDownToLine,
         symbol: "scrollSynced",
         type: "switch",
         dispatcher: setScrollSynced,
+        title: "Sync scroll",
     },
     theme: {
         icon: faMoon,
         symbol: "darkMode",
         type: "switch",
         dispatcher: setDarkMode,
+        title: "Dark mode",
     },
 };
 
@@ -173,6 +192,7 @@ export const InfoGroup = {
     settings: {
         icon: faGear,
         type: "dialog",
+        title: "Settings",
         // func: updateText,
     },
 };
