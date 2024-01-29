@@ -64,7 +64,7 @@ const Editor = ({ editorRef, scrollRef }) => {
                     <CodeMirror
                         value={markdownText}
                         theme={darkMode ? xcodeGrayscaleDark : xcodeGrayscale}
-                        className="py-6 px-7 h-full h-auto min-h-full overflow-hidden "
+                        className="py-6 lg:px-7 base:px-5 h-full h-auto min-h-full overflow-hidden "
                         id="cm-container"
                         ref={editorRef}
                         basicSetup={{

@@ -98,7 +98,7 @@ export const Button = ({
                         {text}
                     </p>
                 )}
-                <HoverElement title={title} />
+                {title && <HoverElement title={title} />}
             </button>
         </div>
     );
@@ -249,7 +249,7 @@ const VerticalSwitch = ({ header, icon, dispatcher, title }) => {
                             ></Switch.Root>
                         </div>
                     </form>
-                    <HoverElement title={title} />
+                    {title && <HoverElement title={title} />}
                 </div>
             </label>
         </div>
