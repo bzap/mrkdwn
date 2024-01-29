@@ -15,8 +15,8 @@ export const EditorViewTheme = (style, size) => {
         },
         ".cm-gutterElement": {
             backgroundColor: "white",
-            width: "50px",
-            paddingLeft: "10px",
+            width: "0px",
+            paddingLeft: "0px",
             display: "flex",
             "text-justify": "start",
             "justify-content": "center",
