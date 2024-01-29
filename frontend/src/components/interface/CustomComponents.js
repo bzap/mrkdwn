@@ -25,6 +25,7 @@ export const Button = ({
     symbol,
     fetcher,
     type = "button",
+    title,
 }) => {
     const dispatch = useDispatch();
     const isFetching = useSelector((state) => state.isFetching);
@@ -47,10 +48,11 @@ export const Button = ({
         }
     };
     return (
-        <button
-            type={"type"}
-            onClick={onClick}
-            className={`text-black select-none outline-none items-center transition justify-center
+        <div className="flex items-center">
+            <button
+                type={"type"}
+                onClick={onClick}
+                className={`text-black select-none outline-none items-center transition justify-center group
             ${
                 fitted &&
                 darkMode &&
@@ -63,70 +65,75 @@ export const Button = ({
                       }px] w-[40px] rounded-md border-stone-200 border-[1px] bg-stone-100 rounded-[0.4rem] dark:hover:bg-zinc-600 dark:active:bg-zinc-700 hover:bg-stone-200 active:bg-stone-300`
                     : "base:h-[30px] lg:h-[2.4rem] w-[45px] hover:bg-stone-100 dark:hover:bg-zinc-600 dark:active:bg-zinc-700 active:bg-stone-300"
             } flex`}
-        >
-            {icon && (
-                <div
-                    className={`${
-                        isFetching && fetcher && "animate-spin transition"
-                    } `}
-                >
-                    <div className="base:hidden lg:block transition">
-                        <FontAwesomeIcon
-                            icon={isFetching && fetcher ? faSpinner : icon}
-                            size={`xs`}
-                            color={`${darkMode && "#cecfd0"}`}
-                        />
+            >
+                {icon && (
+                    <div
+                        className={`${
+                            isFetching && fetcher && "animate-spin transition"
+                        } `}
+                    >
+                        <div className="base:hidden lg:block transition">
+                            <FontAwesomeIcon
+                                icon={isFetching && fetcher ? faSpinner : icon}
+                                size={`xs`}
+                                color={`${darkMode && "#cecfd0"}`}
+                            />
+                        </div>
+                        <div className="lg:hidden base:block">
+                            <FontAwesomeIcon
+                                color={`${darkMode && "#cecfd0"}`}
+                                icon={isFetching && fetcher ? faSpinner : icon}
+                                size={`sm`}
+                            />
+                        </div>
                     </div>
-                    <div className="lg:hidden base:block">
-                        <FontAwesomeIcon
-                            color={`${darkMode && "#cecfd0"}`}
-                            icon={isFetching && fetcher ? faSpinner : icon}
-                            size={`sm`}
-                        />
-                    </div>
-                </div>
-            )}
+                )}
 
-            {text && (
-                <p
-                    className={`flex w-full justify-center text-[13px] font-medium ${
-                        darkMode && "text-[#cecfd0]"
-                    }`}
-                >
-                    {text}
-                </p>
-            )}
-        </button>
+                {text && (
+                    <p
+                        className={`flex w-full justify-center text-[13px] font-medium ${
+                            darkMode && "text-[#cecfd0]"
+                        }`}
+                    >
+                        {text}
+                    </p>
+                )}
+                <HoverElement title={title} />
+            </button>
+        </div>
     );
 };
 
 const TriggerButton = forwardRef((props, forwardedRef) => {
     const darkMode = useSelector((state) => state.darkMode);
     return (
-        <button
-            {...props}
-            ref={forwardedRef}
-            className={`text-black select-none outline-none items-center transition justify-center base:h-[30px] lg:h-[2.4rem] w-[45px] dark:hover:bg-zinc-600 dark:active:bg-zinc-700 flex hover:bg-stone-100 active:bg-stone-200`}
-        >
-            <div className="base:hidden lg:block transition">
-                <FontAwesomeIcon
-                    color={`${darkMode && "#cecfd0"}`}
-                    icon={props.icon}
-                    size={`xs`}
-                />
-            </div>
-            <div className="lg:hidden base:block transition">
-                <FontAwesomeIcon
-                    color={`${darkMode && "#cecfd0"}`}
-                    icon={props.icon}
-                    size={`sm`}
-                />
-            </div>
-        </button>
+        <div className="flex items-center">
+            <button
+                {...props}
+                ref={forwardedRef}
+                className={`group text-black select-none outline-none items-center transition justify-center base:h-[30px] lg:h-[2.4rem] w-[45px] dark:hover:bg-zinc-600 dark:active:bg-zinc-700 flex hover:bg-stone-100 active:bg-stone-200`}
+            >
+                <div className="base:hidden lg:block transition">
+                    <FontAwesomeIcon
+                        color={`${darkMode && "#cecfd0"}`}
+                        icon={props.icon}
+                        size={`xs`}
+                    />
+                </div>
+                <div className="lg:hidden base:block transition">
+                    <FontAwesomeIcon
+                        color={`${darkMode && "#cecfd0"}`}
+                        icon={props.icon}
+                        size={`sm`}
+                    />
+                </div>
+                <HoverElement title={props.title} />
+            </button>
+        </div>
     );
 });
 
-const HorizontalDropdownMenu = ({ icon, handler, editorRef }) => {
+const HorizontalDropdownMenu = ({ icon, handler, editorRef, title }) => {
     const onSelect = (e) => {
         handler(editorRef, e.target.getAttribute("value"));
     };
@@ -136,7 +143,7 @@ const HorizontalDropdownMenu = ({ icon, handler, editorRef }) => {
     return (
         <DropdownMenu.Root>
             <DropdownMenu.Trigger asChild>
-                <TriggerButton icon={icon} />
+                <TriggerButton icon={icon} title={title} />
             </DropdownMenu.Trigger>
             <DropdownMenu.Portal>
                 <DropdownMenu.Content
@@ -205,7 +212,7 @@ const HorizontalDropdownMenu = ({ icon, handler, editorRef }) => {
     );
 };
 
-const VerticalSwitch = ({ header, icon, dispatcher }) => {
+const VerticalSwitch = ({ header, icon, dispatcher, title }) => {
     const darkMode = useSelector((state) => state.darkMode);
     const dispatch = useDispatch();
     const state = useSelector((state) => state[header]);
@@ -216,33 +223,36 @@ const VerticalSwitch = ({ header, icon, dispatcher }) => {
     };
 
     return (
-        <label
-            htmlFor={"switch-toggle" + header}
-            className={`flex justify-center base:h-[30px] lg:h-[2.4rem] w-[45px] transition cursor-pointer hover:bg-stone-100 active:bg-stone-200 dark:hover:bg-zinc-600 dark:active:bg-zinc-700`}
-        >
-            <div className="flex flex-col font-bold w-full  items-center flex justify-center">
-                <form>
-                    <div className="flex-col  w-full h-full items-center base:pb-1 justify-center flex">
-                        <div className="transition">
-                            <FontAwesomeIcon
-                                color={`${darkMode ? "#cecfd0" : "black"}`}
-                                icon={icon}
-                                size="xs"
-                            />
-                        </div>
+        <div className="align-items items-center flex group">
+            <label
+                htmlFor={"switch-toggle" + header}
+                className={`flex justify-center base:h-[30px] lg:h-[2.4rem] w-[45px] transition cursor-pointer hover:bg-stone-100 active:bg-stone-200 dark:hover:bg-zinc-600 dark:active:bg-zinc-700`}
+            >
+                <div className="flex flex-col font-bold w-full  items-center flex justify-center">
+                    <form>
+                        <div className="flex-col  w-full h-full items-center base:pb-1 justify-center flex">
+                            <div className="transition">
+                                <FontAwesomeIcon
+                                    color={`${darkMode ? "#cecfd0" : "black"}`}
+                                    icon={icon}
+                                    size="xs"
+                                />
+                            </div>
 
-                        <Switch.Root
-                            defaultChecked={state}
-                            onCheckedChange={handleToggle}
-                            className={`${
-                                darkMode ? "SwitchRoot-Dark" : "SwitchRoot"
-                            } transition base:-mt-1 lg:mt-0`}
-                            id={"switch-toggle" + header}
-                        ></Switch.Root>
-                    </div>
-                </form>
-            </div>
-        </label>
+                            <Switch.Root
+                                defaultChecked={state}
+                                onCheckedChange={handleToggle}
+                                className={`${
+                                    darkMode ? "SwitchRoot-Dark" : "SwitchRoot"
+                                } transition base:-mt-1 lg:mt-0`}
+                                id={"switch-toggle" + header}
+                            ></Switch.Root>
+                        </div>
+                    </form>
+                    <HoverElement title={title} />
+                </div>
+            </label>
+        </div>
     );
 };
 
@@ -255,6 +265,7 @@ const HorizontalPopover = ({
     editorRef,
     fetcher,
     handler,
+    title,
 }) => {
     const [isOpen, setIsOpen] = useState(false);
     const dispatch = useDispatch();
@@ -293,7 +304,7 @@ const HorizontalPopover = ({
     return (
         <Popover.Root open={isOpen} onOpenChange={setIsOpen}>
             <Popover.Trigger asChild>
-                <TriggerButton icon={icon} />
+                <TriggerButton icon={icon} title={title} />
             </Popover.Trigger>
             <Popover.Portal>
                 <Popover.Content
@@ -344,6 +355,7 @@ const HorizontalPopover = ({
                                             icon={faRightToBracket}
                                             setIsOpen={setIsOpen}
                                             editorRef={editorRef}
+                                            title={title}
                                         />
                                     </div>
                                 </fieldset>
@@ -374,6 +386,7 @@ const HorizontalPopover = ({
                                             fitted
                                             fetcher={fetcher}
                                             icon={faRightToBracket}
+                                            title={title}
                                         />
                                     </div>
                                 </fieldset>
@@ -398,6 +411,7 @@ const HorizontalPopover = ({
                                             fitted
                                             fetcher={fetcher}
                                             icon={faRightToBracket}
+                                            title={title}
                                         />
                                     </div>
                                 </fieldset>
@@ -451,12 +465,12 @@ export const HamburgerAnimation = () => {
     );
 };
 
-export const SettingsDialog = ({ icon }) => {
+export const SettingsDialog = ({ icon, title }) => {
     const darkMode = useSelector((state) => state.darkMode);
     return (
         <Dialog.Root>
             <Dialog.Trigger asChild>
-                <TriggerButton icon={icon} />
+                <TriggerButton icon={icon} title={title} />
             </Dialog.Trigger>
             <Dialog.Portal>
                 <Dialog.Overlay className="DialogOverlay" />
@@ -483,6 +497,16 @@ export const SettingsDialog = ({ icon }) => {
     );
 };
 
+const HoverElement = ({ title }) => {
+    return (
+        <div className="fixed ml-[95px] mb-6 rounded px-1 whitespace-nowrap w-12 group-hover:opacity-100 opacity-0 transition delay-0 group-hover:delay-300">
+            <div className="text-[12px] font-medium w-auto absolute border-[1px] border-stone-600 bg-stone-700 px-2 py-0.5 rounded-md text-white">
+                {title}
+            </div>
+        </div>
+    );
+};
+
 const ButtonGroup = ({ elements, editorRef, data, noMargin }) => {
     return (
         <div className="lg:flex base:w-fit base:justify-end lg:justify-center">
@@ -500,6 +524,7 @@ const ButtonGroup = ({ elements, editorRef, data, noMargin }) => {
                                 handler={element.func}
                                 editorRef={editorRef}
                                 icon={element.icon}
+                                title={element.title}
                             />
                         </div>
                     ) : element.type === "switch" ? (
@@ -508,6 +533,7 @@ const ButtonGroup = ({ elements, editorRef, data, noMargin }) => {
                             icon={element.icon}
                             header={element.symbol}
                             dispatcher={element.dispatcher}
+                            title={element.title}
                         />
                     ) : element.type === "popover" ? (
                         <HorizontalPopover
@@ -520,11 +546,13 @@ const ButtonGroup = ({ elements, editorRef, data, noMargin }) => {
                             handler={element.func}
                             fetcher={element.fetcher}
                             editorRef={editorRef}
+                            title={element.title}
                         />
                     ) : element.type === "dialog" ? (
                         <SettingsDialog
                             key={"bgs" + index}
                             icon={element.icon}
+                            title={element.title}
                         />
                     ) : (
                         <Button
@@ -535,6 +563,7 @@ const ButtonGroup = ({ elements, editorRef, data, noMargin }) => {
                             data={data ? data : ""}
                             handler={element.func}
                             symbol={element.symbol}
+                            title={element.title}
                         />
                     );
                 })}
