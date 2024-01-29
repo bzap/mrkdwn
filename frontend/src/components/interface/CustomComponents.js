@@ -500,7 +500,7 @@ export const SettingsDialog = ({ icon, title }) => {
 const HoverElement = ({ title }) => {
     return (
         <div className="fixed lg:ml-[95px] mb-6 rounded px-1 whitespace-nowrap cursor group-hover:block w-0 h-0 group-hover:w-12 group-hover:h-auto invisible group-hover:visible">
-            <div className="text-[12px] text-stone-300 dark:text-zinc-200 font-medium w-auto absolute border-[1px] border-stone-600 dark:bg-zinc-5 bg-stone-700 dark:bg-zinc-600 px-2 py-0.5 rounded-md text-white group-hover:opacity-100 opacity-0 transition delay-0 group-hover:delay-300">
+            <div className="lg:text-[12px] base:text-[0px] text-stone-300 dark:text-zinc-200 font-medium w-auto absolute lg:border-[1px] base:border-[0px] border-stone-600 lg:dark:bg-zinc-600 lg:bg-stone-700 dark:bg-zinc-600 px-2 py-0.5 rounded-md text-white group-hover:opacity-100 opacity-0 transition delay-0 group-hover:delay-300">
                 {title}
             </div>
         </div>
