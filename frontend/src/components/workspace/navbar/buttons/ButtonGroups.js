@@ -177,7 +177,7 @@ export const CustomizationGroup = {
         symbol: "scrollSynced",
         type: "switch",
         dispatcher: setScrollSynced,
-        title: "Sync scroll",
+        title: "Scroll sync",
     },
     theme: {
         icon: faMoon,
