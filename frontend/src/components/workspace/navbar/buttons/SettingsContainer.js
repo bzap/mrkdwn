@@ -219,7 +219,7 @@ const SettingsContainer = ({ darkMode }) => {
                         darkMode ? "text-zinc-500" : "text-stone-300"
                     } flex justify-center`}
                 >
-                    V1.0.1
+                    V1.0.2
                 </div>
             </div>
         </div>
