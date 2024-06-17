@@ -155,6 +155,9 @@ module.exports = {
                         "--tw-prose-th-borders": "#737373",
                         "--tw-prose-td-borders": "#737373",
                         lineHeight: "1.1rem",
+                        path: {
+                            fill: "#CECFD0",
+                        },
                         p: {
                             color: "#CECFD0",
                             "word-break": "break-words",

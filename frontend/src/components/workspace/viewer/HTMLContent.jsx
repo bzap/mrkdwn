@@ -5,7 +5,8 @@ const HTMLContent = () => {
     var md = require("markdown-it")()
         .use(require("markdown-it-footnote"))
         .use(require("markdown-it-task-lists"))
-        .use(require("markdown-it-mark"));
+        .use(require("markdown-it-mark"))
+        .use(require("markdown-it-mathjax3"));
     md.renderer.rules.table_open = function (tokens, idx, options, env, self) {
         return (
             `<div class='table-wrapper'>` +
