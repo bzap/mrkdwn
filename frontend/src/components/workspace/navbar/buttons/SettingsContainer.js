@@ -34,7 +34,6 @@ const SelectItem = forwardRef(
 );
 
 const FontSize = ({ fontSize, dispatcher, darkMode }) => {
-    console.log(darkMode);
     const currentFontSize = useSelector((state) => state[fontSize]);
     return (
         <div className="flex w-full justify-between">
@@ -122,6 +121,7 @@ const FontStyle = ({ dispatch, fontList, dispatcher, fontStyle, darkMode }) => {
                                             return (
                                                 <SelectItem
                                                     key={"select" + index}
+                                                    darkMode={darkMode}
                                                     className={"transition"}
                                                     value={value.var}
                                                 >
@@ -141,7 +141,6 @@ const FontStyle = ({ dispatch, fontList, dispatcher, fontStyle, darkMode }) => {
 };
 
 const SettingsContainer = ({ darkMode }) => {
-    console.log(darkMode);
     const dispatch = useDispatch();
     return (
         <div className="flex gap-0 flex-col select-none">
