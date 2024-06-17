@@ -48,7 +48,7 @@ Footnotes[^Footnote]
 
 ---
 
-==**All** of which _can_ be combined==. Check out the spec for more! 
+==**All** of which _can_ be combined==. Check out the spec for more![^Ref2] 
 
 
 

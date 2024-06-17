@@ -330,7 +330,6 @@ export const updateText = (ref, symbol) => {
         let to = viewState.state.selection.ranges[0].to;
         let slice = viewState.state.sliceDoc(from, to).trim();
         let highlighted;
-
         switch (symbol) {
             case "**":
             case "_":
@@ -348,6 +347,26 @@ export const updateText = (ref, symbol) => {
                     );
                 } else {
                     highlighted = `${symbol}${slice}${symbol}`;
+                    dispatchState(viewState, from, to, highlighted, symbol);
+                }
+                break;
+            case "$":
+                if (slice === "") {
+                    highlighted = `${symbol}Text${symbol}`;
+                    dispatchState(
+                        viewState,
+                        from,
+                        to,
+                        highlighted,
+                        symbol,
+                        true
+                    );
+                } else {
+                    if (slice.includes("\n")) {
+                        highlighted = `${symbol}${symbol}${slice}${symbol}${symbol}`;
+                    } else {
+                        highlighted = `${symbol}${slice}${symbol}`;
+                    }
                     dispatchState(viewState, from, to, highlighted, symbol);
                 }
                 break;

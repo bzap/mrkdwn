@@ -37,6 +37,7 @@ import {
     faMoon,
     faGear,
     faEye,
+    faCalculator,
 } from "@fortawesome/free-solid-svg-icons";
 import { setScrollSynced } from "../../../../lib/reducers/markdownSlice";
 
@@ -110,6 +111,12 @@ export const TextStyleGroup = {
         func: updateText,
         symbol: "```",
         title: "Code block",
+    },
+    math: {
+        icon: faCalculator,
+        func: updateText,
+        symbol: "$",
+        title: "Math equation",
     },
 };
 
