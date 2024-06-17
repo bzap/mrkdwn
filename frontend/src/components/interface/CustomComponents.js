@@ -127,7 +127,7 @@ const TriggerButton = forwardRef((props, forwardedRef) => {
                         size={`sm`}
                     />
                 </div>
-                <HoverElement title={props.title} />
+                <HoverElement title={props.hoverTitle} />
             </button>
         </div>
     );
@@ -143,7 +143,7 @@ const HorizontalDropdownMenu = ({ icon, handler, editorRef, title }) => {
     return (
         <DropdownMenu.Root>
             <DropdownMenu.Trigger asChild>
-                <TriggerButton icon={icon} title={title} />
+                <TriggerButton icon={icon} hoverTitle={title} />
             </DropdownMenu.Trigger>
             <DropdownMenu.Portal>
                 <DropdownMenu.Content
@@ -304,7 +304,7 @@ const HorizontalPopover = ({
     return (
         <Popover.Root open={isOpen} onOpenChange={setIsOpen}>
             <Popover.Trigger asChild>
-                <TriggerButton icon={icon} title={title} />
+                <TriggerButton icon={icon} hoverTitle={title} />
             </Popover.Trigger>
             <Popover.Portal>
                 <Popover.Content
@@ -470,7 +470,7 @@ export const SettingsDialog = ({ icon, title }) => {
     return (
         <Dialog.Root>
             <Dialog.Trigger asChild>
-                <TriggerButton icon={icon} title={title} />
+                <TriggerButton icon={icon} hoverTitle={title} />
             </Dialog.Trigger>
             <Dialog.Portal>
                 <Dialog.Overlay className="DialogOverlay" />
