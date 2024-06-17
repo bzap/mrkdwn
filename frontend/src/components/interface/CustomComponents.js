@@ -366,6 +366,7 @@ const HorizontalPopover = ({
                                             type="file"
                                             id="width"
                                             autoComplete="off"
+                                            accept=".md"
                                             placeholder={placeholder}
                                             name="input-text"
                                             title=" "
